@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FEA65BA61D168CE20068A20A /* ObjGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA65BA51D168CE20068A20A /* ObjGenerator.swift */; };
+		FEA65BA81D168DF40068A20A /* BoxGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA65BA71D168DF40068A20A /* BoxGenerator.swift */; };
 		FEDF1F6A1D151C07000EA427 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDF1F691D151C07000EA427 /* AppDelegate.swift */; };
 		FEDF1F6C1D151C07000EA427 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = FEDF1F6B1D151C07000EA427 /* GameScene.sks */; };
 		FEDF1F6E1D151C07000EA427 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDF1F6D1D151C07000EA427 /* GameScene.swift */; };
@@ -14,9 +16,12 @@
 		FEDF1F731D151C07000EA427 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEDF1F711D151C07000EA427 /* Main.storyboard */; };
 		FEDF1F751D151C07000EA427 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEDF1F741D151C07000EA427 /* Assets.xcassets */; };
 		FEDF1F781D151C07000EA427 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEDF1F761D151C07000EA427 /* LaunchScreen.storyboard */; };
+		FEDF1F801D1520E5000EA427 /* GameObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDF1F7F1D1520E5000EA427 /* GameObj.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FEA65BA51D168CE20068A20A /* ObjGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjGenerator.swift; sourceTree = "<group>"; };
+		FEA65BA71D168DF40068A20A /* BoxGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxGenerator.swift; sourceTree = "<group>"; };
 		FEDF1F661D151C07000EA427 /* Viridia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Viridia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEDF1F691D151C07000EA427 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEDF1F6B1D151C07000EA427 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -26,6 +31,7 @@
 		FEDF1F741D151C07000EA427 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FEDF1F771D151C07000EA427 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FEDF1F791D151C07000EA427 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FEDF1F7F1D1520E5000EA427 /* GameObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameObj.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,9 @@
 				FEDF1F741D151C07000EA427 /* Assets.xcassets */,
 				FEDF1F761D151C07000EA427 /* LaunchScreen.storyboard */,
 				FEDF1F791D151C07000EA427 /* Info.plist */,
+				FEDF1F7F1D1520E5000EA427 /* GameObj.swift */,
+				FEA65BA51D168CE20068A20A /* ObjGenerator.swift */,
+				FEA65BA71D168DF40068A20A /* BoxGenerator.swift */,
 			);
 			path = Viridia;
 			sourceTree = "<group>";
@@ -142,7 +151,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEA65BA61D168CE20068A20A /* ObjGenerator.swift in Sources */,
 				FEDF1F6E1D151C07000EA427 /* GameScene.swift in Sources */,
+				FEDF1F801D1520E5000EA427 /* GameObj.swift in Sources */,
+				FEA65BA81D168DF40068A20A /* BoxGenerator.swift in Sources */,
 				FEDF1F701D151C07000EA427 /* GameViewController.swift in Sources */,
 				FEDF1F6A1D151C07000EA427 /* AppDelegate.swift in Sources */,
 			);
@@ -296,6 +308,7 @@
 				FEDF1F7E1D151C07000EA427 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
