@@ -34,6 +34,7 @@ class GameObj
 		sprite = SKSpriteNode( imageNamed: spriteName )
 		sprite.position = CGPoint( x: xStart, y: yStart )
 		sprite.anchorPoint = CGPoint( x: 0.0, y: 0.0 )
+		sprite.zPosition = 10
 	}
 	
 	//moves the sprite based on horSpeed and verSpeed adjusted to framesPerSecond
@@ -96,27 +97,16 @@ class GameObj
 	//fires when the object is touched
 	func touchEvent( location : CGPoint )
 	{
-		/*
-		if ( dieOnCollide )
-		{
-			self.makeDead()
-		}
-		*/
+
 	}
 	
-	func outsideRoomEvent( roomHeight : CGFloat)
+	func outsideRoomEvent( roomHeight : CGFloat, roomWidth : CGFloat )
 	{
 		if ( !dieOutsideScreen )
 		{
 			return
 		}
-		
-		if ( sprite.position.y >= roomHeight )
-		{
-			return
-		}
-		
-		print( "DEAD" )
+
 		makeDead()
 	}
 	
@@ -126,5 +116,17 @@ class GameObj
 		{
 			self.makeDead()
 		}
+	}
+	
+	//fires when the object is no longer being touched
+	func stopDragEvent( location: CGPoint )
+	{
+		
+	}
+	
+	//fires when the object is being dragged by touch
+	func dragEvent( location: CGPoint )
+	{
+		
 	}
 }

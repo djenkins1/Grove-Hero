@@ -17,6 +17,16 @@ class ObjGenerator
 	
 	var stepsNeeded : Int = 20
 	
+	let roomWidth : CGFloat
+	
+	let roomHeight : CGFloat
+	
+	init( screenWidth : CGFloat, screenHeight : CGFloat )
+	{
+		self.roomHeight = screenHeight
+		self.roomWidth = screenWidth
+	}
+	
 	func incrementSteps()
 	{
 		stepsSinceGenerated += 1
@@ -31,5 +41,10 @@ class ObjGenerator
 	{
 		readyToGenerate = false
 		return nil
+	}
+	
+	func primePump()
+	{
+		self.stepsSinceGenerated = Int( ceil( Double(stepsNeeded) * 0.95 ) )
 	}
 }
