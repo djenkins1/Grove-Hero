@@ -26,4 +26,22 @@ class PlantObj : GameObj
 		let myChoice = Int( arc4random_uniform( UInt32( choices.count ) ) )
 		return "\(choices[myChoice])"
 	}
+	
+	
+	static func randomShroomSprite() -> String
+	{
+		let choices = [ "Brown" , "Red" ]
+		let myChoice = Int( arc4random_uniform( UInt32( choices.count ) ) )
+		return "mushroom\(choices[myChoice])"
+	}
+	
+	func changeToShroom()
+	{
+		sprite.texture = SKTexture(imageNamed: PlantObj.randomShroomSprite() )
+	}
+	
+	func changeToPlant()
+	{
+		sprite.texture = SKTexture( imageNamed: PlantObj.randomPlantSprite() )
+	}
 }

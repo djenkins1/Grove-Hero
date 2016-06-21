@@ -29,6 +29,8 @@ class GameObj
 	//whether the object should die when another object collides with it
 	var dieOnCollide = false
 	
+	var myScene : GameScene!
+	
 	init( spriteName : String, xStart : CGFloat, yStart : CGFloat )
 	{
 		sprite = SKSpriteNode( imageNamed: spriteName )
@@ -62,6 +64,7 @@ class GameObj
 	//called when the object is being added to the scene, should return itself
 	func createEvent( scene : GameScene ) -> GameObj
 	{
+		myScene = scene
 		return self
 	}
 	

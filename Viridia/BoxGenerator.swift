@@ -21,11 +21,22 @@ class BoxGenerator : ObjGenerator
 	override func generate() -> GameObj!
 	{
 		readyToGenerate = false
-		let widthPad = roomWidth * 0.05
-		let x = CGFloat(arc4random_uniform( UInt32(roomWidth - ( widthPad * 2 ) ) )) + widthPad
-		let middleHeight = roomHeight * 0.54
-		let y = CGFloat(arc4random_uniform( UInt32( middleHeight ) ) ) + roomHeight
-		let newObj = BoxObj( spriteName: "box" , xStart: x, yStart: y )
-		return newObj
+		if ( arc4random_uniform( 5 ) < 2 )
+		{
+			let widthPad = roomWidth * 0.05
+			let x = CGFloat(arc4random_uniform( UInt32(roomWidth - ( widthPad * 2 ) ) )) + widthPad
+			let middleHeight = roomHeight * 0.54
+			let y = CGFloat(arc4random_uniform( UInt32( middleHeight ) ) ) + roomHeight
+			
+			if ( arc4random_uniform( 5 ) == 0 )
+			{
+				return HealBox(  xStart: x, yStart: y )
+			}
+			else
+			{
+				return BombBox(  xStart: x, yStart: y )
+			}
+		}
+		return nil
 	}
 }

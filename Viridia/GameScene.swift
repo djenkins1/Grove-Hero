@@ -8,18 +8,28 @@
 //==========
 //	TODO
 //==========
-//	Add in random plants
-//		have random sprites chosen in PlantObj constructor, just need to position them on top of grass randomly grids
-//	when box hits ground, should fire off code that causes damage
-//	rocks that have # of lives, lose life and get smaller when hit by boxes
-//	some other scenic object that eats boxes but has to wait so much time before next box can be eaten
-//		have placeholder door sprite, top should change over from black to wood when eating
-//	power up boxes that have specific powers, i.e regenerate hurt plants, build up rocks
-//	special plant that shoots burst of sun ray upwards when tapped, any boxes hit by ray get destroyed
-//	explode animation for when box hits ground
-//	seperate explosiveBox object and other pickup boxes
+//	(replaces door idea)special plant that shoots burst of sun ray upwards when tapped, any boxes hit by ray get destroyed
+//		has a cool down period
+//	power up boxes that have specific powers
+//		regenerate hurt plants(DONE)
+//		build up rocks(creating a rock if it does not exist)
+//	explode animation for when box hits ground, sand spilling out/spores
 //	step counter for generators should be based off seconds * framesPerSecond for readability
-//	should the clouds be moving or stationary?
+//	(?)should the clouds be moving or stationary?
+//	(?)mycelium infestation from mushrooms that spread to nearby grass and turns to mycelium, turning more plants to shrooms
+//	if the box hits sand, need some thing to happen that makes it not worthwhile to just continually drop boxes on sand
+//		maybe spread the sand to adjacent tiles?
+//		random sand monster that drags bomb to nearest grass tile touching the sand
+//	need to make sure that there are at least a certain number of plants randomly generated
+//	NEED A GOOD ENDING FOR THE LEVEL
+//		i.e total time has passed certain point, or total number of boxes spawned has reached certain point
+//	NEED A DEATH ENDING FOR THE LEVEL
+//		if total number of plants reaches zero, game over
+//	GAME MAKER SPRITES
+//		Change over mycelium sprite to have dirt underneath(NEED GAMEMAKER COLORIZE)
+//		need smaller rock sprites for less lives of rock, should still be 70x70 grid but rock should shrink
+//		need to stretch out sunflower plant sprite so that vine is centered with respect to size of flower
+//
 //==========
 //
 
@@ -186,20 +196,31 @@ class GameScene: SKScene
 				continue
 			}
 		
+			var collideGroup = [(Int,Int) ]()
 			var innerIndex = -1
 			for other in gameObjects
 			{
 				innerIndex = innerIndex + 1
-				if innerIndex == outerIndex || obj.isDead || other.isDead
+				if innerIndex == outerIndex
 				{
 					continue
 				}
 				
 				if ( obj.doesCollide( other ) )
 				{
-					obj.collideEvent(other)
-					other.collideEvent( obj )
+					if ( !pairIsInArray( collideGroup, indexOne: outerIndex, indexTwo: innerIndex ) )
+					{
+						collideGroup.append( (outerIndex, innerIndex) )
+					}
 				}
+			}
+			
+			for collide in collideGroup
+			{
+				let obj = gameObjects[ collide.0 ]
+				let other = gameObjects[ collide.1 ]
+				obj.collideEvent( other )
+				other.collideEvent( obj )
 			}
 		}
 	}
@@ -257,6 +278,9 @@ class GameScene: SKScene
 			let xPos = CGFloat(index) * objForSize.sprite.frame.width
 			addGameObject( GroundObj( isTop: isTop , xStart: xPos, yStart: yPos ) )
 		}
+		
+		let total = numberOfObjects( PlantObj )
+		print( "Total plants: \(total)" )
 	}
 	
 	//creates the background image for the scene
@@ -268,5 +292,37 @@ class GameScene: SKScene
 		sprite.size.width = frame.width
 		sprite.zPosition = 1
 		self.addChild( sprite )
+	}
+	
+	private func pairIsInArray( array : Array<(Int,Int)> , indexOne: Int, indexTwo: Int ) -> Bool
+	{
+		for element in array
+		{
+			if ( element.0 == indexOne && element.1 == indexTwo )
+			{
+				return true
+			}
+			
+			if ( element.0 == indexTwo && element.1 == indexOne )
+			{
+				return true
+			}
+		}
+		
+		return false
+	}
+	
+	func numberOfObjects( ofType : GameObj.Type ) -> Int
+	{
+		var toReturn : Int = 0
+		for obj in gameObjects
+		{
+			if object_getClass( obj ) == ofType
+			{
+				toReturn += 1
+			}
+		}
+		
+		return toReturn
 	}
 }

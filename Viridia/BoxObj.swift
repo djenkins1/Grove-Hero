@@ -11,6 +11,7 @@ import SpriteKit
 
 class BoxObj : GameObj
 {
+	
 	override init(spriteName: String, xStart: CGFloat, yStart: CGFloat)
 	{
 		super.init( spriteName: spriteName, xStart: xStart, yStart: yStart )
@@ -33,19 +34,6 @@ class BoxObj : GameObj
 		}
 		
 		makeDead()
-	}
-	
-	override func collideEvent( other : GameObj )
-	{
-		if ( self.dieOnCollide )
-		{
-			if ( other is CloudObj )
-			{
-				return
-			}
-			
-			self.makeDead()
-		}
 	}
 	
 	override func dragEvent(location: CGPoint)
