@@ -225,16 +225,16 @@ class GameScene: SKScene
 	}
 	
 	//removes the game object from the list of game objects and from the scene
-	private func removeGameObject( obj : GameObj )
+	func removeGameObject( obj : GameObj )
 	{
-		obj.makeDead()
+		obj.deleteEvent( self )
 		self.removeChildrenInArray( [ obj.sprite ])
 	}
 	
 	//adds the object and its sprite to the game view data, returns obj for chaining
-	private func addGameObject( obj : GameObj ) -> GameObj
+	func addGameObject( obj : GameObj ) -> GameObj
 	{
-		self.gameObjects.append( obj )
+		self.gameObjects.append( obj.createEvent( self ) )
 		self.addChild( obj.sprite )
 		return obj
 	}

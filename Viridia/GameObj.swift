@@ -59,6 +59,19 @@ class GameObj
 		return self
 	}
 	
+	//called when the object is being added to the scene, should return itself
+	func createEvent( scene : GameScene ) -> GameObj
+	{
+		return self
+	}
+	
+	//called when the object is being removed from the scene, should return itself
+	func deleteEvent( scene : GameScene ) -> GameObj
+	{
+		makeDead()
+		return self
+	}
+	
 	//returns true if the x and y position of the sprite are within the boundaries specified
 	func checkPositionToBoundaries( xEnd : CGFloat, yEnd: CGFloat ) -> Bool
 	{
@@ -77,8 +90,9 @@ class GameObj
 		return sprite.frame.intersects( otherObj.sprite.frame )
 	}
 	
-	//simply makes the object dead, subclasses can override to run specific code
-	func makeDead()
+	//simply makes the object dead
+	//to actually call code when the object is removed from the scene see deleteEvent(:_)
+	final func makeDead()
 	{
 		if ( isDead )
 		{
@@ -94,12 +108,7 @@ class GameObj
 		self.sprite.position.y = y
 	}
 	
-	//fires when the object is touched
-	func touchEvent( location : CGPoint )
-	{
-
-	}
-	
+	//fires when this object is considered outside the screen
 	func outsideRoomEvent( roomHeight : CGFloat, roomWidth : CGFloat )
 	{
 		if ( !dieOutsideScreen )
@@ -110,12 +119,19 @@ class GameObj
 		makeDead()
 	}
 	
+	//fires when this object collides with another object
 	func collideEvent( other : GameObj )
 	{
 		if ( self.dieOnCollide )
 		{
 			self.makeDead()
 		}
+	}
+	
+	//fires when the object is touched
+	func touchEvent( location : CGPoint )
+	{
+		
 	}
 	
 	//fires when the object is no longer being touched
