@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE1069DD1D1A6AA000E0E5A5 /* FirePlant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1069DC1D1A6AA000E0E5A5 /* FirePlant.swift */; };
+		FE1069DF1D1A6D9B00E0E5A5 /* FlameObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1069DE1D1A6D9B00E0E5A5 /* FlameObj.swift */; };
 		FE7C1FF21D1900FB00513EC7 /* RockObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C1FF11D1900FB00513EC7 /* RockObj.swift */; };
-		FE7C1FF41D19026000513EC7 /* HoleObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C1FF31D19026000513EC7 /* HoleObj.swift */; };
 		FE7C1FFA1D191AE100513EC7 /* BombBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C1FF91D191AE100513EC7 /* BombBox.swift */; };
 		FE7C1FFC1D191B8B00513EC7 /* HealBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C1FFB1D191B8B00513EC7 /* HealBox.swift */; };
 		FE881EA51D175D84003D2D57 /* BoxObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE881EA41D175D84003D2D57 /* BoxObj.swift */; };
@@ -29,8 +30,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FE1069DC1D1A6AA000E0E5A5 /* FirePlant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirePlant.swift; sourceTree = "<group>"; };
+		FE1069DE1D1A6D9B00E0E5A5 /* FlameObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlameObj.swift; sourceTree = "<group>"; };
 		FE7C1FF11D1900FB00513EC7 /* RockObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RockObj.swift; sourceTree = "<group>"; };
-		FE7C1FF31D19026000513EC7 /* HoleObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoleObj.swift; sourceTree = "<group>"; };
 		FE7C1FF91D191AE100513EC7 /* BombBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BombBox.swift; sourceTree = "<group>"; };
 		FE7C1FFB1D191B8B00513EC7 /* HealBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealBox.swift; sourceTree = "<group>"; };
 		FE881EA41D175D84003D2D57 /* BoxObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxObj.swift; sourceTree = "<group>"; };
@@ -100,8 +102,9 @@
 				FE881EA61D175E4F003D2D57 /* CloudObj.swift */,
 				FE881EAA1D176DEC003D2D57 /* GroundObj.swift */,
 				FE881EAC1D176FC0003D2D57 /* PlantObj.swift */,
+				FE1069DC1D1A6AA000E0E5A5 /* FirePlant.swift */,
 				FE7C1FF11D1900FB00513EC7 /* RockObj.swift */,
-				FE7C1FF31D19026000513EC7 /* HoleObj.swift */,
+				FE1069DE1D1A6D9B00E0E5A5 /* FlameObj.swift */,
 			);
 			path = Viridia;
 			sourceTree = "<group>";
@@ -185,11 +188,12 @@
 				FEDF1F6E1D151C07000EA427 /* GameScene.swift in Sources */,
 				FE881EA51D175D84003D2D57 /* BoxObj.swift in Sources */,
 				FE881EA71D175E4F003D2D57 /* CloudObj.swift in Sources */,
+				FE1069DD1D1A6AA000E0E5A5 /* FirePlant.swift in Sources */,
 				FEDF1F801D1520E5000EA427 /* GameObj.swift in Sources */,
+				FE1069DF1D1A6D9B00E0E5A5 /* FlameObj.swift in Sources */,
 				FEA65BA81D168DF40068A20A /* BoxGenerator.swift in Sources */,
 				FEDF1F701D151C07000EA427 /* GameViewController.swift in Sources */,
 				FE881EAB1D176DEC003D2D57 /* GroundObj.swift in Sources */,
-				FE7C1FF41D19026000513EC7 /* HoleObj.swift in Sources */,
 				FE7C1FF21D1900FB00513EC7 /* RockObj.swift in Sources */,
 				FEDF1F6A1D151C07000EA427 /* AppDelegate.swift in Sources */,
 				FE7C1FFA1D191AE100513EC7 /* BombBox.swift in Sources */,

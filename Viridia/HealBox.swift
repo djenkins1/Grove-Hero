@@ -18,13 +18,8 @@ class HealBox : BoxObj
 	
 	override func collideEvent( other : GameObj )
 	{
-		if ( self.dieOnCollide )
+		if ( self.dieOnCollide && other.hasCollideEffect( self ) )
 		{
-			if ( other is CloudObj || other is PlantObj )
-			{
-				return
-			}
-			
 			if ( other is GroundObj )
 			{
 				(other as! GroundObj).healMe()

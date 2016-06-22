@@ -15,6 +15,17 @@ class PlantObj : GameObj
 	{
 		let spriteName = PlantObj.randomPlantSprite()
 		super.init( spriteName: spriteName, xStart: xStart, yStart: yStart )
+		initOther()
+	}
+	
+	override init( spriteName : String, xStart: CGFloat, yStart: CGFloat )
+	{
+		super.init( spriteName: spriteName, xStart: xStart, yStart: yStart )
+		initOther()
+	}
+	
+	private func initOther()
+	{
 		self.dieOnCollide = false
 		self.dieOutsideScreen = true
 		self.sprite.zPosition = 20
@@ -43,5 +54,10 @@ class PlantObj : GameObj
 	func changeToPlant()
 	{
 		sprite.texture = SKTexture( imageNamed: PlantObj.randomPlantSprite() )
+	}
+	
+	override func hasCollideEffect(other: GameObj) -> Bool
+	{
+		return false
 	}
 }

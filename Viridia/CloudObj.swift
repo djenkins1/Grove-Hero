@@ -48,4 +48,9 @@ class CloudObj : GameObj
 		let myChoice = Int( arc4random_uniform( UInt32( choices.count ) ) )
 		return "cloud\(choices[myChoice])"
 	}
+	
+	override func hasCollideEffect(other: GameObj) -> Bool
+	{
+		return false
+	}
 }

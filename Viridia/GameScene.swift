@@ -8,27 +8,28 @@
 //==========
 //	TODO
 //==========
-//	(replaces door idea)special plant that shoots burst of sun ray upwards when tapped, any boxes hit by ray get destroyed
-//		has a cool down period
+//	Fire plant
+//		(DONE)shoots fire balls upwards when tapped
+//		(DONE)any boxes hit by fire gets destroyed
+//		(DONE)has a cool down period
+//		fireballs need to be positioned correctly based on center of both sprites...
+//		fireballs should disappear when hitting a box
+//		if a bomb box hits this plant, the plant goes to cool down state
 //	power up boxes that have specific powers
 //		regenerate hurt plants(DONE)
 //		build up rocks(creating a rock if it does not exist)
 //	explode animation for when box hits ground, sand spilling out/spores
+//	explode animation for when fireball hits a box
 //	step counter for generators should be based off seconds * framesPerSecond for readability
-//	(?)should the clouds be moving or stationary?
 //	(?)mycelium infestation from mushrooms that spread to nearby grass and turns to mycelium, turning more plants to shrooms
 //	if the box hits sand, need some thing to happen that makes it not worthwhile to just continually drop boxes on sand
 //		maybe spread the sand to adjacent tiles?
 //		random sand monster that drags bomb to nearest grass tile touching the sand
-//	need to make sure that there are at least a certain number of plants randomly generated
-//	NEED A GOOD ENDING FOR THE LEVEL
+//	need to make sure that there are at least a certain number of plants/rocks randomly generated
+//		should have at least one fire plant
+//	need user completing level correctly
 //		i.e total time has passed certain point, or total number of boxes spawned has reached certain point
-//	NEED A DEATH ENDING FOR THE LEVEL
-//		if total number of plants reaches zero, game over
-//	GAME MAKER SPRITES
-//		Change over mycelium sprite to have dirt underneath(NEED GAMEMAKER COLORIZE)
-//		need smaller rock sprites for less lives of rock, should still be 70x70 grid but rock should shrink
-//		need to stretch out sunflower plant sprite so that vine is centered with respect to size of flower
+//			see winCondition function for basis of implementation
 //
 //==========
 //
@@ -49,6 +50,12 @@ class GameScene: SKScene
 	//a list of generator objects that are stepped over when update is called
 	var generatorList = [ObjGenerator]()
 	
+	var pauseUpdate = false
+	
+	var shouldCheckLose = false
+	
+	var objCreateQueue = [GameObj]()
+	
     override func didMoveToView(view: SKView)
 	{
         /* Setup your scene here */
@@ -63,11 +70,24 @@ class GameScene: SKScene
 		setupGenerators()
 		createLayer( false , atLayer: 1 )
 		createLayer( true , atLayer: 2 )
+		shouldCheckLose = true
     }
+	
+
 	
 	/* Called before each frame is rendered */
 	override func update(currentTime: CFTimeInterval)
 	{
+		if ( pauseUpdate )
+		{
+			return
+		}
+		
+		if ( shouldCheckLose )
+		{
+			checkLoseCondition()
+		}
+		
 		//get the difference in time from last time
 		let deltaTime = currentTime - lastTime
 		let currentFPS = Int( floor( 1 / deltaTime ) )
@@ -84,7 +104,9 @@ class GameScene: SKScene
 				continue
 			}
 			
+			obj.updateEvent( self, currentFPS: currentFPS )
 			obj.move( currentFPS )
+			
 			if ( !obj.checkPositionToBoundaries( frame.width , yEnd: frame.height ) )
 			{
 				obj.outsideRoomEvent( frame.height, roomWidth: frame.width )
@@ -97,9 +119,16 @@ class GameScene: SKScene
 			
 			newList.append( obj )
 		}
-		
+
 		gameObjects.removeAll()
 		gameObjects = newList
+		
+		for obj in objCreateQueue
+		{
+			addGameObject( obj )
+			objCreateQueue.removeFirst()
+		}
+
 		
 		lastTime = currentTime
 	}
@@ -225,6 +254,39 @@ class GameScene: SKScene
 		}
 	}
 	
+	
+	func pauseAndShowMessage( message : String )
+	{
+		if ( pauseUpdate )
+		{
+			return
+		}
+		
+		pauseUpdate = true
+		let myLabel = SKLabelNode(fontNamed:"Chalkduster")
+		myLabel.text = message
+		myLabel.fontSize = 45
+		myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
+		myLabel.zPosition = 100
+		myLabel.fontColor = UIColor.blackColor()
+		self.addChild(myLabel)
+	}
+	
+	//checks whether the player has lost the current level and does accordingly
+	private func checkLoseCondition()
+	{
+		if ( numberOfObjects( PlantObj ) == 0 )
+		{
+			pauseAndShowMessage( "Game Over!" )
+		}
+	}
+	
+	//should be called when the player has won the current level
+	func winCondition()
+	{
+		pauseAndShowMessage( "You Won!" )
+	}
+	
 	//steps through every generator object and increments counter for said object
 	//then calls generate method on sais object if it is readyToGenerate
 	//adds the resulting object to the list of objects
@@ -257,6 +319,13 @@ class GameScene: SKScene
 	{
 		self.gameObjects.append( obj.createEvent( self ) )
 		self.addChild( obj.sprite )
+		return obj
+	}
+	
+	//adds the object to the queue for creation
+	func queueGameObject( obj : GameObj ) -> GameObj
+	{
+		self.objCreateQueue.append( obj )
 		return obj
 	}
 	

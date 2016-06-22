@@ -15,7 +15,7 @@ class RockObj : GameObj
 	
 	init( xStart: CGFloat, yStart: CGFloat )
 	{
-		super.init( spriteName: "rock" , xStart: xStart, yStart: yStart )
+		super.init( spriteName: "rock3" , xStart: xStart, yStart: yStart )
 	}
 	
 	override func collideEvent(other: GameObj)
@@ -33,6 +33,10 @@ class RockObj : GameObj
 		if ( lives <= 0 )
 		{
 			makeDead()
+		}
+		else
+		{
+			changeSprite( "rock\(lives)" )
 		}
 	}
 }

@@ -148,4 +148,21 @@ class GameObj
 	{
 		
 	}
+	
+	//changes the sprite's current texture to the spriteName provided
+	func changeSprite( spriteName : String )
+	{
+		sprite.texture = SKTexture(imageNamed: spriteName )
+	}
+	
+	//fires when the update function is called in the GameScene
+	func updateEvent( scene : GameScene, currentFPS : Int )
+	{
+		
+	}
+	
+	func hasCollideEffect( other : GameObj ) -> Bool
+	{
+		return true
+	}
 }

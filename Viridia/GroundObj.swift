@@ -22,10 +22,10 @@ class GroundObj : GameObj
 	init( isTop : Bool, xStart: CGFloat, yStart: CGFloat )
 	{
 		self.isTop = isTop
-		super.init( spriteName: GroundObj.getSprite( isTop ) , xStart: xStart, yStart: yStart )
+		super.init( spriteName: GroundObj.getGrassSprite( isTop ) , xStart: xStart, yStart: yStart )
 	}
 	
-	static func getSprite( isTop : Bool ) -> String
+	static func getGrassSprite( isTop : Bool ) -> String
 	{
 		return ( isTop ? "grassMid" : "grassCenter" )
 	}
@@ -43,8 +43,18 @@ class GroundObj : GameObj
 			}
 			else
 			{
-				myPlant = PlantObj(xStart: sprite.position.x, yStart: sprite.position.y )
-				myPlant!.sprite.position.y += myPlant!.sprite.frame.height
+				if ( arc4random_uniform( 10 ) >= 4 )
+				{
+					myPlant = PlantObj(xStart: sprite.position.x, yStart: sprite.position.y )
+					myPlant!.sprite.position.y += myPlant!.sprite.frame.height
+				}
+				else
+				{
+					myPlant = FirePlant(xStart: sprite.position.x, yStart: sprite.position.y )
+					myPlant!.sprite.position.y += myPlant!.sprite.frame.height - 32
+				}
+				
+				
 				scene.addGameObject( myPlant! )
 			}
 		}
@@ -61,7 +71,7 @@ class GroundObj : GameObj
 		
 		if ( isShroomed )
 		{
-			sprite.texture = SKTexture(imageNamed:"sandMid")
+			changeSprite( "sandMid" )
 			isSandy = true
 			if ( myPlant != nil )
 			{
@@ -70,7 +80,7 @@ class GroundObj : GameObj
 			return
 		}
 		
-		sprite.texture = SKTexture(imageNamed:"stoneMid")
+		changeSprite( "stoneMid" )
 		isShroomed = true
 		if ( myPlant != nil )
 		{
@@ -95,7 +105,7 @@ class GroundObj : GameObj
 		
 		if ( isShroomed )
 		{
-			sprite.texture = SKTexture(imageNamed:"grassMid")
+			changeSprite( "grassMid" )
 			isShroomed = false
 			if ( myPlant != nil )
 			{
