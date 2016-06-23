@@ -30,37 +30,6 @@ class GroundObj : GameObj
 		return ( isTop ? "grassMid" : "grassCenter" )
 	}
 	
-	override func createEvent(scene: GameScene) -> GameObj
-	{
-		super.createEvent( scene )
-		if ( isTop && arc4random_uniform( 3 ) == 0  )
-		{
-			if ( arc4random_uniform( 5 ) == 0  )
-			{
-				let rockObj = RockObj(xStart: sprite.position.x, yStart: sprite.position.y )
-				rockObj.sprite.position.y += rockObj.sprite.frame.height
-				scene.addGameObject( rockObj )
-			}
-			else
-			{
-				if ( arc4random_uniform( 10 ) >= 4 )
-				{
-					myPlant = PlantObj(xStart: sprite.position.x, yStart: sprite.position.y )
-					myPlant!.sprite.position.y += myPlant!.sprite.frame.height
-				}
-				else
-				{
-					myPlant = FirePlant(xStart: sprite.position.x, yStart: sprite.position.y )
-					myPlant!.sprite.position.y += myPlant!.sprite.frame.height - 32
-				}
-				
-				
-				scene.addGameObject( myPlant! )
-			}
-		}
-		return self
-	}
-	
 	//changes the ground to mycelium, if already mycelium changes to sand and kills off any plant growing above
 	func damageMe()
 	{

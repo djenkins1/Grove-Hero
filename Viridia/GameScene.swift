@@ -25,11 +25,12 @@
 //	if the box hits sand, need some thing to happen that makes it not worthwhile to just continually drop boxes on sand
 //		maybe spread the sand to adjacent tiles?
 //		random sand monster that drags bomb to nearest grass tile touching the sand
-//	need to make sure that there are at least a certain number of plants/rocks randomly generated
-//		should have at least one fire plant
 //	need user completing level correctly
 //		i.e total time has passed certain point, or total number of boxes spawned has reached certain point
 //			see winCondition function for basis of implementation
+//	difficulty or configuration object that has constants, i.e spawn rate/number of plants generated
+//	collisions should be based on non-transparent parts of the sprite
+//		see GameObj init code for more info
 //
 //==========
 //
@@ -70,6 +71,7 @@ class GameScene: SKScene
 		setupGenerators()
 		createLayer( false , atLayer: 1 )
 		createLayer( true , atLayer: 2 )
+		generateScenery()
 		shouldCheckLose = true
     }
 	
@@ -337,19 +339,18 @@ class GameScene: SKScene
 	}
 	
 	//creates a layer of sprites across the bottom of the screen
-	private func createLayer( isTop: Bool, atLayer: Int )
+	private func createLayer( isTop: Bool, atLayer: Int ) -> CGFloat
 	{
 		let objForSize = GroundObj( isTop: isTop , xStart: 0, yStart: 0 )
 		let totalSprites = Int( ceil( self.frame.width / objForSize.sprite.frame.width ) ) + 1
+		let yPos = objForSize.sprite.frame.height * CGFloat(atLayer)
 		for index in 0 ..< totalSprites
 		{
-			let yPos = objForSize.sprite.frame.height * CGFloat(atLayer)
 			let xPos = CGFloat(index) * objForSize.sprite.frame.width
 			addGameObject( GroundObj( isTop: isTop , xStart: xPos, yStart: yPos ) )
 		}
 		
-		let total = numberOfObjects( PlantObj )
-		print( "Total plants: \(total)" )
+		return yPos
 	}
 	
 	//creates the background image for the scene
@@ -394,4 +395,71 @@ class GameScene: SKScene
 		
 		return toReturn
 	}
+
+	func allObjectsOfType( ofType : GameObj.Type ) -> Array<GameObj>
+	{
+		var toReturn = [GameObj]()
+		for obj in gameObjects
+		{
+			if object_getClass( obj ) == ofType
+			{
+				toReturn.append( obj )
+			}
+		}
+		
+		return toReturn
+	}
+	
+	private func generateScenery()
+	{
+		var numberOfRocks = 2
+		var numberOfPlants = 5//TODO :Should be based off number of ground that are isTop
+		var numberOfFires = 2
+		let allGround = allObjectsOfType( GroundObj )
+		var remainingTopGround = [GroundObj]()
+		for obj in allGround
+		{
+			if ( obj is GroundObj && ( obj as! GroundObj).isTop )
+			{
+				remainingTopGround.append( (obj as! GroundObj) )
+			}
+		}
+		
+		while( remainingTopGround.count > 0 )
+		{
+			let randomIndex = Int( arc4random_uniform( UInt32( remainingTopGround.count ) ) )
+			let myGround = remainingTopGround[ randomIndex ]
+			remainingTopGround.removeAtIndex( randomIndex )
+			
+			if ( numberOfRocks > 0 )
+			{
+				let rockObj = RockObj(xStart: myGround.sprite.position.x, yStart: myGround.sprite.position.y )
+				rockObj.sprite.position.y += rockObj.sprite.frame.height
+				addGameObject( rockObj )
+				numberOfRocks -= 1
+				continue
+			}
+			else if ( numberOfPlants > 0 )
+			{
+				myGround.myPlant = PlantObj(xStart: myGround.sprite.position.x, yStart: myGround.sprite.position.y )
+				myGround.myPlant!.sprite.position.y += myGround.myPlant!.sprite.frame.height
+				addGameObject( myGround.myPlant! )
+				numberOfPlants -= 1
+				continue
+			}
+			else if ( numberOfFires > 0 )
+			{
+				myGround.myPlant = FirePlant(xStart: myGround.sprite.position.x, yStart: myGround.sprite.position.y )
+				myGround.myPlant!.sprite.position.y += myGround.myPlant!.sprite.frame.height - 32
+				addGameObject( myGround.myPlant! )
+				numberOfFires -= 1
+				continue
+			}
+			else
+			{
+				break
+			}
+		}
+	}
+	
 }

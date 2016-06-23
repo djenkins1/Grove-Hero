@@ -37,6 +37,10 @@ class GameObj
 		sprite.position = CGPoint( x: xStart, y: yStart )
 		sprite.anchorPoint = CGPoint( x: 0.0, y: 0.0 )
 		sprite.zPosition = 10
+		
+		//this should take transparency into account for collisions?
+		//	also needs to rewrite collision, see bookmarks for bombz
+		//sprite.physicsBody = SKPhysicsBody( texture: sprite.texture! , size: sprite.texture!.size() )
 	}
 	
 	//moves the sprite based on horSpeed and verSpeed adjusted to framesPerSecond
