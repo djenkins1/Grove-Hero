@@ -17,6 +17,15 @@ class FlameObj : GameObj
 		self.dieOnCollide = false
 		self.dieOutsideScreen = true
 		self.sprite.zPosition = 20
-		self.verSpeed = 120
+		self.verSpeed = 150
+	}
+	
+	override func collideEvent(other: GameObj)
+	{
+		if ( other.hasCollideEffect( self ) )
+		{
+			makeDead()
+		}
+		
 	}
 }

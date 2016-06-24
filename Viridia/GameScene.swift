@@ -8,13 +8,6 @@
 //==========
 //	TODO
 //==========
-//	Fire plant
-//		(DONE)shoots fire balls upwards when tapped
-//		(DONE)any boxes hit by fire gets destroyed
-//		(DONE)has a cool down period
-//		fireballs need to be positioned correctly based on center of both sprites...
-//		fireballs should disappear when hitting a box
-//		if a bomb box hits this plant, the plant goes to cool down state
 //	power up boxes that have specific powers
 //		regenerate hurt plants(DONE)
 //		build up rocks(creating a rock if it does not exist)
@@ -31,6 +24,9 @@
 //	difficulty or configuration object that has constants, i.e spawn rate/number of plants generated
 //	collisions should be based on non-transparent parts of the sprite
 //		see GameObj init code for more info
+//	firePlants should have lives like rocks, if hit by bombs too much should die
+//		should wither a bit when hit, i.e sprite change like rocks
+//		should be healed by HealBoxes, also fires up the plant so that it is ready to fire
 //
 //==========
 //

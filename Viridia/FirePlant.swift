@@ -45,13 +45,17 @@ class FirePlant : PlantObj
 	
 	private func createFire( scene : GameScene )
 	{
+		//70 wide by 100 tall = fireplant
+		//41 wide by 80 tall = flame
 		let flame = FlameObj( xStart: sprite.position.x , yStart: sprite.position.y )
+		flame.sprite.position.x += ( floor( flame.sprite.frame.width / 2 ) - 1.5 )
+		flame.sprite.position.y += ( flame.sprite.frame.height * 1.2 )
 		scene.queueGameObject( flame )
 	}
 	
 	private func changeCoolDown( newCoolDown : Int )
 	{
-		if ( newCoolDown < 0 || newCoolDown > 3 )
+		if ( newCoolDown <= 0 || newCoolDown > 3 )
 		{
 			return
 		}
@@ -78,6 +82,20 @@ class FirePlant : PlantObj
 	
 	override func hasCollideEffect(other: GameObj) -> Bool
 	{
+		if ( other is FlameObj )
+		{
+			return false
+		}
 		return true
+	}
+	
+	override func collideEvent(other: GameObj)
+	{
+		if ( other is BombBox )
+		{
+			timer = 0
+			changeCoolDown( 1 )
+		}
+		
 	}
 }
