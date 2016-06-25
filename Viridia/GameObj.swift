@@ -31,6 +31,8 @@ class GameObj
 	
 	var myScene : GameScene!
 	
+	var myPath : GamePath!
+	
 	init( spriteName : String, xStart : CGFloat, yStart : CGFloat )
 	{
 		sprite = SKSpriteNode( imageNamed: spriteName )
@@ -46,6 +48,14 @@ class GameObj
 	//moves the sprite based on horSpeed and verSpeed adjusted to framesPerSecond
 	func move( framesPerSecond : Int ) -> GameObj
 	{
+		if ( myPath != nil )
+		{
+			if ( !( myPath!.adjustSpeed( self ) ) )
+			{
+				myPath = nil
+			}
+		}
+		
 		if ( horSpeed == 0 && verSpeed == 0 )
 		{
 			return self

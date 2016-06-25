@@ -9,29 +9,56 @@
 //	TODO
 //==========
 //	(SCRAP)mycelium infestation from mushrooms that spread to nearby grass and turns to mycelium, turning more plants to shrooms
-//	explode animation for when box hits ground, sand spilling out/spores
-//	explode animation for when fireball hits a box
-//	rock being created animation for when rock is created on ground from rock box
-//	rock being built up animation for when rock gets hit by rock box
-//	step counter for generators should be based off seconds * framesPerSecond for readability
-//	if the box hits sand, need some thing to happen that makes it not worthwhile to just continually drop boxes on sand
-//		maybe spread the sand to adjacent tiles?
-//		random sand monster that drags bomb to nearest grass tile touching the sand
 //	difficulty or configuration object that has constants, i.e spawn rate/number of plants generated
-//	collisions should be based on non-transparent parts of the sprite
+//	heal box should also plant a plant(only one) when it hits empty ground
+//	heal box should turn regular plants into fireplants(only one) when hits grassy ground
+//	(EDIT SPRITE)rock being built up animation for when rock gets hit by rock box
+//	(NEED SPRITE)explode animation for when box hits ground, sand spilling out/spores
+//	(NEED SPRITE)explode animation for when fireball hits a box
+//	(NEED SPRITE)sand bugs that spawn out of sand and try to eat plants/shrooms nearby
+//		will spawn immediately after a explosive box hits sandy ground
+//		maybe tapping on them kills them?
+//	(NEED/EDIT SPRITE)More accurate portrayal of boxes so that what is inside them has an icon of it
+//	(?)should boxes be hidden by clouds(i.e zposition smaller than clouds)
+//	(?)should cacti only be on sand?
+//		i.e have shrooms turn into cacti?
+//	(?)step counter for generators should be based off seconds * framesPerSecond for readability
+//	(?)collisions should be based on non-transparent parts of the sprite
 //		see GameObj init code for more info
 //	firePlants should have lives like rocks, if hit by bombs too much should die
-//		should wither a bit when hit, i.e sprite change like rocks
+//		(EDIT SPRITE)should wither a bit when hit, i.e sprite change like rocks
 //		should be healed by HealBoxes, also fires up the plant so that it is ready to fire
 //	need app icon
+//	need app name
 //	need music
 //	need sound effects
+//		(Also need to add into engine, probably use code from Gemicus unless spritekit has better?)
+//		boxes smashing against each other
+//		boxes burning against flames
+//		fire plant getting hit by bomb box
+//		rock getting hit by bomb box and losing a life
+//		rock getting hit by bomb box and being destroyed
+//		rock jutting upwards when rock box hits ground
+//		bomb crate smashing against rock
+//		heal crate healing mycelium to grass
+//			heal crate turning shrooms to plants
+//		rock crate rebuilding rock lives when hits
+//		bomb crate smashing against grass and creating mycelium
+//			bomb crate turning plants into shrooms
+//		bomb crate smashing against mycelium and creating sand
+//			bomb crate killing off shrooms
+//		bomb crate smashing against sand(unleash the sand monster SFX) 
+//		sucess sound effect for winning level
+//		failure sound effect for losing level
 //	need menu screen
-//	need splash screen(???)
+//		have gui buttons
+//	(?)need splash screen
 //		show title, tap to show menu
 //	time attack mode that wins after certain amount of time
 //	should have less of a delay with win screen after last box dies
 //	maybe have totalGenerated be an array of boxobj types generated in BoxGenerator
+//	lose level animation, rocks all get destroyed and turns into desolate sandy wasteland
+//		maybe have a dead twiggy brush thing(western) blow across the screen
 //
 //==========
 //
@@ -45,6 +72,9 @@ class GameScene: SKScene
 	
 	//the last time that the frames were drawn, i.e update method was called
 	var lastTime : CFTimeInterval = 0
+	
+	//the last value for the FPS in update
+	private(set) var lastFPS : Int = 0
 	
 	//the object currently touched by the player
 	var objectTouched : GameObj!
@@ -132,7 +162,7 @@ class GameScene: SKScene
 			objCreateQueue.removeFirst()
 		}
 
-		
+		lastFPS = currentFPS
 		lastTime = currentTime
 	}
 	

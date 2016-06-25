@@ -44,7 +44,7 @@ class CloudObj : GameObj
 	
 	static func randomCloudSprite() -> String
 	{
-		let choices = [ 1 , 2 , 3 ]
+		let choices = [ 1 , 2 , 3, 4 ]
 		let myChoice = Int( arc4random_uniform( UInt32( choices.count ) ) )
 		return "cloud\(choices[myChoice])"
 	}

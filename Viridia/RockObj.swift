@@ -16,6 +16,7 @@ class RockObj : GameObj
 	init( xStart: CGFloat, yStart: CGFloat )
 	{
 		super.init( spriteName: "rock3" , xStart: xStart, yStart: yStart )
+		sprite.zPosition = 5
 	}
 	
 	override func collideEvent(other: GameObj)

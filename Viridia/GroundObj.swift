@@ -97,7 +97,8 @@ class GroundObj : GameObj
 		}
 		
 		let myRock = RockObj( xStart: sprite.position.x, yStart: sprite.position.y )
-		myRock.sprite.position.y += myRock.sprite.frame.height
+		//myRock.sprite.position.y += myRock.sprite.frame.height
+		myRock.myPath = GamePath( x: sprite.position.x, y: sprite.position.y + myRock.sprite.frame.height , speedInSeconds: CGFloat( 0.75 ), obj: myRock )
 		self.myScene.queueGameObject( myRock )
 	}
 }

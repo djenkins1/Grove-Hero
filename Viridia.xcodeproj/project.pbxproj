@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FE1069DD1D1A6AA000E0E5A5 /* FirePlant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1069DC1D1A6AA000E0E5A5 /* FirePlant.swift */; };
 		FE1069DF1D1A6D9B00E0E5A5 /* FlameObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1069DE1D1A6D9B00E0E5A5 /* FlameObj.swift */; };
+		FE608F2F1D1E685F005F0DA5 /* GamePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE608F2E1D1E685F005F0DA5 /* GamePath.swift */; };
 		FE7C1FF21D1900FB00513EC7 /* RockObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C1FF11D1900FB00513EC7 /* RockObj.swift */; };
 		FE7C1FFA1D191AE100513EC7 /* BombBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C1FF91D191AE100513EC7 /* BombBox.swift */; };
 		FE7C1FFC1D191B8B00513EC7 /* HealBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C1FFB1D191B8B00513EC7 /* HealBox.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		FE1069DC1D1A6AA000E0E5A5 /* FirePlant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirePlant.swift; sourceTree = "<group>"; };
 		FE1069DE1D1A6D9B00E0E5A5 /* FlameObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlameObj.swift; sourceTree = "<group>"; };
+		FE608F2E1D1E685F005F0DA5 /* GamePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePath.swift; sourceTree = "<group>"; };
 		FE7C1FF11D1900FB00513EC7 /* RockObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RockObj.swift; sourceTree = "<group>"; };
 		FE7C1FF91D191AE100513EC7 /* BombBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BombBox.swift; sourceTree = "<group>"; };
 		FE7C1FFB1D191B8B00513EC7 /* HealBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealBox.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				FEA65BA51D168CE20068A20A /* ObjGenerator.swift */,
 				FEA65BA71D168DF40068A20A /* BoxGenerator.swift */,
 				FE881EA81D176228003D2D57 /* CloudGenerator.swift */,
+				FE608F2E1D1E685F005F0DA5 /* GamePath.swift */,
 				FEDF1F7F1D1520E5000EA427 /* GameObj.swift */,
 				FE881EA41D175D84003D2D57 /* BoxObj.swift */,
 				FE7C1FFB1D191B8B00513EC7 /* HealBox.swift */,
@@ -188,6 +191,7 @@
 				FE881EAD1D176FC0003D2D57 /* PlantObj.swift in Sources */,
 				FECB8A961D1E122D0093810E /* RockBox.swift in Sources */,
 				FE881EA91D176228003D2D57 /* CloudGenerator.swift in Sources */,
+				FE608F2F1D1E685F005F0DA5 /* GamePath.swift in Sources */,
 				FE7C1FFC1D191B8B00513EC7 /* HealBox.swift in Sources */,
 				FEDF1F6E1D151C07000EA427 /* GameScene.swift in Sources */,
 				FE881EA51D175D84003D2D57 /* BoxObj.swift in Sources */,
