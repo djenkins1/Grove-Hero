@@ -11,6 +11,7 @@ import SpriteKit
 
 class BoxObj : GameObj
 {
+	var generatedBy : BoxGenerator!
 	
 	override init(spriteName: String, xStart: CGFloat, yStart: CGFloat)
 	{
@@ -35,6 +36,17 @@ class BoxObj : GameObj
 		
 		makeDead()
 	}
+	
+	override func deleteEvent(scene: GameScene) -> GameObj
+	{
+		super.deleteEvent( scene )
+		if ( generatedBy != nil )
+		{
+				generatedBy!.generatedLost += 1
+		}
+		return self
+	}
+
 	
 	override func dragEvent(location: CGPoint)
 	{

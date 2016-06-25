@@ -83,4 +83,21 @@ class GroundObj : GameObj
 			return
 		}
 	}
+	
+	func rockMe()
+	{
+		if ( !isTop )
+		{
+			return
+		}
+		
+		if ( myPlant != nil )
+		{
+			return
+		}
+		
+		let myRock = RockObj( xStart: sprite.position.x, yStart: sprite.position.y )
+		myRock.sprite.position.y += myRock.sprite.frame.height
+		self.myScene.queueGameObject( myRock )
+	}
 }

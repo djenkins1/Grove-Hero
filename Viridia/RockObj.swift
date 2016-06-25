@@ -20,7 +20,7 @@ class RockObj : GameObj
 	
 	override func collideEvent(other: GameObj)
 	{
-		if other is BoxObj
+		if other is BombBox
 		{
 			decrementLives()
 		}
@@ -38,5 +38,15 @@ class RockObj : GameObj
 		{
 			changeSprite( "rock\(lives)" )
 		}
+	}
+	
+	func incrementLives()
+	{
+		lives = lives + 1
+		if ( lives > 3 )
+		{
+			lives = 3
+		}
+		changeSprite( "rock\(lives)" )
 	}
 }

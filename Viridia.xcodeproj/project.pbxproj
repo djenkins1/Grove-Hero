@@ -19,6 +19,7 @@
 		FE881EAD1D176FC0003D2D57 /* PlantObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE881EAC1D176FC0003D2D57 /* PlantObj.swift */; };
 		FEA65BA61D168CE20068A20A /* ObjGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA65BA51D168CE20068A20A /* ObjGenerator.swift */; };
 		FEA65BA81D168DF40068A20A /* BoxGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA65BA71D168DF40068A20A /* BoxGenerator.swift */; };
+		FECB8A961D1E122D0093810E /* RockBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECB8A951D1E122D0093810E /* RockBox.swift */; };
 		FEDF1F6A1D151C07000EA427 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDF1F691D151C07000EA427 /* AppDelegate.swift */; };
 		FEDF1F6C1D151C07000EA427 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = FEDF1F6B1D151C07000EA427 /* GameScene.sks */; };
 		FEDF1F6E1D151C07000EA427 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDF1F6D1D151C07000EA427 /* GameScene.swift */; };
@@ -42,6 +43,7 @@
 		FE881EAC1D176FC0003D2D57 /* PlantObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlantObj.swift; sourceTree = "<group>"; };
 		FEA65BA51D168CE20068A20A /* ObjGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjGenerator.swift; sourceTree = "<group>"; };
 		FEA65BA71D168DF40068A20A /* BoxGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxGenerator.swift; sourceTree = "<group>"; };
+		FECB8A951D1E122D0093810E /* RockBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RockBox.swift; sourceTree = "<group>"; };
 		FEDF1F661D151C07000EA427 /* Viridia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Viridia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEDF1F691D151C07000EA427 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEDF1F6B1D151C07000EA427 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				FE1069DC1D1A6AA000E0E5A5 /* FirePlant.swift */,
 				FE7C1FF11D1900FB00513EC7 /* RockObj.swift */,
 				FE1069DE1D1A6D9B00E0E5A5 /* FlameObj.swift */,
+				FECB8A951D1E122D0093810E /* RockBox.swift */,
 			);
 			path = Viridia;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 			files = (
 				FEA65BA61D168CE20068A20A /* ObjGenerator.swift in Sources */,
 				FE881EAD1D176FC0003D2D57 /* PlantObj.swift in Sources */,
+				FECB8A961D1E122D0093810E /* RockBox.swift in Sources */,
 				FE881EA91D176228003D2D57 /* CloudGenerator.swift in Sources */,
 				FE7C1FFC1D191B8B00513EC7 /* HealBox.swift in Sources */,
 				FEDF1F6E1D151C07000EA427 /* GameScene.swift in Sources */,

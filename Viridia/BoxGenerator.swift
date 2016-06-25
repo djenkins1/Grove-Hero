@@ -10,7 +10,11 @@ import Foundation
 import SpriteKit
 
 class BoxGenerator : ObjGenerator
-{	
+{
+	var generatedLost : Int = 0
+	
+	let totalToGenerate : Int = 20
+	
 	override init( screenWidth : CGFloat, screenHeight : CGFloat )
 	{
 		super.init( screenWidth: screenWidth , screenHeight: screenHeight )
@@ -20,23 +24,49 @@ class BoxGenerator : ObjGenerator
 	
 	override func generate() -> GameObj!
 	{
+		var toReturn : BoxObj! = nil
 		readyToGenerate = false
+		
+		checkWin()
+		if ( totalGenerated >= totalToGenerate )
+		{
+			return nil
+		}
+		
 		if ( arc4random_uniform( 5 ) < 2 )
 		{
+
 			let widthPad = roomWidth * 0.05
 			let x = CGFloat(arc4random_uniform( UInt32(roomWidth - ( widthPad * 2 ) ) )) + widthPad
 			let middleHeight = roomHeight * 0.54
 			let y = CGFloat(arc4random_uniform( UInt32( middleHeight ) ) ) + roomHeight
+			totalGenerated += 1
 			
-			if ( arc4random_uniform( 5 ) == 0 )
+			let randomNum = arc4random_uniform( 5 )
+			if (  randomNum == 0 )
 			{
-				return HealBox(  xStart: x, yStart: y )
+				toReturn = HealBox(  xStart: x, yStart: y )
+			}
+			else if ( randomNum == 1 )
+			{
+				toReturn = RockBox(xStart: x, yStart: y)
 			}
 			else
 			{
-				return BombBox(  xStart: x, yStart: y )
+				toReturn = BombBox(  xStart: x, yStart: y )
 			}
+			
+			toReturn!.generatedBy = self
 		}
-		return nil
+		
+		return toReturn
+	}
+	
+	private func checkWin()
+	{
+		if ( generatedLost >= totalToGenerate && scene != nil )
+		{
+			scene!.winCondition()
+		}
 	}
 }

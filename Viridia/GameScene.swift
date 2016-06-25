@@ -8,25 +8,30 @@
 //==========
 //	TODO
 //==========
-//	power up boxes that have specific powers
-//		regenerate hurt plants(DONE)
-//		build up rocks(creating a rock if it does not exist)
+//	(SCRAP)mycelium infestation from mushrooms that spread to nearby grass and turns to mycelium, turning more plants to shrooms
 //	explode animation for when box hits ground, sand spilling out/spores
 //	explode animation for when fireball hits a box
+//	rock being created animation for when rock is created on ground from rock box
+//	rock being built up animation for when rock gets hit by rock box
 //	step counter for generators should be based off seconds * framesPerSecond for readability
-//	(?)mycelium infestation from mushrooms that spread to nearby grass and turns to mycelium, turning more plants to shrooms
 //	if the box hits sand, need some thing to happen that makes it not worthwhile to just continually drop boxes on sand
 //		maybe spread the sand to adjacent tiles?
 //		random sand monster that drags bomb to nearest grass tile touching the sand
-//	need user completing level correctly
-//		i.e total time has passed certain point, or total number of boxes spawned has reached certain point
-//			see winCondition function for basis of implementation
 //	difficulty or configuration object that has constants, i.e spawn rate/number of plants generated
 //	collisions should be based on non-transparent parts of the sprite
 //		see GameObj init code for more info
 //	firePlants should have lives like rocks, if hit by bombs too much should die
 //		should wither a bit when hit, i.e sprite change like rocks
 //		should be healed by HealBoxes, also fires up the plant so that it is ready to fire
+//	need app icon
+//	need music
+//	need sound effects
+//	need menu screen
+//	need splash screen(???)
+//		show title, tap to show menu
+//	time attack mode that wins after certain amount of time
+//	should have less of a delay with win screen after last box dies
+//	maybe have totalGenerated be an array of boxobj types generated in BoxGenerator
 //
 //==========
 //
@@ -330,8 +335,8 @@ class GameScene: SKScene
 	//adds all the generators
 	private func setupGenerators()
 	{
-		generatorList.append( BoxGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ) )
-		generatorList.append( CloudGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ) )
+		generatorList.append( BoxGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self) )
+		generatorList.append( CloudGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self) )
 	}
 	
 	//creates a layer of sprites across the bottom of the screen

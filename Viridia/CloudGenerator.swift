@@ -20,6 +20,7 @@ class CloudGenerator : ObjGenerator
 	
 	override func generate() -> GameObj!
 	{
+		totalGenerated += 1
 		readyToGenerate = false
 		let x = CGFloat(arc4random_uniform( UInt32( roomWidth ))) + roomWidth
 		let middleHeight = roomHeight * 0.54
