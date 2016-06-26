@@ -21,6 +21,15 @@ class GamePath
 	
 	var baseSpeed : CGFloat
 	
+	init( x : CGFloat, y : CGFloat, speedInSeconds: CGFloat, startX : CGFloat, startY : CGFloat )
+	{
+		self.baseSpeed = speedInSeconds
+		self.xDestiny = x
+		self.yDestiny = y
+		self.xStart = startX
+		self.yStart = startY
+	}
+	
 	init( x : CGFloat, y : CGFloat, speedInSeconds : CGFloat, obj : GameObj )
 	{
 		self.baseSpeed = speedInSeconds
@@ -32,6 +41,7 @@ class GamePath
 	}
 	
 	//returns true if the objects still has distance to move or false otherwise
+	//if otherThanZero is true this will actually adjust the speed based on starting and ending coordinates
 	func adjustSpeed( obj : GameObj, otherThanZero : Bool = false ) -> Bool
 	{
 		let xDist = abs( xDestiny - obj.sprite.position.x )
@@ -66,13 +76,15 @@ class GamePath
 			return true
 		}
 		
+		let xStartDist = abs( xDestiny - xStart )
+		let yStartDist = abs( yDestiny - yStart )
 		if ( otherThanZero )
 		{
 			let xScalar : CGFloat = ( xDestiny > obj.sprite.position.x ? 1 : -1 )
 			let yScalar : CGFloat = ( yDestiny > obj.sprite.position.y ? 1 : -1 )
 
-			obj.horSpeed = xScalar * ( xDist / baseSpeed )
-			obj.verSpeed = yScalar * ( yDist / baseSpeed )
+			obj.horSpeed = xScalar * ( xStartDist / baseSpeed )
+			obj.verSpeed = yScalar * ( yStartDist / baseSpeed )
 		}
 		
 		return true

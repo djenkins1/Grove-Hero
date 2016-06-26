@@ -56,7 +56,10 @@ class BoxGenerator : ObjGenerator
 				toReturn = BombBox(  xStart: x, yStart: y )
 			}
 			
+			let highestY = middleHeight + roomHeight
 			toReturn!.generatedBy = self
+			toReturn.myPath = GamePath( x: x, y: 0, speedInSeconds: 10, startX: x, startY:  highestY )
+			toReturn.myPath!.adjustSpeed( toReturn, otherThanZero: true )
 		}
 		
 		return toReturn

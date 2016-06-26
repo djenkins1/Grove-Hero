@@ -26,6 +26,11 @@ class CloudGenerator : ObjGenerator
 		let middleHeight = roomHeight * 0.54
 		let y = CGFloat(arc4random_uniform( UInt32( roomHeight - middleHeight ) ) ) + middleHeight
 		let newObj = CloudObj( xStart: x, yStart: y )
+		let lowestX = newObj.sprite.frame.width * -1.5
+		let highestX = roomWidth * 2
+		newObj.myPath = GamePath(x: lowestX, y: y, speedInSeconds: 25, startX: highestX, startY: y )
+		newObj.myPath!.adjustSpeed( newObj, otherThanZero: true )
+		
 		return newObj
 	}
 }
