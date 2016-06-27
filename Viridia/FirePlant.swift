@@ -95,6 +95,10 @@ class FirePlant : PlantObj
 		{
 			timer = 0
 			changeCoolDown( 1 )
+			if ( myScene != nil )
+			{
+				myScene.playSoundEffect( Sounds().firePlantHit )
+			}
 		}
 		
 	}

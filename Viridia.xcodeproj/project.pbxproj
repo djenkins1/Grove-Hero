@@ -9,7 +9,12 @@
 /* Begin PBXBuildFile section */
 		FE1069DD1D1A6AA000E0E5A5 /* FirePlant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1069DC1D1A6AA000E0E5A5 /* FirePlant.swift */; };
 		FE1069DF1D1A6D9B00E0E5A5 /* FlameObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1069DE1D1A6D9B00E0E5A5 /* FlameObj.swift */; };
+		FE2A48571D20A3FB000D2CF2 /* BoxHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE2A48561D20A3FB000D2CF2 /* BoxHit.wav */; };
+		FE2A48591D20A401000D2CF2 /* FirePlantHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE2A48581D20A401000D2CF2 /* FirePlantHit.wav */; };
+		FE2A485B1D20A407000D2CF2 /* FlameHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE2A485A1D20A407000D2CF2 /* FlameHit.wav */; };
+		FE2A485E1D20A422000D2CF2 /* RockLives.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE2A485D1D20A422000D2CF2 /* RockLives.wav */; };
 		FE608F2F1D1E685F005F0DA5 /* GamePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE608F2E1D1E685F005F0DA5 /* GamePath.swift */; };
+		FE7336B41D209FAA008E2E57 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7336B31D209FAA008E2E57 /* Sounds.swift */; };
 		FE7C1FF21D1900FB00513EC7 /* RockObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C1FF11D1900FB00513EC7 /* RockObj.swift */; };
 		FE7C1FFA1D191AE100513EC7 /* BombBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C1FF91D191AE100513EC7 /* BombBox.swift */; };
 		FE7C1FFC1D191B8B00513EC7 /* HealBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C1FFB1D191B8B00513EC7 /* HealBox.swift */; };
@@ -29,12 +34,20 @@
 		FEDF1F751D151C07000EA427 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEDF1F741D151C07000EA427 /* Assets.xcassets */; };
 		FEDF1F781D151C07000EA427 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEDF1F761D151C07000EA427 /* LaunchScreen.storyboard */; };
 		FEDF1F801D1520E5000EA427 /* GameObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDF1F7F1D1520E5000EA427 /* GameObj.swift */; };
+		FEDF5DE11D2093820047B953 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDF5DE01D2093820047B953 /* GameState.swift */; };
+		FEDF5DE31D2096DC0047B953 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDF5DE21D2096DC0047B953 /* MenuScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FE1069DC1D1A6AA000E0E5A5 /* FirePlant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirePlant.swift; sourceTree = "<group>"; };
 		FE1069DE1D1A6D9B00E0E5A5 /* FlameObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlameObj.swift; sourceTree = "<group>"; };
+		FE2A48561D20A3FB000D2CF2 /* BoxHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BoxHit.wav; sourceTree = "<group>"; };
+		FE2A48581D20A401000D2CF2 /* FirePlantHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FirePlantHit.wav; sourceTree = "<group>"; };
+		FE2A485A1D20A407000D2CF2 /* FlameHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FlameHit.wav; sourceTree = "<group>"; };
+		FE2A485C1D20A40D000D2CF2 /* HealShroom.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = HealShroom.aif; sourceTree = "<group>"; };
+		FE2A485D1D20A422000D2CF2 /* RockLives.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RockLives.wav; sourceTree = "<group>"; };
 		FE608F2E1D1E685F005F0DA5 /* GamePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePath.swift; sourceTree = "<group>"; };
+		FE7336B31D209FAA008E2E57 /* Sounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		FE7C1FF11D1900FB00513EC7 /* RockObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RockObj.swift; sourceTree = "<group>"; };
 		FE7C1FF91D191AE100513EC7 /* BombBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BombBox.swift; sourceTree = "<group>"; };
 		FE7C1FFB1D191B8B00513EC7 /* HealBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealBox.swift; sourceTree = "<group>"; };
@@ -56,6 +69,8 @@
 		FEDF1F771D151C07000EA427 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FEDF1F791D151C07000EA427 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FEDF1F7F1D1520E5000EA427 /* GameObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameObj.swift; sourceTree = "<group>"; };
+		FEDF5DE01D2093820047B953 /* GameState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		FEDF5DE21D2096DC0047B953 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,12 +103,19 @@
 		FEDF1F681D151C07000EA427 /* Viridia */ = {
 			isa = PBXGroup;
 			children = (
+				FE2A48561D20A3FB000D2CF2 /* BoxHit.wav */,
+				FE2A48581D20A401000D2CF2 /* FirePlantHit.wav */,
+				FE2A485A1D20A407000D2CF2 /* FlameHit.wav */,
+				FE2A485C1D20A40D000D2CF2 /* HealShroom.aif */,
+				FE2A485D1D20A422000D2CF2 /* RockLives.wav */,
 				FEDF1F6B1D151C07000EA427 /* GameScene.sks */,
 				FEDF1F691D151C07000EA427 /* AppDelegate.swift */,
 				FEDF1F761D151C07000EA427 /* LaunchScreen.storyboard */,
 				FEDF1F711D151C07000EA427 /* Main.storyboard */,
 				FEDF1F791D151C07000EA427 /* Info.plist */,
 				FEDF1F741D151C07000EA427 /* Assets.xcassets */,
+				FEDF5DE01D2093820047B953 /* GameState.swift */,
+				FEDF5DE21D2096DC0047B953 /* MenuScene.swift */,
 				FEDF1F6F1D151C07000EA427 /* GameViewController.swift */,
 				FEDF1F6D1D151C07000EA427 /* GameScene.swift */,
 				FEA65BA51D168CE20068A20A /* ObjGenerator.swift */,
@@ -111,6 +133,7 @@
 				FE7C1FF11D1900FB00513EC7 /* RockObj.swift */,
 				FE1069DE1D1A6D9B00E0E5A5 /* FlameObj.swift */,
 				FECB8A951D1E122D0093810E /* RockBox.swift */,
+				FE7336B31D209FAA008E2E57 /* Sounds.swift */,
 			);
 			path = Viridia;
 			sourceTree = "<group>";
@@ -175,6 +198,10 @@
 			files = (
 				FEDF1F6C1D151C07000EA427 /* GameScene.sks in Resources */,
 				FEDF1F781D151C07000EA427 /* LaunchScreen.storyboard in Resources */,
+				FE2A485B1D20A407000D2CF2 /* FlameHit.wav in Resources */,
+				FE2A48571D20A3FB000D2CF2 /* BoxHit.wav in Resources */,
+				FE2A48591D20A401000D2CF2 /* FirePlantHit.wav in Resources */,
+				FE2A485E1D20A422000D2CF2 /* RockLives.wav in Resources */,
 				FEDF1F751D151C07000EA427 /* Assets.xcassets in Resources */,
 				FEDF1F731D151C07000EA427 /* Main.storyboard in Resources */,
 			);
@@ -194,6 +221,7 @@
 				FE608F2F1D1E685F005F0DA5 /* GamePath.swift in Sources */,
 				FE7C1FFC1D191B8B00513EC7 /* HealBox.swift in Sources */,
 				FEDF1F6E1D151C07000EA427 /* GameScene.swift in Sources */,
+				FEDF5DE11D2093820047B953 /* GameState.swift in Sources */,
 				FE881EA51D175D84003D2D57 /* BoxObj.swift in Sources */,
 				FE881EA71D175E4F003D2D57 /* CloudObj.swift in Sources */,
 				FE1069DD1D1A6AA000E0E5A5 /* FirePlant.swift in Sources */,
@@ -203,6 +231,8 @@
 				FEDF1F701D151C07000EA427 /* GameViewController.swift in Sources */,
 				FE881EAB1D176DEC003D2D57 /* GroundObj.swift in Sources */,
 				FE7C1FF21D1900FB00513EC7 /* RockObj.swift in Sources */,
+				FEDF5DE31D2096DC0047B953 /* MenuScene.swift in Sources */,
+				FE7336B41D209FAA008E2E57 /* Sounds.swift in Sources */,
 				FEDF1F6A1D151C07000EA427 /* AppDelegate.swift in Sources */,
 				FE7C1FFA1D191AE100513EC7 /* BombBox.swift in Sources */,
 			);

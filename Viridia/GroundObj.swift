@@ -79,6 +79,10 @@ class GroundObj : GameObj
 			if ( myPlant != nil )
 			{
 				myPlant.changeToPlant()
+				if ( myScene != nil )
+				{
+					myScene!.playSoundEffect( Sounds().healShroom )
+				}
 			}
 			return
 		}
