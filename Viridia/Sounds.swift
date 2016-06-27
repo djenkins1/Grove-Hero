@@ -10,8 +10,7 @@ import Foundation
 
 class Sounds
 {
-	//BUG: Problem with HealShroom
-	let healShroom = "HealShroom.aif"
+	let healShroom = "HealShroom.wav"
 	
 	let rockLives = "RockLives.wav"
 	
@@ -20,4 +19,28 @@ class Sounds
 	let flameHit = "FlameHit.wav"
 	
 	let boxHit = "BoxHit.wav"
+	
+	let healMycelium = "HealMycelium.wav"
+	
+	let loseSound = "LoseSound.wav"
+	
+	let createMycelium = "MycelCreate.wav"
+	
+	let createRock = "RockCreate.wav"
+	
+	let deadRock = "RockDie.wav"
+	
+	let lostRock = "RockLost.wav"
+	
+	let createSand = "SandCreate.wav"
+	
+	let sandMonster = "SandMonster.wav"
+	
+	let sandSmash = "SandSmash.wav"
+	
+	let createShroom = "ShroomCreate.wav"
+	
+	let deadShroom = "ShroomDie.wav"
+	
+	let winSound = "WinSound.wav"
 }

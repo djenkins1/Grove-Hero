@@ -36,6 +36,19 @@
 		FEDF1F801D1520E5000EA427 /* GameObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDF1F7F1D1520E5000EA427 /* GameObj.swift */; };
 		FEDF5DE11D2093820047B953 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDF5DE01D2093820047B953 /* GameState.swift */; };
 		FEDF5DE31D2096DC0047B953 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDF5DE21D2096DC0047B953 /* MenuScene.swift */; };
+		FEF727631D210F1E00697CD8 /* HealMycelium.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEF727561D210F1E00697CD8 /* HealMycelium.wav */; };
+		FEF727641D210F1E00697CD8 /* HealShroom.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEF727571D210F1E00697CD8 /* HealShroom.wav */; };
+		FEF727651D210F1E00697CD8 /* LoseSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEF727581D210F1E00697CD8 /* LoseSound.wav */; };
+		FEF727661D210F1E00697CD8 /* MycelCreate.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEF727591D210F1E00697CD8 /* MycelCreate.wav */; };
+		FEF727671D210F1E00697CD8 /* RockCreate.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEF7275A1D210F1E00697CD8 /* RockCreate.wav */; };
+		FEF727681D210F1E00697CD8 /* RockDie.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEF7275B1D210F1E00697CD8 /* RockDie.wav */; };
+		FEF727691D210F1E00697CD8 /* RockLost.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEF7275C1D210F1E00697CD8 /* RockLost.wav */; };
+		FEF7276A1D210F1E00697CD8 /* SandCreate.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEF7275D1D210F1E00697CD8 /* SandCreate.wav */; };
+		FEF7276B1D210F1E00697CD8 /* SandMonster.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEF7275E1D210F1E00697CD8 /* SandMonster.wav */; };
+		FEF7276C1D210F1E00697CD8 /* SandSmash.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEF7275F1D210F1E00697CD8 /* SandSmash.wav */; };
+		FEF7276D1D210F1E00697CD8 /* ShroomCreate.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEF727601D210F1E00697CD8 /* ShroomCreate.wav */; };
+		FEF7276E1D210F1E00697CD8 /* ShroomDie.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEF727611D210F1E00697CD8 /* ShroomDie.wav */; };
+		FEF7276F1D210F1E00697CD8 /* WinSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEF727621D210F1E00697CD8 /* WinSound.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,7 +57,6 @@
 		FE2A48561D20A3FB000D2CF2 /* BoxHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BoxHit.wav; sourceTree = "<group>"; };
 		FE2A48581D20A401000D2CF2 /* FirePlantHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FirePlantHit.wav; sourceTree = "<group>"; };
 		FE2A485A1D20A407000D2CF2 /* FlameHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FlameHit.wav; sourceTree = "<group>"; };
-		FE2A485C1D20A40D000D2CF2 /* HealShroom.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = HealShroom.aif; sourceTree = "<group>"; };
 		FE2A485D1D20A422000D2CF2 /* RockLives.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RockLives.wav; sourceTree = "<group>"; };
 		FE608F2E1D1E685F005F0DA5 /* GamePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePath.swift; sourceTree = "<group>"; };
 		FE7336B31D209FAA008E2E57 /* Sounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
@@ -71,6 +83,19 @@
 		FEDF1F7F1D1520E5000EA427 /* GameObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameObj.swift; sourceTree = "<group>"; };
 		FEDF5DE01D2093820047B953 /* GameState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		FEDF5DE21D2096DC0047B953 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		FEF727561D210F1E00697CD8 /* HealMycelium.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HealMycelium.wav; sourceTree = "<group>"; };
+		FEF727571D210F1E00697CD8 /* HealShroom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HealShroom.wav; sourceTree = "<group>"; };
+		FEF727581D210F1E00697CD8 /* LoseSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = LoseSound.wav; sourceTree = "<group>"; };
+		FEF727591D210F1E00697CD8 /* MycelCreate.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = MycelCreate.wav; sourceTree = "<group>"; };
+		FEF7275A1D210F1E00697CD8 /* RockCreate.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RockCreate.wav; sourceTree = "<group>"; };
+		FEF7275B1D210F1E00697CD8 /* RockDie.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RockDie.wav; sourceTree = "<group>"; };
+		FEF7275C1D210F1E00697CD8 /* RockLost.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RockLost.wav; sourceTree = "<group>"; };
+		FEF7275D1D210F1E00697CD8 /* SandCreate.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SandCreate.wav; sourceTree = "<group>"; };
+		FEF7275E1D210F1E00697CD8 /* SandMonster.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SandMonster.wav; sourceTree = "<group>"; };
+		FEF7275F1D210F1E00697CD8 /* SandSmash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SandSmash.wav; sourceTree = "<group>"; };
+		FEF727601D210F1E00697CD8 /* ShroomCreate.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ShroomCreate.wav; sourceTree = "<group>"; };
+		FEF727611D210F1E00697CD8 /* ShroomDie.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ShroomDie.wav; sourceTree = "<group>"; };
+		FEF727621D210F1E00697CD8 /* WinSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WinSound.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,10 +128,22 @@
 		FEDF1F681D151C07000EA427 /* Viridia */ = {
 			isa = PBXGroup;
 			children = (
+				FEF727561D210F1E00697CD8 /* HealMycelium.wav */,
+				FEF727571D210F1E00697CD8 /* HealShroom.wav */,
+				FEF727581D210F1E00697CD8 /* LoseSound.wav */,
+				FEF727591D210F1E00697CD8 /* MycelCreate.wav */,
+				FEF7275A1D210F1E00697CD8 /* RockCreate.wav */,
+				FEF7275B1D210F1E00697CD8 /* RockDie.wav */,
+				FEF7275C1D210F1E00697CD8 /* RockLost.wav */,
+				FEF7275D1D210F1E00697CD8 /* SandCreate.wav */,
+				FEF7275E1D210F1E00697CD8 /* SandMonster.wav */,
+				FEF7275F1D210F1E00697CD8 /* SandSmash.wav */,
+				FEF727601D210F1E00697CD8 /* ShroomCreate.wav */,
+				FEF727611D210F1E00697CD8 /* ShroomDie.wav */,
+				FEF727621D210F1E00697CD8 /* WinSound.wav */,
 				FE2A48561D20A3FB000D2CF2 /* BoxHit.wav */,
 				FE2A48581D20A401000D2CF2 /* FirePlantHit.wav */,
 				FE2A485A1D20A407000D2CF2 /* FlameHit.wav */,
-				FE2A485C1D20A40D000D2CF2 /* HealShroom.aif */,
 				FE2A485D1D20A422000D2CF2 /* RockLives.wav */,
 				FEDF1F6B1D151C07000EA427 /* GameScene.sks */,
 				FEDF1F691D151C07000EA427 /* AppDelegate.swift */,
@@ -198,12 +235,25 @@
 			files = (
 				FEDF1F6C1D151C07000EA427 /* GameScene.sks in Resources */,
 				FEDF1F781D151C07000EA427 /* LaunchScreen.storyboard in Resources */,
+				FEF727691D210F1E00697CD8 /* RockLost.wav in Resources */,
+				FEF727641D210F1E00697CD8 /* HealShroom.wav in Resources */,
+				FEF7276F1D210F1E00697CD8 /* WinSound.wav in Resources */,
+				FEF7276B1D210F1E00697CD8 /* SandMonster.wav in Resources */,
+				FEF7276A1D210F1E00697CD8 /* SandCreate.wav in Resources */,
+				FEF727651D210F1E00697CD8 /* LoseSound.wav in Resources */,
 				FE2A485B1D20A407000D2CF2 /* FlameHit.wav in Resources */,
 				FE2A48571D20A3FB000D2CF2 /* BoxHit.wav in Resources */,
 				FE2A48591D20A401000D2CF2 /* FirePlantHit.wav in Resources */,
 				FE2A485E1D20A422000D2CF2 /* RockLives.wav in Resources */,
 				FEDF1F751D151C07000EA427 /* Assets.xcassets in Resources */,
+				FEF727661D210F1E00697CD8 /* MycelCreate.wav in Resources */,
+				FEF727631D210F1E00697CD8 /* HealMycelium.wav in Resources */,
 				FEDF1F731D151C07000EA427 /* Main.storyboard in Resources */,
+				FEF7276D1D210F1E00697CD8 /* ShroomCreate.wav in Resources */,
+				FEF727681D210F1E00697CD8 /* RockDie.wav in Resources */,
+				FEF727671D210F1E00697CD8 /* RockCreate.wav in Resources */,
+				FEF7276C1D210F1E00697CD8 /* SandSmash.wav in Resources */,
+				FEF7276E1D210F1E00697CD8 /* ShroomDie.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -53,6 +53,7 @@ class GameViewController: UIViewController
 		let fileName = fileNameFromState( toState )
 		if fileName != nil
 		{
+			//TODO: NEED TO SWITCH ON ObjectType and fileName
 			if let scene = GameScene( fileNamed: fileName! )
 			{
 				// Configure the view.

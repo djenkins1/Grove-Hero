@@ -12,6 +12,7 @@
 //		have gui buttons
 //		somehow need to make MenuScene be valid for GameObj.createEvent?
 //		not sure if MenuScene.sks file is needed for creating
+//	need credits scene with similar functionality to credits on Gemicus
 //	ability to mute music and sounds, choice given on menu similar to Gemicus
 //	difficulty or configuration object that has constants, i.e spawn rate/number of plants generated
 //		can up dificulty by decreasing seconds in myPath for boxes
