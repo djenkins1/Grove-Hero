@@ -24,6 +24,10 @@ class FlameObj : GameObj
 	{
 		if ( other.hasCollideEffect( self ) )
 		{
+			if ( myScene != nil )
+			{
+				myScene!.playSoundEffect( Sounds.flameHit )
+			}
 			makeDead()
 		}
 		

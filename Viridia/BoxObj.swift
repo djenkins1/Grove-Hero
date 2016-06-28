@@ -57,4 +57,29 @@ class BoxObj : GameObj
 	{
 		jumpTo( location.x, y: sprite.position.y  )
 	}
+	
+	func onBoxHitsAnother( other : BoxObj )
+	{
+		if ( id != nil && other.id == nil )
+		{
+			if ( myScene != nil )
+			{
+				myScene!.playSoundEffect( Sounds.boxHit )
+			}
+			
+			return
+		}
+		
+		if ( id != nil && other.id != nil )
+		{
+			if ( id > other.id && myScene != nil )
+			{
+				myScene!.playSoundEffect( Sounds.boxHit )
+			}
+			
+			return
+		}
+		
+		print( "Reached case of both id of nil" )
+	}
 }

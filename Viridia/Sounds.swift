@@ -7,40 +7,79 @@
 //
 
 import Foundation
+import AVFoundation
 
 class Sounds
 {
-	let healShroom = "HealShroom.wav"
+	static let healShroom = "HealShroom.wav"
 	
-	let rockLives = "RockLives.wav"
+	static let rockLives = "RockLives.wav"
 	
-	let firePlantHit = "FirePlantHit.wav"
+	static let firePlantHit = "FirePlantHit.wav"
 	
-	let flameHit = "FlameHit.wav"
+	static let flameHit = "FlameHit.wav"
 	
-	let boxHit = "BoxHit.wav"
+	static let boxHit = "BoxHit.wav"
 	
-	let healMycelium = "HealMycelium.wav"
+	static let healMycelium = "HealMycelium.wav"
 	
-	let loseSound = "LoseSound.wav"
+	static let loseSound = "LoseSound.wav"
 	
-	let createMycelium = "MycelCreate.wav"
+	static let createMycelium = "MycelCreate.wav"
 	
-	let createRock = "RockCreate.wav"
+	static let createRock = "RockCreate.wav"
 	
-	let deadRock = "RockDie.wav"
+	static let deadRock = "RockDie.wav"
 	
-	let lostRock = "RockLost.wav"
+	static let lostRock = "RockLost.wav"
 	
-	let createSand = "SandCreate.wav"
+	static let createSand = "SandCreate.wav"
 	
-	let sandMonster = "SandMonster.wav"
+	static let sandMonster = "SandMonster.wav"
 	
-	let sandSmash = "SandSmash.wav"
+	static let sandSmash = "SandSmash.wav"
 	
-	let createShroom = "ShroomCreate.wav"
+	static let createShroom = "ShroomCreate.wav"
 	
-	let deadShroom = "ShroomDie.wav"
+	static let deadShroom = "ShroomDie.wav"
 	
-	let winSound = "WinSound.wav"
+	static let winSound = "WinSound.wav"
+	
+	var name: String
+	var type: String
+	
+	init( name: String, type: String )
+	{
+		self.name = name
+		self.type = type
+	}
+	
+	static func musicList() -> Array<Sounds>
+	{
+		var toReturn = [Sounds]()
+		toReturn.append( Sounds( name: "mushroomDance" , type: "mp3" ) )
+		toReturn.append( Sounds( name: "oneSong" , type: "mp3" ) )
+		toReturn.append( Sounds( name: "sunshine" , type: "mp3" ) )
+		return toReturn
+	}
+	
+	static func randomMusicList() -> [Sounds]
+	{
+		var first = musicList()
+		var toReturn = [Sounds]()
+		while first.count > 0
+		{
+			let indexToTake = Int(arc4random_uniform( UInt32(first.count) ))
+			toReturn.append( first.removeAtIndex( indexToTake ) )
+		}
+		
+		return toReturn
+	}
+	
+	func getItem() -> AVPlayerItem
+	{
+		let urlPath = NSBundle.mainBundle().pathForResource( self.name , ofType: self.type )
+		let fileURL = NSURL(fileURLWithPath:urlPath!)
+		return AVPlayerItem(URL:fileURL)
+	}
 }

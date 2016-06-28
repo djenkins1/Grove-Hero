@@ -33,16 +33,29 @@ class RockObj : GameObj
 		lives = lives - 1
 		if ( lives <= 0 )
 		{
+			if ( myScene != nil )
+			{
+				myScene!.playSoundEffect( Sounds.deadRock )
+			}
 			makeDead()
 		}
 		else
 		{
+			if ( myScene != nil )
+			{
+				myScene!.playSoundEffect( Sounds.lostRock )
+			}
 			changeSprite( "rock\(lives)" )
 		}
 	}
 	
 	func incrementLives()
 	{
+		if ( myScene != nil )
+		{
+			myScene!.playSoundEffect( Sounds.rockLives )
+		}
+		
 		lives = lives + 1
 		if ( lives > 3 )
 		{

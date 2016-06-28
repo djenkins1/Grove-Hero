@@ -8,14 +8,25 @@
 
 import UIKit
 import SpriteKit
+import AVFoundation
 
 class GameViewController: UIViewController
 {
 	var currentState = GameState.Play
 	
+	var musicPlayer: AVPlayer!
+	
+	var playMusicList = [Sounds]()
+	
+	var isMuted = false
+	
     override func viewDidLoad()
 	{
         super.viewDidLoad()
+		if ( !isMuted )
+		{
+			playMusic()
+		}
 		changeState( currentState )
     }
 
@@ -92,4 +103,27 @@ class GameViewController: UIViewController
 		}
 	}
 	
+	//plays the background music in a loop
+	func playMusic()
+	{
+		playMusicList = Sounds.randomMusicList()
+		musicPlayer = AVPlayer( playerItem: playMusicList[ 0 ].getItem() )
+		musicPlayer.play()
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.playerDidFinishPlaying(_:)), name: AVPlayerItemDidPlayToEndTimeNotification, object: musicPlayer.currentItem )
+	}
+	
+	//called when the player finishes a song
+	func playerDidFinishPlaying(note: NSNotification)
+	{
+		if ( isMuted )
+		{
+			return
+		}
+		
+		NSNotificationCenter.defaultCenter().removeObserver( note.object! )
+		playMusicList.append( playMusicList.removeAtIndex( 0 ) )
+		musicPlayer = AVPlayer( playerItem: playMusicList[ 0 ].getItem() )
+		musicPlayer.play()
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.playerDidFinishPlaying(_:)), name: AVPlayerItemDidPlayToEndTimeNotification, object: musicPlayer.currentItem )
+	}
 }

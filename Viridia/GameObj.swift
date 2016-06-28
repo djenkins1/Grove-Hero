@@ -11,6 +11,9 @@ import SpriteKit
 
 class GameObj
 {
+	//an identifier representing this object
+	var id : Int!
+	
 	//the sprite that is drawn by this object
 	var sprite : SKSpriteNode
 	
@@ -178,5 +181,11 @@ class GameObj
 	func hasCollideEffect( other : GameObj ) -> Bool
 	{
 		return true
+	}
+	
+	func withID( id : Int ) -> GameObj
+	{
+		self.id = id
+		return self
 	}
 }

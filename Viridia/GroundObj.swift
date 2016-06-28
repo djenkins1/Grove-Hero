@@ -38,15 +38,40 @@ class GroundObj : GameObj
 			return
 		}
 		
+		if ( isSandy )
+		{
+			if ( myScene != nil )
+			{
+				myScene!.playSoundEffect( Sounds.sandSmash )
+			}
+			//TODO: unleash the sand monster
+			return
+		}
+		
 		if ( isShroomed )
 		{
 			changeSprite( "sandMid" )
 			isSandy = true
+			if ( myScene != nil )
+			{
+				myScene!.playSoundEffect( Sounds.createSand )
+			}
+			
 			if ( myPlant != nil )
 			{
 				myPlant.makeDead()
+				myPlant = nil
+				if ( myScene != nil )
+				{
+					myScene!.playSoundEffect( Sounds.deadShroom )
+				}
 			}
 			return
+		}
+		
+		if ( myScene != nil )
+		{
+			myScene!.playSoundEffect( Sounds.createMycelium )
 		}
 		
 		changeSprite( "stoneMid" )
@@ -54,6 +79,10 @@ class GroundObj : GameObj
 		if ( myPlant != nil )
 		{
 			myPlant!.changeToShroom()
+			if ( myScene != nil )
+			{
+				myScene!.playSoundEffect( Sounds.createShroom )
+			}
 		}
 	}
 	
@@ -75,13 +104,18 @@ class GroundObj : GameObj
 		if ( isShroomed )
 		{
 			changeSprite( "grassMid" )
+			if ( myScene != nil )
+			{
+				myScene!.playSoundEffect( Sounds.healMycelium )
+			}
+			
 			isShroomed = false
 			if ( myPlant != nil )
 			{
 				myPlant.changeToPlant()
 				if ( myScene != nil )
 				{
-					myScene!.playSoundEffect( Sounds().healShroom )
+					myScene!.playSoundEffect( Sounds.healShroom )
 				}
 			}
 			return
@@ -100,6 +134,10 @@ class GroundObj : GameObj
 			return
 		}
 		
+		if ( myScene != nil )
+		{
+			myScene!.playSoundEffect( Sounds.createRock )
+		}
 		let myRock = RockObj( xStart: sprite.position.x, yStart: sprite.position.y )
 		//myRock.sprite.position.y += myRock.sprite.frame.height
 		myRock.myPath = GamePath( x: sprite.position.x, y: sprite.position.y + myRock.sprite.frame.height , speedInSeconds: CGFloat( 0.75 ), obj: myRock )

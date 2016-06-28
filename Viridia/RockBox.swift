@@ -38,6 +38,10 @@ class RockBox : BoxObj
 				rockedOut = true
 			}
 			
+			if ( other is BoxObj )
+			{
+				onBoxHitsAnother( other as! BoxObj )
+			}
 			self.makeDead()
 		}
 	}

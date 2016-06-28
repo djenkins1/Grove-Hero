@@ -20,6 +20,11 @@ class HealBox : BoxObj
 	{
 		if ( self.dieOnCollide && other.hasCollideEffect( self ) )
 		{
+			if ( other is BoxObj )
+			{
+				onBoxHitsAnother( other as! BoxObj )
+			}
+			
 			if ( other is GroundObj )
 			{
 				(other as! GroundObj).healMe()

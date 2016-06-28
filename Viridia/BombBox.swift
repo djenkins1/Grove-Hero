@@ -20,6 +20,11 @@ class BombBox : BoxObj
 	{
 		if ( self.dieOnCollide && other.hasCollideEffect( self ) )
 		{
+			if ( other is BoxObj )
+			{
+				onBoxHitsAnother( other as! BoxObj )
+			}
+			
 			self.makeDead()
 			if ( other is GroundObj )
 			{

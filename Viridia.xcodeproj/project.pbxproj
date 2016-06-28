@@ -18,6 +18,9 @@
 		FE7C1FF21D1900FB00513EC7 /* RockObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C1FF11D1900FB00513EC7 /* RockObj.swift */; };
 		FE7C1FFA1D191AE100513EC7 /* BombBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C1FF91D191AE100513EC7 /* BombBox.swift */; };
 		FE7C1FFC1D191B8B00513EC7 /* HealBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C1FFB1D191B8B00513EC7 /* HealBox.swift */; };
+		FE84C0521D2250C6006CF8E9 /* mushroomDance.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE84C04F1D2250C6006CF8E9 /* mushroomDance.mp3 */; };
+		FE84C0531D2250C6006CF8E9 /* oneSong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE84C0501D2250C6006CF8E9 /* oneSong.mp3 */; };
+		FE84C0541D2250C6006CF8E9 /* sunshine.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE84C0511D2250C6006CF8E9 /* sunshine.mp3 */; };
 		FE881EA51D175D84003D2D57 /* BoxObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE881EA41D175D84003D2D57 /* BoxObj.swift */; };
 		FE881EA71D175E4F003D2D57 /* CloudObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE881EA61D175E4F003D2D57 /* CloudObj.swift */; };
 		FE881EA91D176228003D2D57 /* CloudGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE881EA81D176228003D2D57 /* CloudGenerator.swift */; };
@@ -63,6 +66,9 @@
 		FE7C1FF11D1900FB00513EC7 /* RockObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RockObj.swift; sourceTree = "<group>"; };
 		FE7C1FF91D191AE100513EC7 /* BombBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BombBox.swift; sourceTree = "<group>"; };
 		FE7C1FFB1D191B8B00513EC7 /* HealBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealBox.swift; sourceTree = "<group>"; };
+		FE84C04F1D2250C6006CF8E9 /* mushroomDance.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mushroomDance.mp3; sourceTree = "<group>"; };
+		FE84C0501D2250C6006CF8E9 /* oneSong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = oneSong.mp3; sourceTree = "<group>"; };
+		FE84C0511D2250C6006CF8E9 /* sunshine.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sunshine.mp3; sourceTree = "<group>"; };
 		FE881EA41D175D84003D2D57 /* BoxObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxObj.swift; sourceTree = "<group>"; };
 		FE881EA61D175E4F003D2D57 /* CloudObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudObj.swift; sourceTree = "<group>"; };
 		FE881EA81D176228003D2D57 /* CloudGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudGenerator.swift; sourceTree = "<group>"; };
@@ -145,6 +151,9 @@
 				FE2A48581D20A401000D2CF2 /* FirePlantHit.wav */,
 				FE2A485A1D20A407000D2CF2 /* FlameHit.wav */,
 				FE2A485D1D20A422000D2CF2 /* RockLives.wav */,
+				FE84C04F1D2250C6006CF8E9 /* mushroomDance.mp3 */,
+				FE84C0501D2250C6006CF8E9 /* oneSong.mp3 */,
+				FE84C0511D2250C6006CF8E9 /* sunshine.mp3 */,
 				FEDF1F6B1D151C07000EA427 /* GameScene.sks */,
 				FEDF1F691D151C07000EA427 /* AppDelegate.swift */,
 				FEDF1F761D151C07000EA427 /* LaunchScreen.storyboard */,
@@ -162,6 +171,7 @@
 				FEDF1F7F1D1520E5000EA427 /* GameObj.swift */,
 				FE881EA41D175D84003D2D57 /* BoxObj.swift */,
 				FE7C1FFB1D191B8B00513EC7 /* HealBox.swift */,
+				FECB8A951D1E122D0093810E /* RockBox.swift */,
 				FE7C1FF91D191AE100513EC7 /* BombBox.swift */,
 				FE881EA61D175E4F003D2D57 /* CloudObj.swift */,
 				FE881EAA1D176DEC003D2D57 /* GroundObj.swift */,
@@ -169,7 +179,6 @@
 				FE1069DC1D1A6AA000E0E5A5 /* FirePlant.swift */,
 				FE7C1FF11D1900FB00513EC7 /* RockObj.swift */,
 				FE1069DE1D1A6D9B00E0E5A5 /* FlameObj.swift */,
-				FECB8A951D1E122D0093810E /* RockBox.swift */,
 				FE7336B31D209FAA008E2E57 /* Sounds.swift */,
 			);
 			path = Viridia;
@@ -240,6 +249,7 @@
 				FEF7276F1D210F1E00697CD8 /* WinSound.wav in Resources */,
 				FEF7276B1D210F1E00697CD8 /* SandMonster.wav in Resources */,
 				FEF7276A1D210F1E00697CD8 /* SandCreate.wav in Resources */,
+				FE84C0541D2250C6006CF8E9 /* sunshine.mp3 in Resources */,
 				FEF727651D210F1E00697CD8 /* LoseSound.wav in Resources */,
 				FE2A485B1D20A407000D2CF2 /* FlameHit.wav in Resources */,
 				FE2A48571D20A3FB000D2CF2 /* BoxHit.wav in Resources */,
@@ -249,8 +259,10 @@
 				FEF727661D210F1E00697CD8 /* MycelCreate.wav in Resources */,
 				FEF727631D210F1E00697CD8 /* HealMycelium.wav in Resources */,
 				FEDF1F731D151C07000EA427 /* Main.storyboard in Resources */,
+				FE84C0531D2250C6006CF8E9 /* oneSong.mp3 in Resources */,
 				FEF7276D1D210F1E00697CD8 /* ShroomCreate.wav in Resources */,
 				FEF727681D210F1E00697CD8 /* RockDie.wav in Resources */,
+				FE84C0521D2250C6006CF8E9 /* mushroomDance.mp3 in Resources */,
 				FEF727671D210F1E00697CD8 /* RockCreate.wav in Resources */,
 				FEF7276C1D210F1E00697CD8 /* SandSmash.wav in Resources */,
 				FEF7276E1D210F1E00697CD8 /* ShroomDie.wav in Resources */,
