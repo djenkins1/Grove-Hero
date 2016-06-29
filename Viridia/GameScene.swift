@@ -13,11 +13,9 @@
 //	need app name
 //	might want to adjust the volume on some of the sounds if possible(have to edit them via sound editor)
 //	should have less of a delay with win screen after last box dies
-//	need menu screen
-//		have gui buttons
-//		somehow need to make MenuScene be valid for GameObj.createEvent?
-//		not sure if MenuScene.sks file is needed for creating
+//	on the menu: need to remove the button views sooner(but somehow need to get view somewhere other than willMoveFromView?)
 //	need credits scene with similar functionality to credits on Gemicus
+//		Use the green menu button background for the credit buttons in this scene
 //	difficulty or configuration object that has constants, i.e spawn rate/number of plants generated
 //		can up dificulty by decreasing seconds in myPath for boxes
 //	(EDIT SPRITE)sand bugs that spawn out of sand and try to eat plants/shrooms nearby
@@ -35,6 +33,9 @@
 //	-------------
 //	FUTURE
 //	============
+//	Add sprites to the menu, i.e boxes falling and plants...
+//		almost like an arcade game that is waiting for quarters
+//	Don't play boxHit sound if either of the boxes are outside of the screen
 //	(NEED/EDIT SPRITE)More accurate portrayal of boxes so that what is inside them has an icon of it
 //	(NEED SPRITE)explode animation for when box hits ground, sand spilling out/spores
 //	(NEED SPRITE)explode animation for when fireball hits a box
@@ -59,6 +60,8 @@
 //	more sound effects
 //		sound effect for fire plant ready to fire
 //		sound effect for fire plant firing when tapped
+//	need a win screen scene specifically showing stats
+//	need a lose screen scene specifically showing failure?
 //	(?)heal box should also plant a plant(only one) when it hits empty ground
 //		(?)heal box should turn regular plants into fireplants(only one) when hits grassy ground
 //		Maybe have another box that does these two things similar to rockbox
@@ -101,25 +104,30 @@ class GameScene: SKScene
 	//a list of objects that are queued to be added to the gameObjects array
 	var objCreateQueue = [GameObj]()
 	
-    override func didMoveToView(view: SKView)
+	var myController : GameViewController!
+	
+	/*
+	override func didMoveToView(view: SKView)
 	{
-        /* Setup your scene here */
+		/* Setup your scene here */
 		/*
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!"
-        myLabel.fontSize = 45
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
-        self.addChild(myLabel)
+		let myLabel = SKLabelNode(fontNamed:"Chalkduster")
+		myLabel.text = "Hello, World!"
+		myLabel.fontSize = 45
+		myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
+		self.addChild(myLabel)
 		*/
+		
+		/*
 		createBackground()
 		setupGenerators()
 		createLayer( false , atLayer: 1 )
 		createLayer( true , atLayer: 2 )
 		generateScenery()
 		shouldCheckLose = true
-		
-    }
-	
+		*/
+	}
+	*/
 
 	
 	/* Called before each frame is rendered */
@@ -261,7 +269,7 @@ class GameScene: SKScene
 	}
 	
 	//checks for collisions in all objects and calls collideEvent for objects that collide with one another
-	private func checkCollide()
+	func checkCollide()
 	{
 		var outerIndex = -1
 		for obj in gameObjects
@@ -325,7 +333,7 @@ class GameScene: SKScene
 	}
 	
 	//checks whether the player has lost the current level and does accordingly
-	private func checkLoseCondition()
+	func checkLoseCondition()
 	{
 		if ( numberOfObjects( PlantObj ) == 0 )
 		{
@@ -383,15 +391,8 @@ class GameScene: SKScene
 		return obj
 	}
 	
-	//adds all the generators
-	private func setupGenerators()
-	{
-		generatorList.append( BoxGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self) )
-		generatorList.append( CloudGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self) )
-	}
-	
 	//creates a layer of sprites across the bottom of the screen
-	private func createLayer( isTop: Bool, atLayer: Int ) -> CGFloat
+	func createLayer( isTop: Bool, atLayer: Int ) -> CGFloat
 	{
 		let objForSize = GroundObj( isTop: isTop , xStart: 0, yStart: 0 )
 		let totalSprites = Int( ceil( self.frame.width / objForSize.sprite.frame.width ) ) + 1
@@ -406,7 +407,7 @@ class GameScene: SKScene
 	}
 	
 	//creates the background image for the scene
-	private func createBackground()
+	func createBackground()
 	{
 		let sprite = SKSpriteNode( imageNamed: "bg" )
         sprite.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
@@ -416,7 +417,7 @@ class GameScene: SKScene
 		self.addChild( sprite )
 	}
 	
-	private func pairIsInArray( array : Array<(Int,Int)> , indexOne: Int, indexTwo: Int ) -> Bool
+	func pairIsInArray( array : Array<(Int,Int)> , indexOne: Int, indexTwo: Int ) -> Bool
 	{
 		for element in array
 		{
@@ -462,56 +463,5 @@ class GameScene: SKScene
 		return toReturn
 	}
 	
-	private func generateScenery()
-	{
-		var numberOfRocks = 2
-		var numberOfPlants = 5//TODO :Should be based off number of ground that are isTop
-		var numberOfFires = 2
-		let allGround = allObjectsOfType( GroundObj )
-		var remainingTopGround = [GroundObj]()
-		for obj in allGround
-		{
-			if ( obj is GroundObj && ( obj as! GroundObj).isTop )
-			{
-				remainingTopGround.append( (obj as! GroundObj) )
-			}
-		}
-		
-		while( remainingTopGround.count > 0 )
-		{
-			let randomIndex = Int( arc4random_uniform( UInt32( remainingTopGround.count ) ) )
-			let myGround = remainingTopGround[ randomIndex ]
-			remainingTopGround.removeAtIndex( randomIndex )
-			
-			if ( numberOfRocks > 0 )
-			{
-				let rockObj = RockObj(xStart: myGround.sprite.position.x, yStart: myGround.sprite.position.y )
-				rockObj.sprite.position.y += rockObj.sprite.frame.height
-				addGameObject( rockObj )
-				numberOfRocks -= 1
-				continue
-			}
-			else if ( numberOfPlants > 0 )
-			{
-				myGround.myPlant = PlantObj(xStart: myGround.sprite.position.x, yStart: myGround.sprite.position.y )
-				myGround.myPlant!.sprite.position.y += myGround.myPlant!.sprite.frame.height
-				addGameObject( myGround.myPlant! )
-				numberOfPlants -= 1
-				continue
-			}
-			else if ( numberOfFires > 0 )
-			{
-				myGround.myPlant = FirePlant(xStart: myGround.sprite.position.x, yStart: myGround.sprite.position.y )
-				myGround.myPlant!.sprite.position.y += myGround.myPlant!.sprite.frame.height - 32
-				addGameObject( myGround.myPlant! )
-				numberOfFires -= 1
-				continue
-			}
-			else
-			{
-				break
-			}
-		}
-	}
 	
 }

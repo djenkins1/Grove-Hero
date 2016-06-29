@@ -12,13 +12,15 @@ import AVFoundation
 
 class GameViewController: UIViewController
 {
-	var currentState = GameState.Play
+	var currentState = GameState.Menu
 	
 	var musicPlayer: AVPlayer!
 	
 	var playMusicList = [Sounds]()
 	
 	var isMuted = false
+	
+	var reachedLoaded = false
 	
     override func viewDidLoad()
 	{
@@ -28,6 +30,7 @@ class GameViewController: UIViewController
 			playMusic()
 		}
 		changeState( currentState )
+		reachedLoaded = true
     }
 
     override func shouldAutorotate() -> Bool
@@ -64,8 +67,7 @@ class GameViewController: UIViewController
 		let fileName = fileNameFromState( toState )
 		if fileName != nil
 		{
-			//TODO: NEED TO SWITCH ON ObjectType and fileName
-			if let scene = GameScene( fileNamed: fileName! )
+			if let scene = returnSceneFromState( toState )
 			{
 				// Configure the view.
 				let skView = self.view as! SKView
@@ -77,7 +79,16 @@ class GameViewController: UIViewController
 				
 				/* Set the scale mode to scale to fit the window */
 				scene.scaleMode = .AspectFill
-				skView.presentScene(scene)
+				scene.myController = self
+				if ( !reachedLoaded )
+				{
+					skView.presentScene(scene)
+				}
+				else
+				{
+					let transition = SKTransition.fadeWithDuration( 1.0)
+					skView.presentScene(scene, transition: transition )
+				}
 			}
 		}
 		else
@@ -87,6 +98,20 @@ class GameViewController: UIViewController
 		}
 		
 
+	}
+	
+	func returnSceneFromState( state : GameState ) -> GameScene?
+	{
+		let fileName = "GameScene"
+		switch( state )
+		{
+		case .Play:
+			return LevelScene( fileNamed: fileName )
+		case .Menu:
+			return MenuScene( fileNamed: fileName )
+		default:
+			return nil
+		}
 	}
 	
 	//returns the Scene.swift file that corresponds to the state provided or nil otherwise

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FE1069DD1D1A6AA000E0E5A5 /* FirePlant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1069DC1D1A6AA000E0E5A5 /* FirePlant.swift */; };
 		FE1069DF1D1A6D9B00E0E5A5 /* FlameObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1069DE1D1A6D9B00E0E5A5 /* FlameObj.swift */; };
+		FE269CCF1D239EFC00F445B5 /* LevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE269CCE1D239EFC00F445B5 /* LevelScene.swift */; };
 		FE2A48571D20A3FB000D2CF2 /* BoxHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE2A48561D20A3FB000D2CF2 /* BoxHit.wav */; };
 		FE2A48591D20A401000D2CF2 /* FirePlantHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE2A48581D20A401000D2CF2 /* FirePlantHit.wav */; };
 		FE2A485B1D20A407000D2CF2 /* FlameHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE2A485A1D20A407000D2CF2 /* FlameHit.wav */; };
@@ -57,6 +58,7 @@
 /* Begin PBXFileReference section */
 		FE1069DC1D1A6AA000E0E5A5 /* FirePlant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirePlant.swift; sourceTree = "<group>"; };
 		FE1069DE1D1A6D9B00E0E5A5 /* FlameObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlameObj.swift; sourceTree = "<group>"; };
+		FE269CCE1D239EFC00F445B5 /* LevelScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelScene.swift; sourceTree = "<group>"; };
 		FE2A48561D20A3FB000D2CF2 /* BoxHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BoxHit.wav; sourceTree = "<group>"; };
 		FE2A48581D20A401000D2CF2 /* FirePlantHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FirePlantHit.wav; sourceTree = "<group>"; };
 		FE2A485A1D20A407000D2CF2 /* FlameHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FlameHit.wav; sourceTree = "<group>"; };
@@ -161,9 +163,10 @@
 				FEDF1F791D151C07000EA427 /* Info.plist */,
 				FEDF1F741D151C07000EA427 /* Assets.xcassets */,
 				FEDF5DE01D2093820047B953 /* GameState.swift */,
-				FEDF5DE21D2096DC0047B953 /* MenuScene.swift */,
 				FEDF1F6F1D151C07000EA427 /* GameViewController.swift */,
 				FEDF1F6D1D151C07000EA427 /* GameScene.swift */,
+				FEDF5DE21D2096DC0047B953 /* MenuScene.swift */,
+				FE269CCE1D239EFC00F445B5 /* LevelScene.swift */,
 				FEA65BA51D168CE20068A20A /* ObjGenerator.swift */,
 				FEA65BA71D168DF40068A20A /* BoxGenerator.swift */,
 				FE881EA81D176228003D2D57 /* CloudGenerator.swift */,
@@ -287,6 +290,7 @@
 				FE881EA51D175D84003D2D57 /* BoxObj.swift in Sources */,
 				FE881EA71D175E4F003D2D57 /* CloudObj.swift in Sources */,
 				FE1069DD1D1A6AA000E0E5A5 /* FirePlant.swift in Sources */,
+				FE269CCF1D239EFC00F445B5 /* LevelScene.swift in Sources */,
 				FEDF1F801D1520E5000EA427 /* GameObj.swift in Sources */,
 				FE1069DF1D1A6D9B00E0E5A5 /* FlameObj.swift in Sources */,
 				FEA65BA81D168DF40068A20A /* BoxGenerator.swift in Sources */,
