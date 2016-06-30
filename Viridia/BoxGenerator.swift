@@ -22,12 +22,17 @@ class BoxGenerator : ObjGenerator
 		primePump()
 	}
 	
+	override func incrementSteps()
+	{
+		super.incrementSteps()
+		checkWin()
+	}
+	
 	override func generate() -> GameObj!
 	{
 		var toReturn : BoxObj! = nil
 		readyToGenerate = false
 		
-		checkWin()
 		if ( totalGenerated >= totalToGenerate )
 		{
 			return nil

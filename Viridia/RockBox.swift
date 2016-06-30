@@ -22,6 +22,7 @@ class RockBox : BoxObj
 	{
 		if ( rockedOut )
 		{
+			self.makeDead()
 			return
 		}
 		
@@ -37,11 +38,12 @@ class RockBox : BoxObj
 				(other as! GroundObj).rockMe()
 				rockedOut = true
 			}
-			
-			if ( other is BoxObj )
+			else if ( other is BoxObj )
 			{
 				onBoxHitsAnother( other as! BoxObj )
+				rockedOut = true
 			}
+			
 			self.makeDead()
 		}
 	}

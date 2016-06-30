@@ -11,10 +11,13 @@ import SpriteKit
 
 class MenuScene : GameScene
 {
+	var myView : SKView!
+	
 	var allButtons = [UIButton]()
 	//function first called when the scene is viewed
 	override func didMoveToView(view: SKView)
 	{
+		myView = view
 		createBackground()
 		createButtons( view )
 	}
@@ -27,16 +30,18 @@ class MenuScene : GameScene
 	
 	private func clearView()
 	{
-		
+		if let view = myView
+		{
+			for sub in view.subviews
+			{
+				sub.removeFromSuperview()
+			}
+		}
 	}
 	
 	override func willMoveFromView(view: SKView)
 	{
 		super.willMoveFromView( view )
-		for sub in view.subviews
-		{
-			sub.removeFromSuperview()
-		}
 	}
 	
 	private func createButtons( view : SKView )
@@ -83,6 +88,7 @@ class MenuScene : GameScene
 		if ( myController != nil )
 		{
 			myController.changeState( GameState.Play)
+			clearView()
 		}
 	}
 }

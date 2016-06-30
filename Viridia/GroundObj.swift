@@ -43,8 +43,12 @@ class GroundObj : GameObj
 			if ( myScene != nil )
 			{
 				myScene!.playSoundEffect( Sounds.sandSmash )
+				
+				let spider = SpiderObj( xStart: sprite.position.x, yStart: sprite.position.y )
+				spider.sprite.position.y += spider.sprite.frame.height * 1.5
+				myScene.queueGameObject( spider )
 			}
-			//TODO: unleash the sand monster
+
 			return
 		}
 		

@@ -11,6 +11,8 @@ import SpriteKit
 
 class PlantObj : GameObj
 {
+	var lives : Int = 1
+	
 	init( xStart: CGFloat, yStart: CGFloat)
 	{
 		let spriteName = PlantObj.randomPlantSprite()
@@ -59,5 +61,14 @@ class PlantObj : GameObj
 	override func hasCollideEffect(other: GameObj) -> Bool
 	{
 		return false
+	}
+	
+	func damage()
+	{
+		lives = lives - 1
+		if ( lives <= 0 )
+		{
+			makeDead()
+		}
 	}
 }
