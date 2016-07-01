@@ -14,4 +14,5 @@ enum GameState
 	case Play
 	case Won
 	case Lost
+	case Credits
 }

@@ -33,6 +33,11 @@ class PlantObj : GameObj
 		self.sprite.zPosition = 20
 	}
 	
+	static func getMaxLives() -> Int
+	{
+		return 1
+	}
+	
 	static func randomPlantSprite() -> String
 	{
 		let choices = [ "plant" , "cactus" , "bush" , "plantPurple" ]

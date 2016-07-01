@@ -23,6 +23,7 @@ class FirePlant : PlantObj
 	override init(xStart: CGFloat, yStart: CGFloat)
 	{
 		super.init( spriteName : "firePlant3" , xStart: xStart, yStart: yStart )
+		lives = 3
 	}
 	
 	override func updateEvent(scene: GameScene, currentFPS: Int)
@@ -51,6 +52,29 @@ class FirePlant : PlantObj
 		flame.sprite.position.x += ( floor( flame.sprite.frame.width / 2 ) - 1.5 )
 		flame.sprite.position.y += ( flame.sprite.frame.height * 1.2 )
 		scene.queueGameObject( flame )
+	}
+	
+	func spriteFromLife()
+	{
+		if ( lives > 3 || lives < 0 )
+		{
+			return
+		}
+		
+		let maxLivesDoubled : CGFloat = 3 * 2
+		let newScale = ( CGFloat(lives) / maxLivesDoubled ) + 0.5
+		sprite.yScale = newScale
+		//sprite.xScale = newScale
+	}
+	
+	override func damage()
+	{
+		super.damage()
+		if ( !isDead )
+		{
+			spriteFromLife()
+		}
+		
 	}
 	
 	private func changeCoolDown( newCoolDown : Int )
@@ -95,6 +119,7 @@ class FirePlant : PlantObj
 		{
 			timer = 0
 			changeCoolDown( 1 )
+			damage()
 			if ( myScene != nil )
 			{
 				myScene.playSoundEffect( Sounds.firePlantHit )

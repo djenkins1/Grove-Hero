@@ -11,6 +11,8 @@ import SpriteKit
 
 class BombBox : BoxObj
 {
+	var spiderOut = false
+	
 	init( xStart: CGFloat, yStart: CGFloat )
 	{
 		super.init(spriteName: "boxExplosiveAlt", xStart: xStart, yStart: yStart)
@@ -28,7 +30,12 @@ class BombBox : BoxObj
 			self.makeDead()
 			if ( other is GroundObj )
 			{
-				( other as! GroundObj).damageMe()
+				let spiderCase = ( other as! GroundObj).damageMe()
+				if ( !spiderOut && spiderCase )
+				{
+					spiderOut = true
+					( other as! GroundObj).createSpider()
+				}
 			}
 		}
 	}

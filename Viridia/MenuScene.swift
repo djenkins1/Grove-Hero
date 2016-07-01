@@ -71,7 +71,7 @@ class MenuScene : GameScene
 		playButton.setTitleColor( UIColor.blackColor(), forState: .Normal)
 		credButton.setTitleColor( UIColor.blackColor(), forState: .Normal)
 		
-		gameTitle.setTitle( "Game Title", forState: .Normal )
+		gameTitle.setTitle( "Grovekeeper", forState: .Normal )
 		gameTitle.userInteractionEnabled = false
 		playButton.setTitle( "Play", forState: .Normal )
 		credButton.setTitle( "Credits", forState: .Normal )

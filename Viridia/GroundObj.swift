@@ -31,25 +31,17 @@ class GroundObj : GameObj
 	}
 	
 	//changes the ground to mycelium, if already mycelium changes to sand and kills off any plant growing above
-	func damageMe()
+	//returns true if a spider can be generated
+	func damageMe() -> Bool
 	{
 		if ( !isTop )
 		{
-			return
+			return false
 		}
 		
 		if ( isSandy )
 		{
-			if ( myScene != nil )
-			{
-				myScene!.playSoundEffect( Sounds.sandSmash )
-				
-				let spider = SpiderObj( xStart: sprite.position.x, yStart: sprite.position.y )
-				spider.sprite.position.y += spider.sprite.frame.height * 1.5
-				myScene.queueGameObject( spider )
-			}
-
-			return
+			return ( myScene != nil )
 		}
 		
 		if ( isShroomed )
@@ -70,7 +62,7 @@ class GroundObj : GameObj
 					myScene!.playSoundEffect( Sounds.deadShroom )
 				}
 			}
-			return
+			return false
 		}
 		
 		if ( myScene != nil )
@@ -88,6 +80,22 @@ class GroundObj : GameObj
 				myScene!.playSoundEffect( Sounds.createShroom )
 			}
 		}
+		
+		return false
+	}
+	
+	func createSpider()
+	{
+		if ( myScene == nil || !isTop )
+		{
+			return
+		}
+		
+		myScene!.playSoundEffect( Sounds.sandSmash )
+		
+		let spider = SpiderObj( xStart: sprite.position.x, yStart: sprite.position.y )
+		spider.sprite.position.y += spider.sprite.frame.height * 1.5
+		myScene.queueGameObject( spider )
 	}
 	
 	//changes the ground back to grass if it was mycelium
