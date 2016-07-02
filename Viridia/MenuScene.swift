@@ -22,23 +22,6 @@ class MenuScene : GameScene
 		createButtons( view )
 	}
 	
-	/* Called when a touch begins */
-	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
-	{
-
-	}
-	
-	private func clearView()
-	{
-		if let view = myView
-		{
-			for sub in view.subviews
-			{
-				sub.removeFromSuperview()
-			}
-		}
-	}
-	
 	override func willMoveFromView(view: SKView)
 	{
 		super.willMoveFromView( view )
@@ -81,14 +64,22 @@ class MenuScene : GameScene
 		view.addSubview(credButton)
 		
 		playButton.addTarget( self, action: #selector( self.clickPlayButton) , forControlEvents: .TouchUpInside)
+		credButton.addTarget( self, action: #selector( self.clickCreditButton) , forControlEvents: .TouchUpInside)
 	}
 	
-	@objc private func clickPlayButton()
+	func clickPlayButton()
 	{
 		if ( myController != nil )
 		{
 			myController.changeState( GameState.Play)
-			clearView()
+		}
+	}
+	
+	func clickCreditButton()
+	{
+		if ( myController != nil )
+		{
+			myController.changeState( GameState.Credits )
 		}
 	}
 }

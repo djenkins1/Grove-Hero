@@ -11,7 +11,7 @@ import SpriteKit
 
 class SpriteRoll
 {
-	private(set) var imageSpeedPerSecond : CGFloat = 0
+	private(set) var secondsPerImage : CGFloat = 0
 	
 	private var images = [String]()
 	
@@ -55,6 +55,13 @@ class SpriteRoll
 		return true
 	}
 	
+	//changes the secondsPerImage to the value provided and returns self for chaining
+	func withImageSpeed( newSpeed : CGFloat ) -> SpriteRoll
+	{
+		secondsPerImage = newSpeed
+		return self
+	}
+	
 	func getCurrentImageString() -> String?
 	{
 		if ( imageIndex < 0 || imageIndex >= images.count )
@@ -68,20 +75,20 @@ class SpriteRoll
 	//returns true if the currentImage changed or false otherwise
 	func animate( currentFPS : Int ) -> Bool
 	{
-		if ( imageSpeedPerSecond == 0 || images.count == 0 || images.count == 1 )
+		if ( secondsPerImage == 0 || images.count == 0 || images.count == 1 )
 		{
 			return false
 		}
 		
 		var toReturn = false
 		stepCounter += 1
-		let stepsNeeded = Int( ceil( CGFloat( currentFPS ) * abs( imageSpeedPerSecond ) ) )
+		let stepsNeeded = Int( ceil( CGFloat( currentFPS ) * abs( secondsPerImage ) ) )
 		if ( stepCounter >= stepsNeeded )
 		{
 			stepCounter = 0
 			toReturn = true
 			
-			imageIndex += ( imageSpeedPerSecond > 0 ? 1 : -1 )
+			imageIndex += ( secondsPerImage > 0 ? 1 : -1 )
 			if ( imageIndex >= images.count )
 			{
 				imageIndex = 0

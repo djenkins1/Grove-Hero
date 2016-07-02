@@ -1,0 +1,74 @@
+@title
+	Code
+@author
+	Dilan Jenkins
+@link
+	https://github.com/djenkins1
+@other
+	Design/Programming
+#
+@title
+	Art/SFX
+@author
+	Kenney
+@link
+	http://www.kenney.nl
+@other
+	Basically all the art.
+	Also, WinSound LoseSound
+#
+@title
+	SFX
+@author
+	p0ss
+@link
+	http://opengameart.org/content/spell-sounds-starter-pack
+@other
+	HealMycelium,SandMonster,SandCreate,ShroomCreate,ShroomDie,SandSmash,RockLost,RockDie
+#
+@title
+	SFX
+@author
+	spookymodem
+@link
+	http://opengameart.org/content/wall-impact
+@other
+	RockCreate
+#
+@title
+	SFX
+@author
+	Little Robot S.F.
+@link
+	http://www.littlerobotsoundfactory.com
+@other
+	FlameHit
+	http://opengameart.org/content/fantasy-sound-effects-library
+#
+@title
+	Music
+@author
+	syncopika
+@link
+	http://opengameart.org/content/sunshine
+@other
+	Sunshine
+#
+@title
+	Music
+@author
+	bart
+@link
+	http://opengameart.org/content/mushroom-dance
+@other
+	Mushroom Dance
+#
+@title
+	Music
+@author
+	pheonton
+@link
+	http://opengameart.org/content/one
+@other
+	One
+#

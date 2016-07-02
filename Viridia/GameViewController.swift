@@ -64,37 +64,34 @@ class GameViewController: UIViewController
 	//changes the games state to the state provided and presents the associated scene
 	func changeState( toState : GameState )
 	{
-		let fileName = fileNameFromState( toState )
-		if fileName != nil
+		clearView()
+
+		if let scene = returnSceneFromState( toState )
 		{
-			if let scene = returnSceneFromState( toState )
+			// Configure the view.
+			let skView = self.view as! SKView
+			skView.showsFPS = true
+			skView.showsNodeCount = true
+			
+			/* Sprite Kit applies additional optimizations to improve rendering performance */
+			skView.ignoresSiblingOrder = true
+			
+			/* Set the scale mode to scale to fit the window */
+			scene.scaleMode = .AspectFill
+			scene.myController = self
+			if ( !reachedLoaded )
 			{
-				// Configure the view.
-				let skView = self.view as! SKView
-				skView.showsFPS = true
-				skView.showsNodeCount = true
-				
-				/* Sprite Kit applies additional optimizations to improve rendering performance */
-				skView.ignoresSiblingOrder = true
-				
-				/* Set the scale mode to scale to fit the window */
-				scene.scaleMode = .AspectFill
-				scene.myController = self
-				if ( !reachedLoaded )
-				{
-					skView.presentScene(scene)
-				}
-				else
-				{
-					let transition = SKTransition.fadeWithDuration( 1.0)
-					skView.presentScene(scene, transition: transition )
-				}
+				skView.presentScene(scene)
+			}
+			else
+			{
+				let transition = SKTransition.fadeWithDuration( 1.0)
+				skView.presentScene(scene, transition: transition )
 			}
 		}
 		else
 		{
-			print( "Could not change state to \(toState)" )
-			return
+			print( "Could not change to state \(toState)" )
 		}
 		
 
@@ -109,20 +106,8 @@ class GameViewController: UIViewController
 			return LevelScene( fileNamed: fileName )
 		case .Menu:
 			return MenuScene( fileNamed: fileName )
-		default:
-			return nil
-		}
-	}
-	
-	//returns the Scene.swift file that corresponds to the state provided or nil otherwise
-	func fileNameFromState( state : GameState ) -> String?
-	{
-		switch( state )
-		{
-		case .Play:
-			return "GameScene"
-		case .Menu:
-			return "MenuScene"
+		case .Credits:
+			return CreditScene( fileNamed: fileName )
 		default:
 			return nil
 		}
@@ -150,5 +135,40 @@ class GameViewController: UIViewController
 		musicPlayer = AVPlayer( playerItem: playMusicList[ 0 ].getItem() )
 		musicPlayer.play()
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.playerDidFinishPlaying(_:)), name: AVPlayerItemDidPlayToEndTimeNotification, object: musicPlayer.currentItem )
+	}
+	
+	//reads the credits data from the credits file and returns a dictionary of it
+	func readCredits() -> Array<Dictionary<String,String>>
+	{
+		var toReturn = [[String: String]]()
+		if let filepath = NSBundle.mainBundle().pathForResource("Credits", ofType: "txt")
+		{
+			do
+			{
+				let contents = try NSString(contentsOfFile: filepath, usedEncoding: nil) as String
+				toReturn = Process( input: contents ).getObjects()
+			}
+			catch
+			{
+				// contents could not be loaded
+				print( "Could not load contents")
+			}
+		}
+		else
+		{
+			print( "File not found" )
+		}
+		return toReturn
+	}
+	
+	func clearView()
+	{
+		if let view = view
+		{
+			for sub in view.subviews
+			{
+				sub.removeFromSuperview()
+			}
+		}
 	}
 }

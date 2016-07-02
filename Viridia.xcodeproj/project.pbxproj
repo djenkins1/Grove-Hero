@@ -32,6 +32,10 @@
 		FEBAB4861D24C5C500878678 /* SpiderObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBAB4851D24C5C500878678 /* SpiderObj.swift */; };
 		FECB8A961D1E122D0093810E /* RockBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECB8A951D1E122D0093810E /* RockBox.swift */; };
 		FECE0A9C1D273D600069F36F /* SpriteRoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECE0A9B1D273D600069F36F /* SpriteRoll.swift */; };
+		FECFFE541D277F7D00A89CAE /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFFE531D277F7D00A89CAE /* Process.swift */; };
+		FECFFE561D27801A00A89CAE /* CreditScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFFE551D27801A00A89CAE /* CreditScene.swift */; };
+		FECFFE581D27868500A89CAE /* Credits.txt in Resources */ = {isa = PBXBuildFile; fileRef = FECFFE571D27868500A89CAE /* Credits.txt */; };
+		FECFFE5A1D27887800A89CAE /* otherCredits.txt in Resources */ = {isa = PBXBuildFile; fileRef = FECFFE591D27887800A89CAE /* otherCredits.txt */; };
 		FEDF1F6A1D151C07000EA427 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDF1F691D151C07000EA427 /* AppDelegate.swift */; };
 		FEDF1F6C1D151C07000EA427 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = FEDF1F6B1D151C07000EA427 /* GameScene.sks */; };
 		FEDF1F6E1D151C07000EA427 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDF1F6D1D151C07000EA427 /* GameScene.swift */; };
@@ -83,6 +87,10 @@
 		FEBAB4851D24C5C500878678 /* SpiderObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpiderObj.swift; sourceTree = "<group>"; };
 		FECB8A951D1E122D0093810E /* RockBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RockBox.swift; sourceTree = "<group>"; };
 		FECE0A9B1D273D600069F36F /* SpriteRoll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteRoll.swift; sourceTree = "<group>"; };
+		FECFFE531D277F7D00A89CAE /* Process.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
+		FECFFE551D27801A00A89CAE /* CreditScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditScene.swift; sourceTree = "<group>"; };
+		FECFFE571D27868500A89CAE /* Credits.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Credits.txt; sourceTree = "<group>"; };
+		FECFFE591D27887800A89CAE /* otherCredits.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = otherCredits.txt; sourceTree = "<group>"; };
 		FEDF1F661D151C07000EA427 /* Viridia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Viridia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEDF1F691D151C07000EA427 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEDF1F6B1D151C07000EA427 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -170,6 +178,7 @@
 				FEDF1F6F1D151C07000EA427 /* GameViewController.swift */,
 				FEDF1F6D1D151C07000EA427 /* GameScene.swift */,
 				FEDF5DE21D2096DC0047B953 /* MenuScene.swift */,
+				FECFFE551D27801A00A89CAE /* CreditScene.swift */,
 				FE269CCE1D239EFC00F445B5 /* LevelScene.swift */,
 				FEA65BA51D168CE20068A20A /* ObjGenerator.swift */,
 				FEA65BA71D168DF40068A20A /* BoxGenerator.swift */,
@@ -189,6 +198,9 @@
 				FE7C1FF11D1900FB00513EC7 /* RockObj.swift */,
 				FE1069DE1D1A6D9B00E0E5A5 /* FlameObj.swift */,
 				FE7336B31D209FAA008E2E57 /* Sounds.swift */,
+				FECFFE531D277F7D00A89CAE /* Process.swift */,
+				FECFFE571D27868500A89CAE /* Credits.txt */,
+				FECFFE591D27887800A89CAE /* otherCredits.txt */,
 			);
 			path = Viridia;
 			sourceTree = "<group>";
@@ -256,6 +268,7 @@
 				FEF727691D210F1E00697CD8 /* RockLost.wav in Resources */,
 				FEF727641D210F1E00697CD8 /* HealShroom.wav in Resources */,
 				FEF7276F1D210F1E00697CD8 /* WinSound.wav in Resources */,
+				FECFFE581D27868500A89CAE /* Credits.txt in Resources */,
 				FEF7276B1D210F1E00697CD8 /* SandMonster.wav in Resources */,
 				FEF7276A1D210F1E00697CD8 /* SandCreate.wav in Resources */,
 				FE84C0541D2250C6006CF8E9 /* sunshine.mp3 in Resources */,
@@ -266,6 +279,7 @@
 				FE2A485E1D20A422000D2CF2 /* RockLives.wav in Resources */,
 				FEDF1F751D151C07000EA427 /* Assets.xcassets in Resources */,
 				FEF727661D210F1E00697CD8 /* MycelCreate.wav in Resources */,
+				FECFFE5A1D27887800A89CAE /* otherCredits.txt in Resources */,
 				FEF727631D210F1E00697CD8 /* HealMycelium.wav in Resources */,
 				FEDF1F731D151C07000EA427 /* Main.storyboard in Resources */,
 				FE84C0531D2250C6006CF8E9 /* oneSong.mp3 in Resources */,
@@ -292,6 +306,7 @@
 				FE881EA91D176228003D2D57 /* CloudGenerator.swift in Sources */,
 				FEBAB4861D24C5C500878678 /* SpiderObj.swift in Sources */,
 				FE608F2F1D1E685F005F0DA5 /* GamePath.swift in Sources */,
+				FECFFE561D27801A00A89CAE /* CreditScene.swift in Sources */,
 				FE7C1FFC1D191B8B00513EC7 /* HealBox.swift in Sources */,
 				FEDF1F6E1D151C07000EA427 /* GameScene.swift in Sources */,
 				FEDF5DE11D2093820047B953 /* GameState.swift in Sources */,
@@ -301,6 +316,7 @@
 				FE269CCF1D239EFC00F445B5 /* LevelScene.swift in Sources */,
 				FEDF1F801D1520E5000EA427 /* GameObj.swift in Sources */,
 				FE1069DF1D1A6D9B00E0E5A5 /* FlameObj.swift in Sources */,
+				FECFFE541D277F7D00A89CAE /* Process.swift in Sources */,
 				FEA65BA81D168DF40068A20A /* BoxGenerator.swift in Sources */,
 				FEDF1F701D151C07000EA427 /* GameViewController.swift in Sources */,
 				FE881EAB1D176DEC003D2D57 /* GroundObj.swift in Sources */,
