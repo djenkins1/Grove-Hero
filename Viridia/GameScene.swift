@@ -28,14 +28,13 @@
 //		might even have an array of created object types inside GameScene and just update that on addGameObj
 //	Don't play boxHit sound if either of the boxes are outside of the screen
 //	Sound Effects
-//		(/*changeME)sucess sound effect for winning level
-//		(/*changeME)failure sound effect for losing level
-//		(/*changeME)fire plant losing a life
-//		fire plant dying
-//		sound effect for fire plant ready to fire
-//		sound effect for fire plant firing when tapped
-//		sound effect for spider eating a plant down by one life
-//		sound effect for spider dying
+//		ADD CODE to FirePlant: fire plant dying
+//		ADD CODE to FirePlant: sound effect for fire plant ready to fire
+//		ADD CODE TO SPIDER: sound effect for spider dying
+//		ADD CODE TO FirePlant: losing life from spider
+//		(?)sound effect for fire plant firing when tapped
+//		(?)sound effect for spider eating a plant down by one life
+//			just use plant die sound effect?
 //
 //	-------------
 //	FUTURE
@@ -48,6 +47,7 @@
 //	(EDIT SPRITE)snail shells that spawn like rocks
 //		when bomb box hits snail shell, snail gets out and wreaks havoc on plants nearby similar to sand monster
 //		would need to recolor snail from pink?
+//	different font choice for win/lose text
 //	Need some kind of score system and saving/loading of score
 //	animate spider dying from being tapped
 //	Animate sand spider being created,i.e have it come out of ground like rock

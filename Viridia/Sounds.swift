@@ -45,7 +45,15 @@ class Sounds
 	
 	static let winSound = "WinSound.wav"
 	
+	//TODO: ADDED
+	static let fireDead = "FireDie.wav"
+	
+	static let fireReady = "FireReady.wav"
+	
+	static let spiderDead = "SpiderDie.wav"
+	
 	var name: String
+	
 	var type: String
 	
 	init( name: String, type: String )

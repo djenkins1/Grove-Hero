@@ -8,14 +8,13 @@
 	Design/Programming
 #
 @title
-	Art/SFX
+	Art
 @author
 	Kenney
 @link
 	http://www.kenney.nl
 @other
 	Basically all the art.
-	Also, WinSound LoseSound
 #
 @title
 	SFX
@@ -55,13 +54,13 @@
 	Sunshine
 #
 @title
-	Music
+	Music/SFX
 @author
 	bart
 @link
 	http://opengameart.org/content/mushroom-dance
 @other
-	Mushroom Dance
+	Mushroom Dance,WinSound
 #
 @title
 	Music
@@ -71,4 +70,13 @@
 	http://opengameart.org/content/one
 @other
 	One
+#
+@title
+	SFX
+@author
+	legoluft
+@link
+	http://opengameart.org/content/atmospheric-interaction-sound-pack
+@other
+	LoseSound,FirePlantHit,FireReady,FireDie,SpiderDie
 #
