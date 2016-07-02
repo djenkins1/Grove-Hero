@@ -28,6 +28,7 @@ class FirePlant : PlantObj
 	
 	override func updateEvent(scene: GameScene, currentFPS: Int)
 	{
+		super.updateEvent( scene , currentFPS: currentFPS )
 		timer = timer + 1
 		if ( timer >= currentFPS * coolDownInterval )
 		{

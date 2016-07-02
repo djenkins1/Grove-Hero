@@ -36,8 +36,12 @@ class GameObj
 	
 	var myPath : GamePath!
 	
+	let mySprites : SpriteRoll
+	
 	init( spriteName : String, xStart : CGFloat, yStart : CGFloat )
 	{
+		mySprites = SpriteRoll()
+		mySprites.withImages( [ spriteName ] )
 		sprite = SKSpriteNode( imageNamed: spriteName )
 		sprite.position = CGPoint( x: xStart, y: yStart )
 		sprite.anchorPoint = CGPoint( x: 0.0, y: 0.0 )
@@ -175,7 +179,17 @@ class GameObj
 	//fires when the update function is called in the GameScene
 	func updateEvent( scene : GameScene, currentFPS : Int )
 	{
-		
+		if ( mySprites.animate( currentFPS ) )
+		{
+			if let newSprite = mySprites.getCurrentImageString()
+			{
+				changeSprite( newSprite )
+			}
+			else
+			{
+				print( "Could not change to sprite for \(self)" )
+			}
+		}
 	}
 	
 	func hasCollideEffect( other : GameObj ) -> Bool

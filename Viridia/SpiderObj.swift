@@ -18,10 +18,11 @@ class SpiderObj : GameObj
 	var stepCounter : CGFloat = 0
 	
 	let baseSpeed : CGFloat = 180
+
 	
 	init( xStart: CGFloat, yStart: CGFloat)
 	{
-		super.init( spriteName: "spider", xStart: xStart, yStart: yStart )
+		super.init( spriteName: "spiderL", xStart: xStart, yStart: yStart )
 		self.dieOnCollide = true
 		self.dieOutsideScreen = true
 		self.sprite.zPosition = 15
@@ -33,13 +34,15 @@ class SpiderObj : GameObj
 		let closestPlant = scene.getNearestPlantObj( sprite.position.x, y: sprite.position.y )
 		if ( closestPlant != nil )
 		{
-			if ( closestPlant.sprite.position.x < sprite.position.x )
+			let spiderGoesLeft = closestPlant.sprite.position.x < sprite.position.x
+			if ( spiderGoesLeft )
 			{
 				self.horSpeed = -baseSpeed
 			}
 			else
 			{
 				self.horSpeed = baseSpeed
+				changeSprite( "spiderR" )
 			}
 		}
 		else
