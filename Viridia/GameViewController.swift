@@ -18,7 +18,7 @@ class GameViewController: UIViewController
 	
 	var playMusicList = [Sounds]()
 	
-	var isMuted = false
+	private(set) var isMuted = false
 	
 	var reachedLoaded = false
 	
@@ -172,6 +172,19 @@ class GameViewController: UIViewController
 			{
 				sub.removeFromSuperview()
 			}
+		}
+	}
+	
+	func setMuted( muteState : Bool )
+	{
+		isMuted = muteState
+		if ( isMuted )
+		{
+			musicPlayer.pause()
+		}
+		else
+		{
+			musicPlayer.play()
 		}
 	}
 }

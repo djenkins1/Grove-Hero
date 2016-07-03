@@ -21,6 +21,14 @@ class LevelScene : GameScene
 		shouldCheckLose = true
 	}
 	
+	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
+	{
+		super.touchesBegan( touches, withEvent: event )
+		if ( pauseUpdate && myController != nil )
+		{
+			myController.changeState( GameState.Menu )
+		}
+	}
 	func generateScenery()
 	{
 		let allGround = allObjectsOfType( GroundObj )

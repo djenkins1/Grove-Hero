@@ -80,19 +80,31 @@ class FirePlant : PlantObj
 		super.damage()
 		if ( !isDead )
 		{
+			myScene.playSoundEffect( Sounds.firePlantHit )
 			spriteFromLife()
+		}
+		else
+		{
+			if ( myScene != nil )
+			{
+				myScene.playSoundEffect( Sounds.fireDead )
+			}
 		}
 		
 	}
 	
 	private func changeCoolDown( newCoolDown : Int )
 	{
-		if ( newCoolDown <= 0 || newCoolDown > 3 )
+		if ( newCoolDown <= 0 || newCoolDown > 3 || coolDownState == newCoolDown )
 		{
 			return
 		}
 		coolDownState = newCoolDown
 		changeSprite( "firePlant\(coolDownState)" )
+		if ( coolDownState == 3 && myScene != nil )
+		{
+			myScene.playSoundEffect( Sounds.fireReady )
+		}
 	}
 	
 	override func touchEvent(location: CGPoint)
@@ -128,10 +140,6 @@ class FirePlant : PlantObj
 			timer = 0
 			changeCoolDown( 1 )
 			damage()
-			if ( myScene != nil )
-			{
-				myScene.playSoundEffect( Sounds.firePlantHit )
-			}
 		}
 		
 	}

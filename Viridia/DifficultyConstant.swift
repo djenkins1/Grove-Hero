@@ -11,17 +11,21 @@ import SpriteKit
 
 protocol DifficultyConstant
 {
-	var boxSpeedInSeconds : CGFloat { get set }// = 10
+	var boxSpeedInSeconds : CGFloat { get }// = 10
 	
-	var fireCooldownInterval : CGFloat { get set }// = 3
+	var fireCooldownInterval : CGFloat { get }// = 3
 	
-	var firePlantsPerTenGround : Int { get set }// = 2
+	var firePlantsPerTenGround : Int { get }// = 2
 	
-	var plantsPerTenGround : Int { get set }// = 4
+	var plantsPerTenGround : Int { get }// = 4
 	
-	var rocksPerTenGround : Int { get set }// = 2
+	var rocksPerTenGround : Int { get }// = 2
 	
-	var spiderEatSpeedInSecs : CGFloat { get set }
+	var spiderEatSpeedInSecs : CGFloat { get }
+	
+	var boxSpawnRateHigh : UInt32 { get }
+	
+	var boxSpawnRateLow : UInt32 { get }
 }
 
 class EasyDifficulty : DifficultyConstant
@@ -38,6 +42,10 @@ class EasyDifficulty : DifficultyConstant
 	
 	var spiderEatSpeedInSecs : CGFloat
 	
+	var boxSpawnRateHigh : UInt32
+	
+	var boxSpawnRateLow : UInt32
+	
 	init()
 	{
 		boxSpeedInSeconds = 10
@@ -46,6 +54,8 @@ class EasyDifficulty : DifficultyConstant
 		plantsPerTenGround = 5
 		rocksPerTenGround = 3
 		spiderEatSpeedInSecs = 2
+		boxSpawnRateHigh = 5
+		boxSpawnRateLow = 3
 	}
 }
 
@@ -62,6 +72,10 @@ class MidDifficulty : DifficultyConstant
 	var rocksPerTenGround : Int
 	
 	var spiderEatSpeedInSecs : CGFloat
+	
+	var boxSpawnRateHigh : UInt32
+	
+	var boxSpawnRateLow : UInt32
 
 	init()
 	{
@@ -71,6 +85,8 @@ class MidDifficulty : DifficultyConstant
 		plantsPerTenGround = 4
 		rocksPerTenGround = 2
 		spiderEatSpeedInSecs = 1.5
+		boxSpawnRateHigh = 4
+		boxSpawnRateLow = 2
 	}
 }
 
@@ -87,6 +103,10 @@ class HardDifficulty : DifficultyConstant
 	var rocksPerTenGround : Int
 	
 	var spiderEatSpeedInSecs : CGFloat
+	
+	var boxSpawnRateHigh : UInt32
+	
+	var boxSpawnRateLow : UInt32
 
 	init()
 	{
@@ -96,5 +116,7 @@ class HardDifficulty : DifficultyConstant
 		plantsPerTenGround = 3
 		rocksPerTenGround = 1
 		spiderEatSpeedInSecs = 1
+		boxSpawnRateHigh = 4
+		boxSpawnRateLow = 3
 	}
 }

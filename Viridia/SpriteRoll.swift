@@ -55,6 +55,15 @@ class SpriteRoll
 		return true
 	}
 	
+	func syncImageOfObj( obj : GameObj )
+	{
+		let image = getCurrentImageString()
+		if image != nil
+		{
+			obj.changeSprite( image! )
+		}
+	}
+	
 	//changes the secondsPerImage to the value provided and returns self for chaining
 	func withImageSpeed( newSpeed : CGFloat ) -> SpriteRoll
 	{

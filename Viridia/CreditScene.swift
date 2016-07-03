@@ -44,7 +44,9 @@ class CreditScene : GameScene
 		
 		let titleImage = UIImage( named: "buttonTitle" ) as UIImage?
 		let backImage = UIImage( named: "buttonGreenDef" ) as UIImage?
+		let smallImage = UIImage( named: "buttonSmall" ) as UIImage?
 		let gameTitle = UIButton(type: UIButtonType.Custom) as UIButton
+		let backButton = UIButton(type: UIButtonType.Custom) as UIButton
 		
 		let screenWidth = UIScreen.mainScreen().bounds.width
 		let titleWidth = Int( ceil(screenWidth * 0.5) )
@@ -54,6 +56,7 @@ class CreditScene : GameScene
 		let startY = CGFloat( ceil( UIScreen.mainScreen().bounds.height * 0.25 ) )
 		let defaultWidth : CGFloat = 128
 		let defaultHeight : CGFloat  = 32
+		let muteX = centerX - CGFloat( titleWidth / 2 ) - CGFloat( defaultWidth / 4 ) - CGFloat( defaultHeight )
 		
 		let buttonsPerRow = floor( screenWidth / ( defaultWidth + paddingWidth ) )
 		/*
@@ -66,6 +69,13 @@ class CreditScene : GameScene
 		gameTitle.setTitle( "Credits", forState: .Normal )
 		gameTitle.addTarget( self, action: #selector( self.clickBack ) , forControlEvents: .TouchUpInside)
 		view.addSubview(gameTitle)
+		
+		backButton.frame = CGRectMake( muteX, CGFloat( startY ), CGFloat( defaultHeight ), CGFloat(defaultHeight ))
+		backButton.setBackgroundImage( smallImage, forState: .Normal )
+		backButton.setTitleColor( UIColor.blackColor(), forState: .Normal)
+		backButton.setTitle( "<", forState: .Normal )
+		backButton.addTarget( self, action: #selector( self.clickBack ) , forControlEvents: .TouchUpInside)
+		view.addSubview(backButton)
 		
 		var index = -1
 		for creditRow in creditData

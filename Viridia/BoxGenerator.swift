@@ -38,7 +38,7 @@ class BoxGenerator : ObjGenerator
 			return nil
 		}
 		
-		if ( arc4random_uniform( 5 ) < 2 )
+		if ( doSpawnBox() )
 		{
 
 			let widthPad = roomWidth * 0.05
@@ -66,6 +66,21 @@ class BoxGenerator : ObjGenerator
 			toReturn!.generatedBy = self
 			toReturn.myPath = GamePath( x: x, y: 0, speedInSeconds: scene!.myController!.diffiCons.boxSpeedInSeconds , startX: x, startY:  highestY )
 			toReturn.myPath!.adjustSpeed( toReturn, otherThanZero: true )
+		}
+		
+		return toReturn
+	}
+	
+	private func doSpawnBox() -> Bool
+	{
+		var toReturn = false
+		if ( scene != nil && scene.myController != nil )
+		{
+			toReturn = ( arc4random_uniform( scene.myController.diffiCons.boxSpawnRateHigh ) < scene.myController.diffiCons.boxSpawnRateLow )
+		}
+		else
+		{
+			toReturn = ( arc4random_uniform( 5 ) < 2 )
 		}
 		
 		return toReturn

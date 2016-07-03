@@ -10,24 +10,18 @@
 //==========
 //	TODO
 //==========
+//	different font choice for win/lose text
 //	change spawn rates of boxes with difficulty level
-//	ability to mute music and sounds, choice given on menu similar to Gemicus
-//		(!!!)have code to mute music when isMuted is true
-//		just need to add in a button that toggles mute status, see Gemicus
-//	credits scene needs an actual back button
-//	have animation basis, need to add in spider walking. 
-//		For now just left spider continue animation of walking even when eating a plant
+//		(DONE)have basis of global spawn rate
+//		need to add in spawn rates for particular types
 //	fire plants should be healed by HealBoxes, also fires up the plant so that it is ready to fire
 //	fire plants with less lives should take longer to reload flame attack
-//	when spiders try to eat fire plant, have the fire plant lose a life and the spider dies(too spicy)
-//	remove right most ground from generation of plants/rocks/firePlants
-//	Don't play boxHit sound if either of the boxes are outside of the screen
-//	need some mechanism of going back to the menu from the win/lose screen
+//	(?)remove right most ground from generation of plants/rocks/firePlants
+//	Don't play boxHit sound if both of the boxes are outside of the screen
+//	add "tap to continue" text under win/lose text
+//	should move the code for checkWin from generator to actual LevelScene
 //	Sound Effects
-//		ADD CODE to FirePlant: fire plant dying
-//		ADD CODE to FirePlant: sound effect for fire plant ready to fire
-//		ADD CODE TO SPIDER: sound effect for spider dying
-//		ADD CODE TO FirePlant: losing life from spider
+//		ADD CODE TO SPIDER: sound effect for spider dying from boxHit or player tap, not from being outside room
 //		(?)sound effect for fire plant firing when tapped
 //		(?)sound effect for spider eating a plant down by one life
 //			just use plant die sound effect?
@@ -35,7 +29,7 @@
 //	-------------
 //	FUTURE
 //	============
-//	(NEED/EDIT SPRITE)Animate spider eating a plant
+//	(SCRAP)Animate spider eating a plant
 //	(NEED/EDIT SPRITE)More accurate portrayal of boxes so that what is inside them has an icon of it
 //	(NEED SPRITE)explode animation for when box hits ground, sand spilling out/spores
 //	(NEED SPRITE)explode animation for when fireball hits a box
@@ -43,19 +37,27 @@
 //	(EDIT SPRITE)snail shells that spawn like rocks
 //		when bomb box hits snail shell, snail gets out and wreaks havoc on plants nearby similar to sand monster
 //		would need to recolor snail from pink?
-//	Screen that shows options for the game, difficulty level and win condition( time versus total)
-//	different font choice for win/lose text
-//	Need some kind of score system and saving/loading of score
 //	animate spider dying from being tapped
 //	Animate sand spider being created,i.e have it come out of ground like rock
+//
+//	(?)don't add buttons to view for credits/menu until the transition is done
+//	pause button that lets player pause the game when in LevelScene
+//	Screen that shows options for the game, difficulty level and win condition( time versus total)
+//	Need some kind of score system and saving/loading of score
+//		would need to calculate score: maybe living healthy plants(mid amount),shrooms(low),firePlants(high) minus dead ones
+//			also minus sandy ground
 //	Add sprites to the menu, i.e boxes falling and plants...
 //		almost like an arcade game that is waiting for quarters
 //	lose level animation, rocks all get destroyed and turns into desolate sandy wasteland
 //		maybe have a tumbleweed blow across the screen
 //	time attack mode that wins after certain amount of time
+//		would probably need to show a timer(count up or down) somewhere in the scene
 //	maybe have a 2 second pause between music on the list played(use a timer)
 //	need a win screen scene specifically showing stats
 //	need a lose screen scene specifically showing failure?
+//	(?)RockBox should kill any plants it touches ground of and replace them with Rocks
+//		or have it fossilize the plant, making it stony and any bombbox that hits it explodes like a rock, killing plant
+//			spiders would also be unable to eat it,kills spider as soon as it tries
 //	(?)heal box should also plant a plant(only one) when it hits empty ground
 //		(?)heal box should turn regular plants into fireplants(only one) when hits grassy ground
 //		Maybe have another box that does these two things similar to rockbox
@@ -67,10 +69,7 @@
 //		probably not possible, would require complete rewrite of collision engine
 //		see GameObj init code for more info
 //	(?)spider-predation plant, the plant eats the spiders when they get close
-//	(?)RockBox should kill any plants it touches ground of and replace them with Rocks
 //	(?)Might have all boxes(except rockBox) damage rock on impact instead of just BombBox
-//	(?)need splash screen
-//		show title, tap to show menu
 //==========
 //
 

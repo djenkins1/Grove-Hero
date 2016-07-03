@@ -40,11 +40,13 @@ class SpiderObj : GameObj
 			if ( spiderGoesLeft )
 			{
 				self.horSpeed = -baseSpeed
+				mySprites.withImages( [ "spiderLwalk1" , "spiderLwalk2" ] ).withImageSpeed( 0.25 ).syncImageOfObj( self )
 			}
 			else
 			{
 				self.horSpeed = baseSpeed
-				changeSprite( "spiderR" )
+				//changeSprite( "spiderR" )
+				mySprites.withImages( [ "spiderRwalk1" , "spiderRwalk2" ] ).withImageSpeed( 0.25 ).syncImageOfObj( self )
 			}
 		}
 		else
@@ -86,6 +88,10 @@ class SpiderObj : GameObj
 		{
 			super.move( framesPerSecond )
 		}
+		else
+		{
+			//should change sprite roll images to not moving
+		}
 		
 		return self
 	}
@@ -119,6 +125,10 @@ class SpiderObj : GameObj
 			if ( currentEatenPlant != nil )
 			{
 				currentEatenPlant!.damage()
+				if ( currentEatenPlant is FirePlant )
+				{
+					self.makeDead()
+				}
 			}
 		}
 	}
