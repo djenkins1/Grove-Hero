@@ -45,7 +45,7 @@ class BoxGenerator : ObjGenerator
 			let x = CGFloat(arc4random_uniform( UInt32(roomWidth - ( widthPad * 2 ) ) )) + widthPad
 			let middleHeight = roomHeight * 0.54
 			let y = CGFloat(arc4random_uniform( UInt32( middleHeight ) ) ) + roomHeight
-			totalGenerated += 1
+			
 			
 			let randomNum = arc4random_uniform( 5 )
 			if (  randomNum == 0 )
@@ -59,11 +59,12 @@ class BoxGenerator : ObjGenerator
 			else
 			{
 				toReturn = BombBox(  xStart: x, yStart: y )
+				totalGenerated += 1
 			}
 			
 			let highestY = middleHeight + roomHeight
 			toReturn!.generatedBy = self
-			toReturn.myPath = GamePath( x: x, y: 0, speedInSeconds: 10, startX: x, startY:  highestY )
+			toReturn.myPath = GamePath( x: x, y: 0, speedInSeconds: scene!.myController!.diffiCons.boxSpeedInSeconds , startX: x, startY:  highestY )
 			toReturn.myPath!.adjustSpeed( toReturn, otherThanZero: true )
 		}
 		

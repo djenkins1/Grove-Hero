@@ -18,7 +18,7 @@ class FirePlant : PlantObj
 	var timer : Int = 0
 	
 	//number of seconds between sprite changes for cool down
-	let coolDownInterval = 2
+	var coolDownInterval : CGFloat = 2
 	
 	override init(xStart: CGFloat, yStart: CGFloat)
 	{
@@ -26,11 +26,18 @@ class FirePlant : PlantObj
 		lives = 3
 	}
 	
+	override func createEvent(scene: GameScene) -> GameObj
+	{
+		super.createEvent( scene )
+		coolDownInterval = scene.myController!.diffiCons.fireCooldownInterval
+		return self
+	}
+	
 	override func updateEvent(scene: GameScene, currentFPS: Int)
 	{
 		super.updateEvent( scene , currentFPS: currentFPS )
 		timer = timer + 1
-		if ( timer >= currentFPS * coolDownInterval )
+		if ( timer >= Int( floor( CGFloat( currentFPS ) * coolDownInterval ) ) )
 		{
 			timer = 0
 			changeCoolDown( min( coolDownState + 1 , 3 ) )

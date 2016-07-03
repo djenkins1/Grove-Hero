@@ -202,4 +202,9 @@ class GameObj
 		self.id = id
 		return self
 	}
+	
+	func className() -> String
+	{
+		return NSStringFromClass(self.dynamicType)
+	}
 }

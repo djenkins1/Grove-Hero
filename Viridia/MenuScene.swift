@@ -20,6 +20,7 @@ class MenuScene : GameScene
 		myView = view
 		createBackground()
 		createButtons( view )
+		setupGenerators()
 	}
 	
 	override func willMoveFromView(view: SKView)
@@ -65,6 +66,10 @@ class MenuScene : GameScene
 		
 		playButton.addTarget( self, action: #selector( self.clickPlayButton) , forControlEvents: .TouchUpInside)
 		credButton.addTarget( self, action: #selector( self.clickCreditButton) , forControlEvents: .TouchUpInside)
+		
+		playButton.layer.zPosition = 20
+		credButton.layer.zPosition = 20
+		gameTitle.layer.zPosition = 20
 	}
 	
 	func clickPlayButton()
@@ -81,5 +86,12 @@ class MenuScene : GameScene
 		{
 			myController.changeState( GameState.Credits )
 		}
+	}
+	
+	//adds all the generators
+	func setupGenerators()
+	{
+		//generatorList.append( BoxGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self) )
+		generatorList.append( CloudGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self) )
 	}
 }

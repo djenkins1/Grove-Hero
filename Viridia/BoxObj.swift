@@ -40,9 +40,12 @@ class BoxObj : GameObj
 	override func deleteEvent(scene: GameScene) -> GameObj
 	{
 		super.deleteEvent( scene )
-		if ( generatedBy != nil )
+		if ( self is BombBox )
 		{
-				generatedBy!.generatedLost += 1
+			if ( generatedBy != nil )
+			{
+					generatedBy!.generatedLost += 1
+			}
 		}
 		return self
 	}

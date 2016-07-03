@@ -22,6 +22,8 @@ class GameViewController: UIViewController
 	
 	var reachedLoaded = false
 	
+	var diffiCons : DifficultyConstant = EasyDifficulty()
+	
     override func viewDidLoad()
 	{
         super.viewDidLoad()
@@ -29,6 +31,7 @@ class GameViewController: UIViewController
 		{
 			playMusic()
 		}
+		
 		changeState( currentState )
 		reachedLoaded = true
     }

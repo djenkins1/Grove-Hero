@@ -23,9 +23,6 @@ class LevelScene : GameScene
 	
 	func generateScenery()
 	{
-		var numberOfRocks = 2
-		var numberOfPlants = 5//TODO :Should be based off number of ground that are isTop
-		var numberOfFires = 2
 		let allGround = allObjectsOfType( GroundObj )
 		var remainingTopGround = [GroundObj]()
 		for obj in allGround
@@ -35,6 +32,11 @@ class LevelScene : GameScene
 				remainingTopGround.append( (obj as! GroundObj) )
 			}
 		}
+		
+		let totalGroundSpaces = remainingTopGround.count / 10
+		var numberOfRocks = myController!.diffiCons.rocksPerTenGround * totalGroundSpaces
+		var numberOfPlants = myController!.diffiCons.plantsPerTenGround * totalGroundSpaces
+		var numberOfFires = myController!.diffiCons.firePlantsPerTenGround * totalGroundSpaces
 		
 		while( remainingTopGround.count > 0 )
 		{

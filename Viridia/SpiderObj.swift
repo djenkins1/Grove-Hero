@@ -13,7 +13,7 @@ class SpiderObj : GameObj
 {
 	var currentEatenPlant : PlantObj! = nil
 	
-	let secondsBetween : CGFloat = 1.5
+	var secondsBetween : CGFloat = 1.5
 	
 	var stepCounter : CGFloat = 0
 	
@@ -31,6 +31,8 @@ class SpiderObj : GameObj
 	override func createEvent(scene: GameScene) -> GameObj
 	{
 		super.createEvent( scene )
+		secondsBetween = scene.myController!.diffiCons.spiderEatSpeedInSecs
+		
 		let closestPlant = scene.getNearestPlantObj( sprite.position.x, y: sprite.position.y )
 		if ( closestPlant != nil )
 		{
