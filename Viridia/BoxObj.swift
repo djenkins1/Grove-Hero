@@ -63,9 +63,10 @@ class BoxObj : GameObj
 	
 	func onBoxHitsAnother( other : BoxObj )
 	{
+		let bothOutsideRoom = ( myScene!.isObjOutsideRoom( self ) && myScene!.isObjOutsideRoom( other ) )
 		if ( id != nil && other.id == nil )
 		{
-			if ( myScene != nil )
+			if ( myScene != nil && !bothOutsideRoom  )
 			{
 				myScene!.playSoundEffect( Sounds.boxHit )
 			}
@@ -75,7 +76,7 @@ class BoxObj : GameObj
 		
 		if ( id != nil && other.id != nil )
 		{
-			if ( id > other.id && myScene != nil )
+			if ( id > other.id && myScene != nil && !bothOutsideRoom )
 			{
 				myScene!.playSoundEffect( Sounds.boxHit )
 			}

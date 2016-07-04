@@ -89,5 +89,42 @@ class LevelScene : GameScene
 		generatorList.append( BoxGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self) )
 		generatorList.append( CloudGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self) )
 	}
+	
+	func getScore() -> Int
+	{
+		let myPlants = allObjectsOfType( PlantObj )
+		var shroomCount = 0
+		for plant in myPlants
+		{
+			if ( ( plant as! PlantObj ).isShroom )
+			{
+				shroomCount += 1
+			}
+		}
+		
+		let plantCount = myPlants.count - shroomCount
+		let fireCount = allObjectsOfType( FirePlant ).count
+		
+		var toReturn = 0
+		toReturn += shroomCount * 1
+		toReturn += plantCount * 5
+		toReturn += fireCount * 10
+		
+		//should dead plants be counted against score?
+		/*
+		let plantsLost = objectsDestroyed[ PlantObj( xStart: 0, yStart: 0 ).className() ]
+		let firesLost = objectsDestroyed[ FirePlant( xStart: 0, yStart: 0 ).className() ]
+		toReturn -= ( plantsLost != nil ? plantsLost! : 0 ) * 5
+		toReturn -= ( firesLost != nil ? firesLost! : 0 ) * 10
+		*/
+		
+		return toReturn
+	}
+	
+	override func pauseAndShowMessage( message : String )
+	{
+		super.pauseAndShowMessage( message )
+		print( "Score: \(getScore())" )
+	}
 
 }

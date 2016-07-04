@@ -10,19 +10,22 @@
 //==========
 //	TODO
 //==========
-//	different font choice for win/lose text
+//	(BUG)Newly spawned rocks that are moving upwards change down to 1 life when hit by bomb box
 //	change spawn rates of boxes with difficulty level
 //		(DONE)have basis of global spawn rate
 //		need to add in spawn rates for particular types
-//	fire plants should be healed by HealBoxes, also fires up the plant so that it is ready to fire
-//	fire plants with less lives should take longer to reload flame attack
 //	(?)remove right most ground from generation of plants/rocks/firePlants
-//	Don't play boxHit sound if both of the boxes are outside of the screen
-//	add "tap to continue" text under win/lose text
 //	should move the code for checkWin from generator to actual LevelScene
+//		have objects destroyed list, just need comparisons and logic
+//	Need some kind of score system
+//		score should be shown alongside message,tap to continue..
+//		add grass,shroomy ground to score similar to plants
+//		score should never be negative, i.e lost plants/sandy ground do not count against score(they just don't add to the score)
+//	Add sprites to the menu, i.e boxes falling and plants...
+//		almost like an arcade game that is waiting for quarters
+//		would need to disregard touches dragging boxes
 //	Sound Effects
-//		ADD CODE TO SPIDER: sound effect for spider dying from boxHit or player tap, not from being outside room
-//		(?)sound effect for fire plant firing when tapped
+//		(NEED SOUND)sound effect for fire plant firing when tapped
 //		(?)sound effect for spider eating a plant down by one life
 //			just use plant die sound effect?
 //
@@ -30,38 +33,42 @@
 //	FUTURE
 //	============
 //	(SCRAP)Animate spider eating a plant
-//	(NEED/EDIT SPRITE)More accurate portrayal of boxes so that what is inside them has an icon of it
-//	(NEED SPRITE)explode animation for when box hits ground, sand spilling out/spores
-//	(NEED SPRITE)explode animation for when fireball hits a box
+//	(NEED SPRITE)particle effect for when box hits ground, sand spilling out/spores
+//	(NEED SPRITE)fire explosion animation for when fireball hits a box
 //	(EDIT SPRITE)rock being built up animation for when rock gets hit by rock box
+//	(NEED SPRITE)particle effect for when rocks get hit by bombBox
+//	(NEED SPRITE)particle effect for when BombBox hits sand, creating spider
 //	(EDIT SPRITE)snail shells that spawn like rocks
 //		when bomb box hits snail shell, snail gets out and wreaks havoc on plants nearby similar to sand monster
 //		would need to recolor snail from pink?
 //	animate spider dying from being tapped
 //	Animate sand spider being created,i.e have it come out of ground like rock
 //
-//	(?)don't add buttons to view for credits/menu until the transition is done
+//	should have a tutorial system
+//		(?)link to it on the menu?
+//		might be better in stages, i.e stage for:
+//			fire plants, tap to shoot flame
+//			sand spiders, tap to kill
+//			boxes, drag to move left and right
+//			different box types and what they do
 //	pause button that lets player pause the game when in LevelScene
+//		would need to distinguish it from win/lose state
 //	Screen that shows options for the game, difficulty level and win condition( time versus total)
-//	Need some kind of score system and saving/loading of score
-//		would need to calculate score: maybe living healthy plants(mid amount),shrooms(low),firePlants(high) minus dead ones
-//			also minus sandy ground
-//	Add sprites to the menu, i.e boxes falling and plants...
-//		almost like an arcade game that is waiting for quarters
+//	Need to save best score for difficulty into file
 //	lose level animation, rocks all get destroyed and turns into desolate sandy wasteland
 //		maybe have a tumbleweed blow across the screen
-//	time attack mode that wins after certain amount of time
+//	timed mode that wins after certain amount of time
 //		would probably need to show a timer(count up or down) somewhere in the scene
+//	time attack mode that starts off easy and gets harder as you go along, see how long you can survive
 //	maybe have a 2 second pause between music on the list played(use a timer)
-//	need a win screen scene specifically showing stats
-//	need a lose screen scene specifically showing failure?
+//	(?)(NEED/EDIT SPRITE)More accurate portrayal of boxes so that what is inside them has an icon of it
+//	(?)don't add buttons to view for credits/menu until the transition is done
 //	(?)RockBox should kill any plants it touches ground of and replace them with Rocks
 //		or have it fossilize the plant, making it stony and any bombbox that hits it explodes like a rock, killing plant
 //			spiders would also be unable to eat it,kills spider as soon as it tries
 //	(?)heal box should also plant a plant(only one) when it hits empty ground
 //		(?)heal box should turn regular plants into fireplants(only one) when hits grassy ground
 //		Maybe have another box that does these two things similar to rockbox
-//	(?)should boxes be hidden by clouds(i.e zposition smaller than clouds)
 //	(?)should cacti only be on sand?
 //		i.e have shrooms turn into cacti?
 //	(?)step counter for generators should be based off seconds * framesPerSecond for readability
@@ -104,7 +111,11 @@ class GameScene: SKScene
 	
 	var myController : GameViewController!
 	
+	//a list of object class names, and how many instances of said class have been created
 	var objectsCreated = [ String : Int ]()
+	
+	//a list of object class names, and how many instances of said class have been destroyed
+	var objectsDestroyed = [ String : Int ]()
 	
 	/*
 	override func didMoveToView(view: SKView)
@@ -185,6 +196,11 @@ class GameScene: SKScene
 
 		lastFPS = currentFPS
 		lastTime = currentTime
+	}
+	
+	func isObjOutsideRoom( obj : GameObj ) -> Bool
+	{
+		return !( obj.checkPositionToBoundaries( frame.width, yEnd: frame.height ) )
 	}
 	
 	/* Called when a touch begins */
@@ -316,14 +332,23 @@ class GameScene: SKScene
 			return
 		}
 		
+		let myFont = "Thonburi"//"Verdana"//"Thonburi"
 		pauseUpdate = true
-		let myLabel = SKLabelNode(fontNamed:"Chalkduster")
+		let myLabel = SKLabelNode(fontNamed: myFont )
 		myLabel.text = message
 		myLabel.fontSize = 45
 		myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
 		myLabel.zPosition = 100
 		myLabel.fontColor = UIColor.blackColor()
 		self.addChild(myLabel)
+		
+		let otherLabel = SKLabelNode(fontNamed: myFont )
+		otherLabel.text = "Tap to Continue"
+		otherLabel.fontSize = 30
+		otherLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) - myLabel.fontSize )
+		otherLabel.zPosition = 100
+		otherLabel.fontColor = UIColor.blackColor()
+		self.addChild(otherLabel)
 	}
 	
 	func playSoundEffect( fileName : String )
@@ -375,6 +400,16 @@ class GameScene: SKScene
 	//removes the game object from the list of game objects and from the scene
 	final func removeGameObject( obj : GameObj )
 	{
+		let objClass = obj.className()
+		if ( objectsDestroyed[ objClass ] != nil )
+		{
+			objectsDestroyed[  objClass ]! += 1
+		}
+		else
+		{
+			objectsDestroyed[ objClass ] = 1
+		}
+		
 		obj.deleteEvent( self )
 		self.removeChildrenInArray( [ obj.sprite ])
 	}
@@ -491,6 +526,7 @@ class GameScene: SKScene
 	}
 
 	//returns all GameObj instances currently in the scene of the type provided
+	//does not return any objects of a subclass
 	func allObjectsOfType( ofType : GameObj.Type ) -> Array<GameObj>
 	{
 		var toReturn = [GameObj]()

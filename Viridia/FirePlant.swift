@@ -17,6 +17,8 @@ class FirePlant : PlantObj
 	
 	var timer : Int = 0
 	
+	let maxLives = 3
+	
 	//number of seconds between sprite changes for cool down
 	var coolDownInterval : CGFloat = 2
 	
@@ -37,7 +39,7 @@ class FirePlant : PlantObj
 	{
 		super.updateEvent( scene , currentFPS: currentFPS )
 		timer = timer + 1
-		if ( timer >= Int( floor( CGFloat( currentFPS ) * coolDownInterval ) ) )
+		if ( timer >= coolDownTime( currentFPS ) )
 		{
 			timer = 0
 			changeCoolDown( min( coolDownState + 1 , 3 ) )
@@ -52,6 +54,13 @@ class FirePlant : PlantObj
 		}
 	}
 	
+	private func coolDownTime( currentFPS : Int ) -> Int
+	{
+		let secsPerLifeLost = 1
+		let added = secsPerLifeLost * ( maxLives - lives )
+		return Int( floor( CGFloat( currentFPS ) * coolDownInterval ) ) + ( added * currentFPS )
+	}
+	
 	private func createFire( scene : GameScene )
 	{
 		//70 wide by 100 tall = fireplant
@@ -64,15 +73,14 @@ class FirePlant : PlantObj
 	
 	func spriteFromLife()
 	{
-		if ( lives > 3 || lives < 0 )
+		if ( lives > maxLives || lives < 0 )
 		{
 			return
 		}
 		
-		let maxLivesDoubled : CGFloat = 3 * 2
+		let maxLivesDoubled  = CGFloat( maxLives * 2 )
 		let newScale = ( CGFloat(lives) / maxLivesDoubled ) + 0.5
 		sprite.yScale = newScale
-		//sprite.xScale = newScale
 	}
 	
 	override func damage()
@@ -140,6 +148,31 @@ class FirePlant : PlantObj
 			timer = 0
 			changeCoolDown( 1 )
 			damage()
+		}
+		
+		if ( other is HealBox )
+		{
+			if ( lives == maxLives )
+			{
+				timer = 0
+				if ( coolDownState != 3 )
+				{
+					changeCoolDown( 3 )
+				}
+				else
+				{
+					shouldFireOnUpdate = true
+				}
+			}
+			else
+			{
+				lives = min( lives + 1, maxLives )
+				spriteFromLife()
+				if ( myScene != nil )
+				{
+					myScene.playSoundEffect( Sounds.healShroom )
+				}
+			}
 		}
 		
 	}

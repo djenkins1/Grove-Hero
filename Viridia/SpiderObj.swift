@@ -45,7 +45,6 @@ class SpiderObj : GameObj
 			else
 			{
 				self.horSpeed = baseSpeed
-				//changeSprite( "spiderR" )
 				mySprites.withImages( [ "spiderRwalk1" , "spiderRwalk2" ] ).withImageSpeed( 0.25 ).syncImageOfObj( self )
 			}
 		}
@@ -78,7 +77,16 @@ class SpiderObj : GameObj
 		
 		if other is BoxObj
 		{
-			makeDead()
+			makeDead( true )
+		}
+	}
+	
+	func makeDead( doDeathSound : Bool )
+	{
+		super.makeDead()
+		if ( doDeathSound && myScene != nil )
+		{
+			myScene.playSoundEffect( Sounds.spiderDead )
 		}
 	}
 	
@@ -87,10 +95,6 @@ class SpiderObj : GameObj
 		if ( notEating() )
 		{
 			super.move( framesPerSecond )
-		}
-		else
-		{
-			//should change sprite roll images to not moving
 		}
 		
 		return self
@@ -127,7 +131,7 @@ class SpiderObj : GameObj
 				currentEatenPlant!.damage()
 				if ( currentEatenPlant is FirePlant )
 				{
-					self.makeDead()
+					self.makeDead( true )
 				}
 			}
 		}
@@ -139,7 +143,7 @@ class SpiderObj : GameObj
 		super.touchEvent( location )
 		if ( !isDead )
 		{
-			makeDead()
+			makeDead( true )
 		}
 	}
 	
@@ -149,11 +153,11 @@ class SpiderObj : GameObj
 		let spriteLength = sprite.frame.width * 2
 		if ( sprite.position.x < 0 - spriteLength )
 		{
-			makeDead()
+			makeDead( false )
 		}
 		else if ( sprite.position.x > roomWidth + spriteLength )
 		{
-			makeDead()
+			makeDead( false )
 		}
 	}
 }

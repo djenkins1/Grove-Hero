@@ -29,6 +29,7 @@ class HealBox : BoxObj
 			{
 				(other as! GroundObj).healMe()
 			}
+			
 			self.makeDead()
 		}
 	}

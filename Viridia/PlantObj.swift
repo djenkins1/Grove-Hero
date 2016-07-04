@@ -13,6 +13,8 @@ class PlantObj : GameObj
 {
 	var lives : Int = 1
 	
+	var isShroom = false
+	
 	init( xStart: CGFloat, yStart: CGFloat)
 	{
 		let spriteName = PlantObj.randomPlantSprite()
@@ -55,12 +57,14 @@ class PlantObj : GameObj
 	
 	func changeToShroom()
 	{
-		sprite.texture = SKTexture(imageNamed: PlantObj.randomShroomSprite() )
+		changeSprite( PlantObj.randomShroomSprite() )
+		isShroom = true
 	}
 	
 	func changeToPlant()
 	{
-		sprite.texture = SKTexture( imageNamed: PlantObj.randomPlantSprite() )
+		changeSprite( PlantObj.randomPlantSprite() )
+		isShroom = false
 	}
 	
 	override func hasCollideEffect(other: GameObj) -> Bool
