@@ -36,19 +36,6 @@ class BoxObj : GameObj
 		
 		makeDead()
 	}
-	
-	override func deleteEvent(scene: GameScene) -> GameObj
-	{
-		super.deleteEvent( scene )
-		if ( self is BombBox )
-		{
-			if ( generatedBy != nil )
-			{
-					generatedBy!.generatedLost += 1
-			}
-		}
-		return self
-	}
 
 	
 	override func dragEvent(location: CGPoint)

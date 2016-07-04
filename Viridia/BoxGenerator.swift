@@ -11,10 +11,6 @@ import SpriteKit
 
 class BoxGenerator : ObjGenerator
 {
-	var generatedLost : Int = 0
-	
-	let totalToGenerate : Int = 20
-	
 	override init( screenWidth : CGFloat, screenHeight : CGFloat )
 	{
 		super.init( screenWidth: screenWidth , screenHeight: screenHeight )
@@ -22,21 +18,10 @@ class BoxGenerator : ObjGenerator
 		primePump()
 	}
 	
-	override func incrementSteps()
-	{
-		super.incrementSteps()
-		checkWin()
-	}
-	
 	override func generate() -> GameObj!
 	{
 		var toReturn : BoxObj! = nil
 		readyToGenerate = false
-		
-		if ( totalGenerated >= totalToGenerate )
-		{
-			return nil
-		}
 		
 		if ( doSpawnBox() )
 		{
@@ -84,13 +69,5 @@ class BoxGenerator : ObjGenerator
 		}
 		
 		return toReturn
-	}
-	
-	private func checkWin()
-	{
-		if ( generatedLost >= totalToGenerate && scene != nil )
-		{
-			scene!.winCondition()
-		}
 	}
 }

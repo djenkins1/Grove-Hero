@@ -15,6 +15,7 @@
 		FE2A48591D20A401000D2CF2 /* FirePlantHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE2A48581D20A401000D2CF2 /* FirePlantHit.wav */; };
 		FE2A485B1D20A407000D2CF2 /* FlameHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE2A485A1D20A407000D2CF2 /* FlameHit.wav */; };
 		FE2A485E1D20A422000D2CF2 /* RockLives.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE2A485D1D20A422000D2CF2 /* RockLives.wav */; };
+		FE49B1971D2A42190078D8E1 /* VictoryCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE49B1961D2A42190078D8E1 /* VictoryCondition.swift */; };
 		FE608F2F1D1E685F005F0DA5 /* GamePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE608F2E1D1E685F005F0DA5 /* GamePath.swift */; };
 		FE7336B41D209FAA008E2E57 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7336B31D209FAA008E2E57 /* Sounds.swift */; };
 		FE79B2A41D2798E10091E6DF /* FireDie.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE79B2A11D2798E10091E6DF /* FireDie.wav */; };
@@ -74,6 +75,7 @@
 		FE2A48581D20A401000D2CF2 /* FirePlantHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FirePlantHit.wav; sourceTree = "<group>"; };
 		FE2A485A1D20A407000D2CF2 /* FlameHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FlameHit.wav; sourceTree = "<group>"; };
 		FE2A485D1D20A422000D2CF2 /* RockLives.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RockLives.wav; sourceTree = "<group>"; };
+		FE49B1961D2A42190078D8E1 /* VictoryCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VictoryCondition.swift; sourceTree = "<group>"; };
 		FE608F2E1D1E685F005F0DA5 /* GamePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePath.swift; sourceTree = "<group>"; };
 		FE7336B31D209FAA008E2E57 /* Sounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		FE79B2A11D2798E10091E6DF /* FireDie.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FireDie.wav; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				FE7336B31D209FAA008E2E57 /* Sounds.swift */,
 				FECFFE531D277F7D00A89CAE /* Process.swift */,
 				FE11C8AE1D28853300DF6890 /* DifficultyConstant.swift */,
+				FE49B1961D2A42190078D8E1 /* VictoryCondition.swift */,
 				FECFFE571D27868500A89CAE /* Credits.txt */,
 				FECFFE591D27887800A89CAE /* otherCredits.txt */,
 			);
@@ -322,6 +325,7 @@
 				FEBAB4861D24C5C500878678 /* SpiderObj.swift in Sources */,
 				FE608F2F1D1E685F005F0DA5 /* GamePath.swift in Sources */,
 				FECFFE561D27801A00A89CAE /* CreditScene.swift in Sources */,
+				FE49B1971D2A42190078D8E1 /* VictoryCondition.swift in Sources */,
 				FE7C1FFC1D191B8B00513EC7 /* HealBox.swift in Sources */,
 				FEDF1F6E1D151C07000EA427 /* GameScene.swift in Sources */,
 				FE11C8AF1D28853300DF6890 /* DifficultyConstant.swift in Sources */,

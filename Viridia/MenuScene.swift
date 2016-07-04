@@ -102,6 +102,21 @@ class MenuScene : GameScene
 		}
 	}
 	
+	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
+	{
+		return
+	}
+	
+	override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?)
+	{
+		return
+	}
+	
+	override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
+	{
+		return
+	}
+	
 	func clickMuteButton( sender: AnyObject )
 	{
 		if ( myController != nil )
@@ -131,7 +146,7 @@ class MenuScene : GameScene
 	//adds all the generators
 	func setupGenerators()
 	{
-		//generatorList.append( BoxGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self) )
+		generatorList.append( BoxGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self) )
 		generatorList.append( CloudGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self) )
 	}
 }

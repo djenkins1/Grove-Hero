@@ -15,15 +15,20 @@
 //		(DONE)have basis of global spawn rate
 //		need to add in spawn rates for particular types
 //	(?)remove right most ground from generation of plants/rocks/firePlants
-//	should move the code for checkWin from generator to actual LevelScene
-//		have objects destroyed list, just need comparisons and logic
+//	timed mode that wins after certain amount of time
+//		just add a victoryCondition class and add totalTimeElapsed counter to update function in GameScene
+//		would probably need to show a timer(count up or down) somewhere in the scene
 //	Need some kind of score system
+//		(DONE)Score calculation
 //		score should be shown alongside message,tap to continue..
 //		add grass,shroomy ground to score similar to plants
 //		score should never be negative, i.e lost plants/sandy ground do not count against score(they just don't add to the score)
-//	Add sprites to the menu, i.e boxes falling and plants...
-//		almost like an arcade game that is waiting for quarters
-//		would need to disregard touches dragging boxes
+//	animate spider dying from being tapped
+//		make the spider shrink and change sprite/roll to just dead spider
+//	Animate sand spider being created,i.e have it come out of ground like rock
+//		would not animate/move left or right until reached ground level
+//	pause button that lets player pause the game when in LevelScene
+//		would need to distinguish it from win/lose state
 //	Sound Effects
 //		(NEED SOUND)sound effect for fire plant firing when tapped
 //		(?)sound effect for spider eating a plant down by one life
@@ -32,6 +37,7 @@
 //	-------------
 //	FUTURE
 //	============
+//	(SCRAP)More accurate portrayal of boxes so that what is inside them has an icon of it
 //	(SCRAP)Animate spider eating a plant
 //	(NEED SPRITE)particle effect for when box hits ground, sand spilling out/spores
 //	(NEED SPRITE)fire explosion animation for when fireball hits a box
@@ -41,9 +47,8 @@
 //	(EDIT SPRITE)snail shells that spawn like rocks
 //		when bomb box hits snail shell, snail gets out and wreaks havoc on plants nearby similar to sand monster
 //		would need to recolor snail from pink?
-//	animate spider dying from being tapped
-//	Animate sand spider being created,i.e have it come out of ground like rock
 //
+//	maybe allow player to adjust how many boxes generated/how much time to survive in Setup Game Settings Scene
 //	should have a tutorial system
 //		(?)link to it on the menu?
 //		might be better in stages, i.e stage for:
@@ -51,20 +56,15 @@
 //			sand spiders, tap to kill
 //			boxes, drag to move left and right
 //			different box types and what they do
-//	pause button that lets player pause the game when in LevelScene
-//		would need to distinguish it from win/lose state
 //	Screen that shows options for the game, difficulty level and win condition( time versus total)
 //	Need to save best score for difficulty into file
 //	lose level animation, rocks all get destroyed and turns into desolate sandy wasteland
 //		maybe have a tumbleweed blow across the screen
-//	timed mode that wins after certain amount of time
-//		would probably need to show a timer(count up or down) somewhere in the scene
 //	time attack mode that starts off easy and gets harder as you go along, see how long you can survive
 //	maybe have a 2 second pause between music on the list played(use a timer)
-//	(?)(NEED/EDIT SPRITE)More accurate portrayal of boxes so that what is inside them has an icon of it
 //	(?)don't add buttons to view for credits/menu until the transition is done
 //	(?)RockBox should kill any plants it touches ground of and replace them with Rocks
-//		or have it fossilize the plant, making it stony and any bombbox that hits it explodes like a rock, killing plant
+//		(EDIT SPRITE)or have it fossilize the plant, making it stony and any bombbox that hits it explodes like a rock, killing plant
 //			spiders would also be unable to eat it,kills spider as soon as it tries
 //	(?)heal box should also plant a plant(only one) when it hits empty ground
 //		(?)heal box should turn regular plants into fireplants(only one) when hits grassy ground
@@ -102,9 +102,6 @@ class GameScene: SKScene
 	
 	//whether the update function is paused or not
 	var pauseUpdate = false
-	
-	//whether the lose condition should be checked on update or not
-	var shouldCheckLose = false
 	
 	//a list of objects that are queued to be added to the gameObjects array
 	var objCreateQueue = [GameObj]()
@@ -146,11 +143,6 @@ class GameScene: SKScene
 		if ( pauseUpdate )
 		{
 			return
-		}
-		
-		if ( shouldCheckLose )
-		{
-			checkLoseCondition()
 		}
 		
 		//get the difference in time from last time
@@ -358,23 +350,6 @@ class GameScene: SKScene
 			return
 		}
 		runAction(SKAction.playSoundFileNamed( fileName , waitForCompletion: false))
-	}
-	
-	//checks whether the player has lost the current level and does accordingly
-	func checkLoseCondition()
-	{
-		if ( numberOfPlantObjects() == 0 )
-		{
-			self.playSoundEffect( Sounds.loseSound )
-			pauseAndShowMessage( "Game Over!" )
-		}
-	}
-	
-	//should be called when the player has won the current level
-	func winCondition()
-	{
-		self.playSoundEffect( Sounds.winSound )
-		pauseAndShowMessage( "You Won!" )
 	}
 	
 	//steps through every generator object and increments counter for said object

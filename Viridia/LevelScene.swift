@@ -11,6 +11,9 @@ import AVFoundation
 
 class LevelScene : GameScene
 {
+	//whether the lose condition should be checked on update or not
+	var shouldCheckLose = false
+	
 	override func didMoveToView(view: SKView)
 	{
 		createBackground()
@@ -28,6 +31,21 @@ class LevelScene : GameScene
 		{
 			myController.changeState( GameState.Menu )
 		}
+	}
+	
+	override func didFinishUpdate()
+	{
+		if ( pauseUpdate )
+		{
+			return
+		}
+		
+		checkWin()
+		if ( shouldCheckLose )
+		{
+			checkLoseCondition()
+		}
+	
 	}
 	func generateScenery()
 	{
@@ -127,4 +145,33 @@ class LevelScene : GameScene
 		print( "Score: \(getScore())" )
 	}
 
+	private func checkWin()
+	{
+		//let totalToGenerate = 15
+		//let generatedLost = objectsDestroyed[ BombBox( xStart: 0, yStart: 0).className() ]
+		if ( myController != nil )
+		{
+			if ( myController.victoryCond.hasWon( self ) )
+			{
+				winCondition()
+			}
+		}
+	}
+	
+	//checks whether the player has lost the current level and does accordingly
+	func checkLoseCondition()
+	{
+		if ( numberOfPlantObjects() == 0 )
+		{
+			self.playSoundEffect( Sounds.loseSound )
+			pauseAndShowMessage( "Game Over!" )
+		}
+	}
+	
+	//should be called when the player has won the current level
+	func winCondition()
+	{
+		self.playSoundEffect( Sounds.winSound )
+		pauseAndShowMessage( "You Won!" )
+	}
 }
