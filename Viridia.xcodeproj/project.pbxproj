@@ -51,6 +51,7 @@
 		FEDF1F801D1520E5000EA427 /* GameObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDF1F7F1D1520E5000EA427 /* GameObj.swift */; };
 		FEDF5DE11D2093820047B953 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDF5DE01D2093820047B953 /* GameState.swift */; };
 		FEDF5DE31D2096DC0047B953 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDF5DE21D2096DC0047B953 /* MenuScene.swift */; };
+		FEF298AC1D2E29B200FBBE96 /* PauseObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF298AB1D2E29B200FBBE96 /* PauseObj.swift */; };
 		FEF727631D210F1E00697CD8 /* HealMycelium.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEF727561D210F1E00697CD8 /* HealMycelium.wav */; };
 		FEF727641D210F1E00697CD8 /* HealShroom.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEF727571D210F1E00697CD8 /* HealShroom.wav */; };
 		FEF727651D210F1E00697CD8 /* LoseSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEF727581D210F1E00697CD8 /* LoseSound.wav */; };
@@ -113,6 +114,7 @@
 		FEDF1F7F1D1520E5000EA427 /* GameObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameObj.swift; sourceTree = "<group>"; };
 		FEDF5DE01D2093820047B953 /* GameState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		FEDF5DE21D2096DC0047B953 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		FEF298AB1D2E29B200FBBE96 /* PauseObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseObj.swift; sourceTree = "<group>"; };
 		FEF727561D210F1E00697CD8 /* HealMycelium.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HealMycelium.wav; sourceTree = "<group>"; };
 		FEF727571D210F1E00697CD8 /* HealShroom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HealShroom.wav; sourceTree = "<group>"; };
 		FEF727581D210F1E00697CD8 /* LoseSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = LoseSound.wav; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				FE608F2E1D1E685F005F0DA5 /* GamePath.swift */,
 				FECE0A9B1D273D600069F36F /* SpriteRoll.swift */,
 				FEDF1F7F1D1520E5000EA427 /* GameObj.swift */,
+				FEF298AB1D2E29B200FBBE96 /* PauseObj.swift */,
 				FEBAB4851D24C5C500878678 /* SpiderObj.swift */,
 				FE881EA41D175D84003D2D57 /* BoxObj.swift */,
 				FE7C1FFB1D191B8B00513EC7 /* HealBox.swift */,
@@ -318,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEA65BA61D168CE20068A20A /* ObjGenerator.swift in Sources */,
+				FEF298AC1D2E29B200FBBE96 /* PauseObj.swift in Sources */,
 				FE881EAD1D176FC0003D2D57 /* PlantObj.swift in Sources */,
 				FECB8A961D1E122D0093810E /* RockBox.swift in Sources */,
 				FECE0A9C1D273D600069F36F /* SpriteRoll.swift in Sources */,

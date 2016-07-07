@@ -11,24 +11,31 @@
 //	TODO
 //==========
 //	(BUG)Newly spawned rocks that are moving upwards change down to 1 life when hit by bomb box
-//	change spawn rates of boxes with difficulty level
-//		(DONE)have basis of global spawn rate
-//		need to add in spawn rates for particular types
-//	(?)remove right most ground from generation of plants/rocks/firePlants
+//	(!!!)change spawn rates of boxes with difficulty level
+//	(!!!)pause button that lets player pause the game when in LevelScene
+//		TEST THAT LOSE/WIN still works correctly
+//	should have a tutorial system
+//		(?)link to it on the menu?
+//		might be better in stages, i.e stage for:
+//			fire plants, tap to shoot flame
+//			sand spiders, tap to kill
+//			boxes, drag to move left and right
+//			different box types and what they do
+//	remove right most ground from generation of plants/rocks/firePlants
 //	timed mode that wins after certain amount of time
 //		just add a victoryCondition class and add totalTimeElapsed counter to update function in GameScene
 //		would probably need to show a timer(count up or down) somewhere in the scene
 //	Need some kind of score system
 //		(DONE)Score calculation
-//		score should be shown alongside message,tap to continue..
+//		(DONE)score should be shown alongside message,tap to continue..
 //		add grass,shroomy ground to score similar to plants
 //		score should never be negative, i.e lost plants/sandy ground do not count against score(they just don't add to the score)
 //	animate spider dying from being tapped
 //		make the spider shrink and change sprite/roll to just dead spider
 //	Animate sand spider being created,i.e have it come out of ground like rock
 //		would not animate/move left or right until reached ground level
-//	pause button that lets player pause the game when in LevelScene
-//		would need to distinguish it from win/lose state
+//	Screen that shows options for the game, difficulty level and win condition( time versus total)
+//
 //	Sound Effects
 //		(NEED SOUND)sound effect for fire plant firing when tapped
 //		(?)sound effect for spider eating a plant down by one life
@@ -49,14 +56,6 @@
 //		would need to recolor snail from pink?
 //
 //	maybe allow player to adjust how many boxes generated/how much time to survive in Setup Game Settings Scene
-//	should have a tutorial system
-//		(?)link to it on the menu?
-//		might be better in stages, i.e stage for:
-//			fire plants, tap to shoot flame
-//			sand spiders, tap to kill
-//			boxes, drag to move left and right
-//			different box types and what they do
-//	Screen that shows options for the game, difficulty level and win condition( time versus total)
 //	Need to save best score for difficulty into file
 //	lose level animation, rocks all get destroyed and turns into desolate sandy wasteland
 //		maybe have a tumbleweed blow across the screen
@@ -103,6 +102,9 @@ class GameScene: SKScene
 	//whether the update function is paused or not
 	var pauseUpdate = false
 	
+	//whether the current game level is won/lost or is still being played
+	var doneScreen = false
+	
 	//a list of objects that are queued to be added to the gameObjects array
 	var objCreateQueue = [GameObj]()
 	
@@ -140,15 +142,15 @@ class GameScene: SKScene
 	/* Called before each frame is rendered */
 	override func update(currentTime: CFTimeInterval)
 	{
-		if ( pauseUpdate )
-		{
-			return
-		}
-		
 		//get the difference in time from last time
 		let deltaTime = currentTime - lastTime
 		let currentFPS = Int( floor( 1 / deltaTime ) )
 		lastTime = currentTime
+	
+		if ( pauseUpdate )
+		{
+			return
+		}
 		
 		generateObjects( currentFPS )
 		checkCollide()
@@ -317,30 +319,39 @@ class GameScene: SKScene
 	}
 	
 	
-	func pauseAndShowMessage( message : String )
+	func pauseAndShowMessage( message : String, subMessage : String = "" ) -> [SKLabelNode]
 	{
+		var toReturn = [SKLabelNode]()
 		if ( pauseUpdate )
 		{
-			return
+			return toReturn
 		}
 		
-		let myFont = "Thonburi"//"Verdana"//"Thonburi"
 		pauseUpdate = true
-		let myLabel = SKLabelNode(fontNamed: myFont )
-		myLabel.text = message
-		myLabel.fontSize = 45
-		myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame))
-		myLabel.zPosition = 100
-		myLabel.fontColor = UIColor.blackColor()
-		self.addChild(myLabel)
+		var myLabel = addMakeLabel( message, xPos : CGRectGetMidX(self.frame), yPos : CGRectGetMidY(self.frame), fontSize: 45 )
+		toReturn.append( myLabel )
+		if ( subMessage != "" )
+		{
+			myLabel = addMakeLabel( subMessage, xPos : CGRectGetMidX(self.frame), yPos : CGRectGetMidY(self.frame) - myLabel.fontSize, fontSize: 30 )
+			toReturn.append( myLabel )
+		}
+		myLabel = addMakeLabel( "Tap to Continue", xPos : CGRectGetMidX(self.frame), yPos : myLabel.position.y - myLabel.fontSize, fontSize: 30 )
+		toReturn.append( myLabel )
 		
+		return toReturn
+	}
+	
+	func addMakeLabel( message : String, xPos : CGFloat, yPos : CGFloat, fontSize : CGFloat ) -> SKLabelNode
+	{
+		let myFont = "Thonburi"//"Verdana"//"Thonburi"
 		let otherLabel = SKLabelNode(fontNamed: myFont )
-		otherLabel.text = "Tap to Continue"
-		otherLabel.fontSize = 30
-		otherLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame) - myLabel.fontSize )
+		otherLabel.text = message
+		otherLabel.fontSize = fontSize
+		otherLabel.position = CGPoint(x: xPos , y: yPos )
 		otherLabel.zPosition = 100
 		otherLabel.fontColor = UIColor.blackColor()
 		self.addChild(otherLabel)
+		return otherLabel
 	}
 	
 	func playSoundEffect( fileName : String )

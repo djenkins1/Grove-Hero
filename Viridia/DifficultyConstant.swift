@@ -26,6 +26,8 @@ protocol DifficultyConstant
 	var boxSpawnRateHigh : UInt32 { get }
 	
 	var boxSpawnRateLow : UInt32 { get }
+	
+	var boxChanceOfBomb : UInt32 { get }
 }
 
 class EasyDifficulty : DifficultyConstant
@@ -46,6 +48,8 @@ class EasyDifficulty : DifficultyConstant
 	
 	var boxSpawnRateLow : UInt32
 	
+	var boxChanceOfBomb : UInt32
+	
 	init()
 	{
 		boxSpeedInSeconds = 10
@@ -56,6 +60,7 @@ class EasyDifficulty : DifficultyConstant
 		spiderEatSpeedInSecs = 2
 		boxSpawnRateHigh = 5
 		boxSpawnRateLow = 3
+		boxChanceOfBomb = 5
 	}
 }
 
@@ -76,6 +81,8 @@ class MidDifficulty : DifficultyConstant
 	var boxSpawnRateHigh : UInt32
 	
 	var boxSpawnRateLow : UInt32
+	
+	var boxChanceOfBomb : UInt32
 
 	init()
 	{
@@ -87,6 +94,7 @@ class MidDifficulty : DifficultyConstant
 		spiderEatSpeedInSecs = 1.5
 		boxSpawnRateHigh = 4
 		boxSpawnRateLow = 2
+		boxChanceOfBomb = 8
 	}
 }
 
@@ -107,6 +115,8 @@ class HardDifficulty : DifficultyConstant
 	var boxSpawnRateHigh : UInt32
 	
 	var boxSpawnRateLow : UInt32
+	
+	var boxChanceOfBomb : UInt32
 
 	init()
 	{
@@ -118,5 +128,6 @@ class HardDifficulty : DifficultyConstant
 		spiderEatSpeedInSecs = 1
 		boxSpawnRateHigh = 4
 		boxSpawnRateLow = 3
+		boxChanceOfBomb = 12
 	}
 }

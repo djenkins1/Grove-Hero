@@ -32,18 +32,18 @@ class BoxGenerator : ObjGenerator
 			let y = CGFloat(arc4random_uniform( UInt32( middleHeight ) ) ) + roomHeight
 			
 			
-			let randomNum = arc4random_uniform( 5 )
+			let randomNum = arc4random_uniform( bombBoxChance() )
 			if (  randomNum == 0 )
 			{
-				toReturn = HealBox(  xStart: x, yStart: y )
+				toReturn = HealBox( xStart: x, yStart: y )
 			}
 			else if ( randomNum == 1 )
 			{
-				toReturn = RockBox(xStart: x, yStart: y)
+				toReturn = RockBox( xStart: x, yStart: y)
 			}
 			else
 			{
-				toReturn = BombBox(  xStart: x, yStart: y )
+				toReturn = BombBox( xStart: x, yStart: y )
 				totalGenerated += 1
 			}
 			
@@ -68,6 +68,17 @@ class BoxGenerator : ObjGenerator
 			toReturn = ( arc4random_uniform( 5 ) < 2 )
 		}
 		
+		return toReturn
+	}
+	
+	private func bombBoxChance() -> UInt32
+	{
+		var toReturn : UInt32 = 5
+		if ( scene != nil )
+		{
+			toReturn = UInt32( scene.myController.diffiCons.boxChanceOfBomb )
+		}
+
 		return toReturn
 	}
 }

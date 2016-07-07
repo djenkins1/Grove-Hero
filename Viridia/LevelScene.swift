@@ -22,15 +22,24 @@ class LevelScene : GameScene
 		createLayer( true , atLayer: 2 )
 		generateScenery()
 		shouldCheckLose = true
+		addGameObject( PauseObj() )
 	}
 	
 	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
 	{
-		super.touchesBegan( touches, withEvent: event )
-		if ( pauseUpdate && myController != nil )
+		if ( pauseUpdate && doneScreen && myController != nil )
 		{
 			myController.changeState( GameState.Menu )
+			return
 		}
+		
+		if ( pauseUpdate )
+		{
+			pauseUpdate = false
+			return
+		}
+		
+		super.touchesBegan( touches, withEvent: event )
 	}
 	
 	override func didFinishUpdate()
@@ -139,11 +148,13 @@ class LevelScene : GameScene
 		return toReturn
 	}
 	
+	/*
 	override func pauseAndShowMessage( message : String )
 	{
 		super.pauseAndShowMessage( message )
 		print( "Score: \(getScore())" )
 	}
+	*/
 
 	private func checkWin()
 	{
@@ -165,6 +176,7 @@ class LevelScene : GameScene
 		{
 			self.playSoundEffect( Sounds.loseSound )
 			pauseAndShowMessage( "Game Over!" )
+			doneScreen = true
 		}
 	}
 	
@@ -172,6 +184,7 @@ class LevelScene : GameScene
 	func winCondition()
 	{
 		self.playSoundEffect( Sounds.winSound )
-		pauseAndShowMessage( "You Won!" )
+		pauseAndShowMessage( "You Won!", subMessage: "Score: \(getScore())" )
+		doneScreen = true
 	}
 }
