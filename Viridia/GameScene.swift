@@ -11,9 +11,6 @@
 //	TODO
 //==========
 //	(BUG)Newly spawned rocks that are moving upwards change down to 1 life when hit by bomb box
-//	(!!!)change spawn rates of boxes with difficulty level
-//	(!!!)pause button that lets player pause the game when in LevelScene
-//		TEST THAT LOSE/WIN still works correctly
 //	should have a tutorial system
 //		(?)link to it on the menu?
 //		might be better in stages, i.e stage for:
@@ -21,10 +18,7 @@
 //			sand spiders, tap to kill
 //			boxes, drag to move left and right
 //			different box types and what they do
-//	remove right most ground from generation of plants/rocks/firePlants
-//	timed mode that wins after certain amount of time
-//		just add a victoryCondition class and add totalTimeElapsed counter to update function in GameScene
-//		would probably need to show a timer(count up or down) somewhere in the scene
+//	should add box remaining count for BoxVictory condition similar to TimeVictory
 //	Need some kind of score system
 //		(DONE)Score calculation
 //		(DONE)score should be shown alongside message,tap to continue..
@@ -35,6 +29,7 @@
 //	Animate sand spider being created,i.e have it come out of ground like rock
 //		would not animate/move left or right until reached ground level
 //	Screen that shows options for the game, difficulty level and win condition( time versus total)
+//	time attack mode that starts off easy and gets harder as you go along, see how long you can survive
 //
 //	Sound Effects
 //		(NEED SOUND)sound effect for fire plant firing when tapped
@@ -59,7 +54,6 @@
 //	Need to save best score for difficulty into file
 //	lose level animation, rocks all get destroyed and turns into desolate sandy wasteland
 //		maybe have a tumbleweed blow across the screen
-//	time attack mode that starts off easy and gets harder as you go along, see how long you can survive
 //	maybe have a 2 second pause between music on the list played(use a timer)
 //	(?)don't add buttons to view for credits/menu until the transition is done
 //	(?)RockBox should kill any plants it touches ground of and replace them with Rocks
@@ -116,6 +110,12 @@ class GameScene: SKScene
 	//a list of object class names, and how many instances of said class have been destroyed
 	var objectsDestroyed = [ String : Int ]()
 	
+	//amount of seconds actually playing level, not counting paused
+	private(set) var secondsPlayed : Int = 0
+	
+	//counter to compare to FPS that is used to increment secondsPlayed
+	private(set) var playSteps : Int = 0
+	
 	/*
 	override func didMoveToView(view: SKView)
 	{
@@ -150,6 +150,14 @@ class GameScene: SKScene
 		if ( pauseUpdate )
 		{
 			return
+		}
+		
+		playSteps += 1
+		if ( playSteps >= currentFPS )
+		{
+			playSteps = 0
+			secondsPlayed += 1
+			secondPassed()
 		}
 		
 		generateObjects( currentFPS )
@@ -511,6 +519,12 @@ class GameScene: SKScene
 		return toReturn
 	}
 
+	//called when the secondsPlayed has been incremented
+	func secondPassed()
+	{
+		
+	}
+	
 	//returns all GameObj instances currently in the scene of the type provided
 	//does not return any objects of a subclass
 	func allObjectsOfType( ofType : GameObj.Type ) -> Array<GameObj>
@@ -532,4 +546,5 @@ class GameScene: SKScene
 	{
 		return hypotf(Float( x - otherX), Float( y - otherY ) )
 	}
+	
 }

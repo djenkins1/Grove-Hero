@@ -22,9 +22,9 @@ class GameViewController: UIViewController
 	
 	var reachedLoaded = false
 	
-	var diffiCons : DifficultyConstant = EasyDifficulty()
+	var diffiCons : DifficultyConstant = MidDifficulty()
 	
-	var victoryCond : VictoryCondition = BoxVictory()
+	var victoryCond : VictoryCondition = TimeVictory()//BoxVictory()
 	
     override func viewDidLoad()
 	{

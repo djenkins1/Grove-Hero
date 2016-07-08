@@ -21,8 +21,21 @@ class LevelScene : GameScene
 		createLayer( false , atLayer: 1 )
 		createLayer( true , atLayer: 2 )
 		generateScenery()
+		setupVictory()
 		shouldCheckLose = true
 		addGameObject( PauseObj() )
+	}
+	
+	private func setupVictory()
+	{
+		if ( myController != nil )
+		{
+			myController.victoryCond.startLevel( self )
+		}
+		else
+		{
+			print( "BAD VICTORY SETUP" )
+		}
 	}
 	
 	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
@@ -54,8 +67,16 @@ class LevelScene : GameScene
 		{
 			checkLoseCondition()
 		}
-	
 	}
+	
+	override func secondPassed()
+	{
+		if ( myController != nil )
+		{
+			myController.victoryCond.secondPassed( self )
+		}
+	}
+	
 	func generateScenery()
 	{
 		let allGround = allObjectsOfType( GroundObj )
@@ -67,6 +88,19 @@ class LevelScene : GameScene
 				remainingTopGround.append( (obj as! GroundObj) )
 			}
 		}
+		
+		var index = -1
+		var rightMostIndex = 0
+		for obj in remainingTopGround
+		{
+			index += 1
+			if ( obj.sprite.position.x > remainingTopGround[ rightMostIndex ].sprite.position.x )
+			{
+				rightMostIndex = index
+			}
+		}
+		
+		remainingTopGround.removeAtIndex( rightMostIndex )
 		
 		let totalGroundSpaces = remainingTopGround.count / 10
 		var numberOfRocks = myController!.diffiCons.rocksPerTenGround * totalGroundSpaces
@@ -183,6 +217,7 @@ class LevelScene : GameScene
 	//should be called when the player has won the current level
 	func winCondition()
 	{
+		print( "Time: \(secondsPlayed)" )
 		self.playSoundEffect( Sounds.winSound )
 		pauseAndShowMessage( "You Won!", subMessage: "Score: \(getScore())" )
 		doneScreen = true
