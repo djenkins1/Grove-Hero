@@ -11,6 +11,9 @@
 //	TODO
 //==========
 //	(BUG)Newly spawned rocks that are moving upwards change down to 1 life when hit by bomb box
+//
+//	Screen that shows options for the game, difficulty level and win condition( time versus total)
+//		have framework/design in place in SetupScene. NEED IMPLEMENTATION
 //	should have a tutorial system
 //		(?)link to it on the menu?
 //		might be better in stages, i.e stage for:
@@ -19,17 +22,11 @@
 //			boxes, drag to move left and right
 //			different box types and what they do
 //	should add box remaining count for BoxVictory condition similar to TimeVictory
-//	Need some kind of score system
-//		(DONE)Score calculation
-//		(DONE)score should be shown alongside message,tap to continue..
-//		add grass,shroomy ground to score similar to plants
-//		score should never be negative, i.e lost plants/sandy ground do not count against score(they just don't add to the score)
 //	animate spider dying from being tapped
 //		make the spider shrink and change sprite/roll to just dead spider
 //	Animate sand spider being created,i.e have it come out of ground like rock
 //		would not animate/move left or right until reached ground level
-//	Screen that shows options for the game, difficulty level and win condition( time versus total)
-//	time attack mode that starts off easy and gets harder as you go along, see how long you can survive
+//	time attack mode(called survival) that starts off easy and gets harder as you go along, see how long you can survive
 //
 //	Sound Effects
 //		(NEED SOUND)sound effect for fire plant firing when tapped
@@ -50,6 +47,9 @@
 //		when bomb box hits snail shell, snail gets out and wreaks havoc on plants nearby similar to sand monster
 //		would need to recolor snail from pink?
 //
+//	PreGenerate clouds on startup for CloudGenerator
+//	PreGenerate one or two boxes on startup for BoxGenerator
+//	save last played game mode/difficulkty selection and load in on startup
 //	maybe allow player to adjust how many boxes generated/how much time to survive in Setup Game Settings Scene
 //	Need to save best score for difficulty into file
 //	lose level animation, rocks all get destroyed and turns into desolate sandy wasteland
@@ -110,12 +110,6 @@ class GameScene: SKScene
 	//a list of object class names, and how many instances of said class have been destroyed
 	var objectsDestroyed = [ String : Int ]()
 	
-	//amount of seconds actually playing level, not counting paused
-	private(set) var secondsPlayed : Int = 0
-	
-	//counter to compare to FPS that is used to increment secondsPlayed
-	private(set) var playSteps : Int = 0
-	
 	/*
 	override func didMoveToView(view: SKView)
 	{
@@ -152,12 +146,9 @@ class GameScene: SKScene
 			return
 		}
 		
-		playSteps += 1
-		if ( playSteps >= currentFPS )
+		if ( myController != nil )
 		{
-			playSteps = 0
-			secondsPlayed += 1
-			secondPassed()
+			myController.victoryCond.updateEvent( self , currentFPS: currentFPS )
 		}
 		
 		generateObjects( currentFPS )
@@ -517,12 +508,6 @@ class GameScene: SKScene
 		}
 		
 		return toReturn
-	}
-
-	//called when the secondsPlayed has been incremented
-	func secondPassed()
-	{
-		
 	}
 	
 	//returns all GameObj instances currently in the scene of the type provided

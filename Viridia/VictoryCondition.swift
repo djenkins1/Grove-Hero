@@ -13,9 +13,9 @@ protocol VictoryCondition
 {
 	func hasWon( scene : GameScene ) -> Bool
 	
-	func secondPassed( scene : GameScene )
-	
 	func startLevel( scene : GameScene )
+	
+	func updateEvent( scene : GameScene, currentFPS: Int )
 }
 
 class BoxVictory : VictoryCondition
@@ -27,12 +27,13 @@ class BoxVictory : VictoryCondition
 		return ( generatedLost != nil && generatedLost >= totalToGenerate)
 	}
 	
-	func secondPassed( scene : GameScene )
+	
+	func startLevel(scene: GameScene)
 	{
 		return
 	}
 	
-	func startLevel(scene: GameScene)
+	func updateEvent( scene : GameScene, currentFPS: Int )
 	{
 		return
 	}
@@ -42,25 +43,22 @@ class TimeVictory : VictoryCondition
 {
 	var timerLabel : SKLabelNode!
 	
+	var currentTime : Int = 0
+	
+	var timeSteps : Int = 0
+	
 	func hasWon( scene : GameScene ) -> Bool
 	{
-		return ( scene.secondsPlayed >= finishTimeSeconds() )
+		return ( currentTime >= finishTimeSeconds() )
 	}
 	
 	func startLevel( scene : GameScene )
 	{
+		timeSteps = 0
+		currentTime = 0
 		let fontSize : CGFloat = 35
 		let paddingHeight = scene.frame.height * 0.2
 		timerLabel = scene.addMakeLabel( timerClockLeft( 0 ), xPos: max( scene.frame.width * 0.1, fontSize ), yPos: scene.frame.height - fontSize - paddingHeight, fontSize: fontSize)
-	}
-	
-	func secondPassed( scene : GameScene )
-	{
-		if ( timerLabel != nil )
-		{
-			timerLabel.text = timerClockLeft( scene.secondsPlayed )
-		}
-
 	}
 	
 	private func finishTimeSeconds() -> Int
@@ -94,5 +92,24 @@ class TimeVictory : VictoryCondition
 		toReturn = toReturn + String( seconds )
 		
 		return toReturn
+	}
+	
+	func updateEvent( scene : GameScene, currentFPS: Int )
+	{
+		timeSteps += 1
+		if ( timeSteps >= currentFPS )
+		{
+			timeSteps = 0
+			currentTime += 1
+			updateClock()
+		}
+	}
+	
+	private func updateClock()
+	{
+		if ( timerLabel != nil )
+		{
+			timerLabel.text = timerClockLeft( currentTime )
+		}
 	}
 }

@@ -113,8 +113,8 @@ class GameViewController: UIViewController
 			return MenuScene( fileNamed: fileName )
 		case .Credits:
 			return CreditScene( fileNamed: fileName )
-		default:
-			return nil
+		case .Setup:
+			return SetupScene( fileNamed: fileName )
 		}
 	}
 	

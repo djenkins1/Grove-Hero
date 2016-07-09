@@ -12,7 +12,6 @@ enum GameState
 {
 	case Menu
 	case Play
-	case Won
-	case Lost
+	case Setup
 	case Credits
 }

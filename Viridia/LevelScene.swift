@@ -69,14 +69,6 @@ class LevelScene : GameScene
 		}
 	}
 	
-	override func secondPassed()
-	{
-		if ( myController != nil )
-		{
-			myController.victoryCond.secondPassed( self )
-		}
-	}
-	
 	func generateScenery()
 	{
 		let allGround = allObjectsOfType( GroundObj )
@@ -171,6 +163,24 @@ class LevelScene : GameScene
 		toReturn += plantCount * 5
 		toReturn += fireCount * 10
 		
+		let allGround = allObjectsOfType( GroundObj )
+		var shroomTileCount = 0
+		var grassTileCount = 0
+		for ground in allGround
+		{
+			if ( ground is GroundObj )
+			{
+				let myGround = ( ground as! GroundObj )
+				if myGround.isTop
+				{
+					shroomTileCount += ( myGround.isShroomed && !myGround.isSandy ? 1 : 0 )
+					grassTileCount += ( !myGround.isShroomed && !myGround.isSandy ? 1 : 0 )
+				}
+			}
+		}
+		
+		toReturn += shroomTileCount * 2
+		toReturn += grassTileCount * 5
 		//should dead plants be counted against score?
 		/*
 		let plantsLost = objectsDestroyed[ PlantObj( xStart: 0, yStart: 0 ).className() ]
@@ -217,7 +227,6 @@ class LevelScene : GameScene
 	//should be called when the player has won the current level
 	func winCondition()
 	{
-		print( "Time: \(secondsPlayed)" )
 		self.playSoundEffect( Sounds.winSound )
 		pauseAndShowMessage( "You Won!", subMessage: "Score: \(getScore())" )
 		doneScreen = true
