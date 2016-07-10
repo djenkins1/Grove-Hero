@@ -12,8 +12,6 @@
 //==========
 //	(BUG)Newly spawned rocks that are moving upwards change down to 1 life when hit by bomb box
 //
-//	Screen that shows options for the game, difficulty level and win condition( time versus total)
-//		have framework/design in place in SetupScene. NEED IMPLEMENTATION
 //	should have a tutorial system
 //		(?)link to it on the menu?
 //		might be better in stages, i.e stage for:
@@ -22,6 +20,7 @@
 //			boxes, drag to move left and right
 //			different box types and what they do
 //	should add box remaining count for BoxVictory condition similar to TimeVictory
+//	dialog box explaining the chosen game mode on SetupScene
 //	animate spider dying from being tapped
 //		make the spider shrink and change sprite/roll to just dead spider
 //	Animate sand spider being created,i.e have it come out of ground like rock
@@ -47,6 +46,7 @@
 //		when bomb box hits snail shell, snail gets out and wreaks havoc on plants nearby similar to sand monster
 //		would need to recolor snail from pink?
 //
+//	Should probably have some way to get back to menu without losing/winning level
 //	PreGenerate clouds on startup for CloudGenerator
 //	PreGenerate one or two boxes on startup for BoxGenerator
 //	save last played game mode/difficulkty selection and load in on startup

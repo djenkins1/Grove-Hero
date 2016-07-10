@@ -80,7 +80,6 @@ class MenuScene : GameScene
 		playButton.addTarget( self, action: #selector( self.clickPlayButton) , forControlEvents: .TouchUpInside)
 		credButton.addTarget( self, action: #selector( self.clickCreditButton) , forControlEvents: .TouchUpInside)
 		muteButton.addTarget( self, action: #selector( self.clickMuteButton(_:)) , forControlEvents: .TouchUpInside)
-		
 	}
 	
 	//returns the corresponding unicode character for the mute state provided
@@ -125,7 +124,8 @@ class MenuScene : GameScene
 	{
 		if ( myController != nil )
 		{
-			myController.changeState( GameState.Play)
+			//myController.changeState( GameState.Play)
+			myController.changeState( GameState.Setup )
 		}
 	}
 	

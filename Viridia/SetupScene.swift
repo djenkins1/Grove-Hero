@@ -13,6 +13,14 @@ class SetupScene : GameScene
 {
 	var myView : SKView!
 
+	let modes = [ "Box Attack" , "Time Attack" , "Survival" ]
+	
+	let difficulty = [ "Easy" , "Medium" , "Hard" ]
+	
+	var diffiButtons = [UIButton]()
+	
+	var modeButtons = [UIButton]()
+	
 	//function first called when the scene is viewed
 	override func didMoveToView(view: SKView)
 	{
@@ -23,78 +31,199 @@ class SetupScene : GameScene
 	
 	private func createButtons( view : SKView )
 	{
-		//big title box labeled: Setup Game
-		//title box labeled: Game Mode
-		//	underneath:
-		//		three mode settings(mutually exclusvie): Timed,Box,Survival
-		//	maybe also: Dialog box that explains the game mode
-		//title box labeled: Difficulty
-		//	underneath:
-		//		three difficulty settings(mutually exclusive): easy,medium,hard
-		//ok button that goes to play level
-		//	have seperate background: greenBoxCheck
-		//back button that goes back to menu
-		//	have seperate background: greenBoxCross
-		
-		
-		/*
 		let titleImage = UIImage( named: "buttonTitle" ) as UIImage?
-		let backImage = UIImage( named: "buttonGreenDef" ) as UIImage?
-		let smallImage = UIImage( named: "buttonSmall" ) as UIImage?
-		let gameTitle = UIButton(type: UIButtonType.Custom) as UIButton
-		let playButton = UIButton(type: UIButtonType.Custom) as UIButton
-		let credButton = UIButton(type: UIButtonType.Custom) as UIButton
-		let muteButton = UIButton(type: UIButtonType.Custom) as UIButton
+		let modeTitle = UIButton(type: UIButtonType.Custom) as UIButton
 		
 		let screenWidth = UIScreen.mainScreen().bounds.width
 		let titleWidth = Int( ceil(screenWidth * 0.5) )
-		let padding = Int( ceil( UIScreen.mainScreen().bounds.height * 0.04 ) )
 		let centerX = screenWidth / 2
-		let startY = Int( ceil( UIScreen.mainScreen().bounds.height * 0.25 ) )
-		let defaultWidth = 128
-		let defaultHeight = 32
-		let muteX = centerX - CGFloat( titleWidth / 2 ) - CGFloat( defaultWidth / 4 ) - CGFloat( defaultHeight )
-		gameTitle.frame = CGRectMake( CGFloat( centerX - CGFloat( titleWidth / 2 ) ), CGFloat( startY ), CGFloat( titleWidth ), CGFloat(defaultHeight ))
-		muteButton.frame = CGRectMake( muteX, CGFloat( startY ), CGFloat( defaultHeight ), CGFloat(defaultHeight ))
-		playButton.frame = CGRectMake( CGFloat( centerX - CGFloat( defaultWidth / 2 ) ), CGFloat( startY + padding + defaultHeight ), CGFloat( defaultWidth ), CGFloat(defaultHeight ))
-		credButton.frame = CGRectMake( CGFloat( centerX - CGFloat( defaultWidth / 2 ) ), CGFloat( startY + (2 * ( padding  + defaultHeight ) ) ), CGFloat( defaultWidth ), CGFloat(defaultHeight ))
+		let startY = ceil( UIScreen.mainScreen().bounds.height * 0.1 )
+		let defaultHeight : CGFloat = 32
 		
-		gameTitle.setBackgroundImage( titleImage, forState: .Normal )
-		playButton.setBackgroundImage( backImage, forState: .Normal )
-		credButton.setBackgroundImage( backImage, forState: .Normal )
-		muteButton.setBackgroundImage( smallImage, forState: .Normal )
+		modeTitle.frame = CGRectMake( CGFloat( centerX - CGFloat( titleWidth / 2 ) ), startY, CGFloat( titleWidth ), defaultHeight)
+		modeTitle.setBackgroundImage( titleImage, forState: .Normal )
+		modeTitle.setTitleColor( UIColor.blackColor(), forState: .Normal)
+		modeTitle.setTitle( "Game Mode", forState: .Normal )
+		modeTitle.userInteractionEnabled = false
+		modeTitle.layer.zPosition = 20
+		view.addSubview(modeTitle)
 		
-		gameTitle.setTitleColor( UIColor.blackColor(), forState: .Normal)
-		playButton.setTitleColor( UIColor.blackColor(), forState: .Normal)
-		credButton.setTitleColor( UIColor.blackColor(), forState: .Normal)
-		muteButton.setTitleColor( UIColor.blackColor(), forState: .Normal)
+		let chosenModeIndex = 0
+		var buttonGroupY = startY + ( defaultHeight * 1.25 )
+		modeButtons = createButtonGroup( modes, leftCornerY :  buttonGroupY, chosenIndex: chosenModeIndex )
+		for button in modeButtons
+		{
+			view.addSubview( button )
+			button.addTarget( self, action: #selector( self.clickModeButton(_:)) , forControlEvents: .TouchUpInside)
+		}
+		clickModeButton( modeButtons[ chosenModeIndex ] )
+	
+		buttonGroupY += defaultHeight * 1.3
+		let diffiTitle = UIButton(type: UIButtonType.Custom) as UIButton
+		diffiTitle.frame = CGRectMake( CGFloat( centerX - CGFloat( titleWidth / 2 ) ), buttonGroupY, CGFloat( titleWidth ), defaultHeight)
+		diffiTitle.setBackgroundImage( titleImage, forState: .Normal )
+		diffiTitle.setTitleColor( UIColor.blackColor(), forState: .Normal)
+		diffiTitle.setTitle( "Difficulty", forState: .Normal )
+		diffiTitle.userInteractionEnabled = false
+		diffiTitle.layer.zPosition = 20
+		view.addSubview(diffiTitle)
 		
-		gameTitle.setTitle( "Grovekeeper", forState: .Normal )
-		gameTitle.userInteractionEnabled = false
-		playButton.setTitle( "Play", forState: .Normal )
-		credButton.setTitle( "Credits", forState: .Normal )
-		var currentMuteStatus = false
+		let chosenDiffIndex = 0
+		buttonGroupY += defaultHeight * 1.25
+		diffiButtons = createButtonGroup( difficulty, leftCornerY :  buttonGroupY, chosenIndex: chosenDiffIndex )
+		for button in diffiButtons
+		{
+			view.addSubview( button )
+			button.addTarget( self, action: #selector( self.clickDiffiButton(_:)) , forControlEvents: .TouchUpInside)
+		}
+		clickDiffiButton( diffiButtons[ chosenDiffIndex ] )
+
+		let yesImage = UIImage( named: "greenBoxCheck" ) as UIImage?
+		let noImage = UIImage( named: "greenBoxCross" ) as UIImage?
+		let yesButton = UIButton(type: UIButtonType.Custom) as UIButton
+		let noButton = UIButton(type: UIButtonType.Custom) as UIButton
+		
+		let newButtonHeight : CGFloat = 48
+		let buttonPadding = newButtonHeight * 0.1
+		buttonGroupY += defaultHeight * 1.6
+		yesButton.frame = CGRectMake( centerX - ( newButtonHeight + buttonPadding ), buttonGroupY, newButtonHeight, newButtonHeight)
+		yesButton.setBackgroundImage( yesImage, forState: .Normal )
+		yesButton.setTitle( "", forState: .Normal )
+		yesButton.layer.zPosition = 20
+		view.addSubview( yesButton )
+		
+		noButton.frame = CGRectMake( centerX + buttonPadding, buttonGroupY, newButtonHeight, newButtonHeight)
+		noButton.setBackgroundImage( noImage, forState: .Normal )
+		noButton.setTitle( "", forState: .Normal )
+		noButton.layer.zPosition = 20
+		view.addSubview( noButton )
+		
+		yesButton.addTarget( self, action: #selector( self.onToGame) , forControlEvents: .TouchUpInside)
+		noButton.addTarget( self, action: #selector( self.backToMenu) , forControlEvents: .TouchUpInside)
+	}
+	
+	func backToMenu()
+	{
 		if ( myController != nil )
 		{
-			currentMuteStatus = myController.isMuted
+			myController.changeState( GameState.Menu )
+		}
+	}
+	
+	func onToGame()
+	{
+		if ( myController != nil )
+		{
+			myController.changeState( GameState.Play )
+		}
+	}
+	
+	func clickModeButton( sender: AnyObject )
+	{
+		for button in modeButtons
+		{
+			toggleButton( false , button: button )
 		}
 		
-		muteButton.setTitle( getMuteIconText( currentMuteStatus ), forState: .Normal )
+		if ( sender is UIButton && myController != nil )
+		{
+			toggleButton( true, button: ( sender as! UIButton ) )
+			let title : String = ( sender as! UIButton ).currentTitle!
+			switch( title )
+			{
+			case "Box Attack":
+				myController.victoryCond = BoxVictory()
+			case "Time Attack":
+				myController.victoryCond = TimeVictory()
+			case "Survival":
+				print( "TODO: Survival" )
+			default:
+				print( "Mode not valid: \(title)" )
+			}
+		}
+	}
+	
+	func clickDiffiButton( sender : AnyObject )
+	{
+		for button in diffiButtons
+		{
+			toggleButton( false , button: button )
+		}
 		
-		playButton.layer.zPosition = 20
-		credButton.layer.zPosition = 20
-		gameTitle.layer.zPosition = 20
-		muteButton.layer.zPosition = 20
+		if ( sender is UIButton && myController != nil )
+		{
+			toggleButton( true, button: ( sender as! UIButton ) )
+			let title : String = ( sender as! UIButton ).currentTitle!
+			switch( title )
+			{
+			case "Easy":
+				myController.diffiCons = EasyDifficulty()
+			case "Medium":
+				myController.diffiCons = MidDifficulty()
+			case "Hard":
+				myController.diffiCons = HardDifficulty()
+			default:
+				print( "Difficulty not valid: \(title)" )
+			}
+		}
+	}
+	
+	private func createButtonGroup( titles : Array<String>, leftCornerY : CGFloat, chosenIndex : Int = 0 ) -> [UIButton]
+	{
+		var toReturn = [UIButton]()
+		if ( titles.count > 3 )
+		{
+			print( "Too many buttons in group" )
+			return toReturn
+		}
 		
-		view.addSubview(gameTitle)
-		view.addSubview(playButton)
-		view.addSubview(credButton)
-		view.addSubview(muteButton)
+		let screenWidth = UIScreen.mainScreen().bounds.width
+		let padding = ceil( UIScreen.mainScreen().bounds.height * 0.04 )
+		let centerX = screenWidth / 2
+		let defaultWidth : CGFloat = 128
+		let defaultHeight : CGFloat = 32
 		
-		playButton.addTarget( self, action: #selector( self.clickPlayButton) , forControlEvents: .TouchUpInside)
-		credButton.addTarget( self, action: #selector( self.clickCreditButton) , forControlEvents: .TouchUpInside)
-		muteButton.addTarget( self, action: #selector( self.clickMuteButton(_:)) , forControlEvents: .TouchUpInside)
-		*/
+		var index = -1
+		for title in titles
+		{
+			index += 1
+			let button = UIButton(type: UIButtonType.Custom) as UIButton
+			button.setTitle( title , forState: .Normal )
+			
+			toggleButton( index == chosenIndex, button: button )
+			
+			if ( index == titles.count / 2 )
+			{
+				button.frame = CGRectMake( centerX - ( defaultWidth / 2 ), leftCornerY, defaultWidth , defaultHeight )
+			}
+			else if ( index < titles.count / 2 )
+			{
+				button.frame = CGRectMake(  centerX - ( defaultWidth / 2 ) - defaultWidth - padding , leftCornerY, defaultWidth , defaultHeight)
+			}
+			else
+			{
+				button.frame = CGRectMake( centerX + ( defaultWidth / 2 ) + padding, leftCornerY, defaultWidth,defaultHeight )
+			}
+			
+			toReturn.append( button )
+		}
+		return toReturn
+	}
+	
+	private func toggleButton( isChosen : Bool, button : UIButton )
+	{
+		let backImage = UIImage( named: "buttonGreenDef" ) as UIImage?
+		let chosenImage = UIImage( named: "buttonGreenHit" ) as UIImage?
+		if ( isChosen )
+		{
+			button.setBackgroundImage( chosenImage, forState: .Normal )
+			button.setTitleColor( UIColor.whiteColor(), forState: .Normal)
+		}
+		else
+		{
+			button.setBackgroundImage( backImage, forState: .Normal )
+			button.setTitleColor( UIColor.blackColor(), forState: .Normal)
+		}
 	}
 	
 	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
