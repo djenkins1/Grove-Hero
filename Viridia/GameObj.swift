@@ -57,7 +57,7 @@ class GameObj
 	{
 		if ( myPath != nil )
 		{
-			if ( !( myPath!.adjustSpeed( self ) ) )
+			if ( !( myPath.adjustSpeed( self ) ) )
 			{
 				myPath = nil
 			}

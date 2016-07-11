@@ -18,6 +18,8 @@ class SpiderObj : GameObj
 	var stepCounter : CGFloat = 0
 	
 	let baseSpeed : CGFloat = 180
+	
+	var haveChosenDirect = false
 
 	
 	init( xStart: CGFloat, yStart: CGFloat)
@@ -25,7 +27,7 @@ class SpiderObj : GameObj
 		super.init( spriteName: "spiderL", xStart: xStart, yStart: yStart )
 		self.dieOnCollide = true
 		self.dieOutsideScreen = true
-		self.sprite.zPosition = 15
+		self.sprite.zPosition = 1
 	}
 	
 	override func createEvent(scene: GameScene) -> GameObj
@@ -33,6 +35,20 @@ class SpiderObj : GameObj
 		super.createEvent( scene )
 		secondsBetween = scene.myController!.diffiCons.spiderEatSpeedInSecs
 		
+		return self
+		
+	}
+	
+	private func speedAI()
+	{
+		if ( myScene == nil )
+		{
+			return
+		}
+		
+		haveChosenDirect = true
+		self.sprite.zPosition = 15
+		let scene = myScene
 		let closestPlant = scene.getNearestPlantObj( sprite.position.x, y: sprite.position.y )
 		if ( closestPlant != nil )
 		{
@@ -52,19 +68,11 @@ class SpiderObj : GameObj
 		{
 			self.horSpeed = baseSpeed
 		}
-		
-		return self
-		
 	}
 	
 	override func collideEvent(other: GameObj)
 	{
 		if ( isDead )
-		{
-			return
-		}
-		
-		if ( other.isDead )
 		{
 			return
 		}
@@ -95,6 +103,10 @@ class SpiderObj : GameObj
 		if ( notEating() )
 		{
 			super.move( framesPerSecond )
+			if ( myPath == nil && !haveChosenDirect  )
+			{
+				speedAI()
+			}
 		}
 		
 		return self
@@ -141,10 +153,27 @@ class SpiderObj : GameObj
 	override func touchEvent( location : CGPoint )
 	{
 		super.touchEvent( location )
+		if ( myPath != nil )
+		{
+			return
+		}
+		
 		if ( !isDead )
 		{
+			changeToDeathSprite()
 			makeDead( true )
 		}
+	}
+	
+	private func changeToDeathSprite()
+	{
+		var mySprite = "spiderLdead"
+		if ( horSpeed > 0 )
+		{
+			mySprite = "spiderRdead"
+		}
+		
+		changeSprite( mySprite )
 	}
 	
 	//fires when this object is considered outside the screen

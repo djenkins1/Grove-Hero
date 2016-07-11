@@ -20,22 +20,64 @@ protocol VictoryCondition
 
 class BoxVictory : VictoryCondition
 {
+	var countLabel : SKLabelNode!
+	
+	var counter : Int = 0
+	
 	func hasWon( scene : GameScene ) -> Bool
 	{
-		let totalToGenerate = 15
 		let generatedLost = scene.objectsDestroyed[ BombBox( xStart: 0, yStart: 0).className() ]
-		return ( generatedLost != nil && generatedLost >= totalToGenerate)
+		return ( generatedLost != nil && generatedLost >= totalToGenerate() )
 	}
 	
 	
 	func startLevel(scene: GameScene)
 	{
-		return
+		counter = 0
+		let yPos = scene.frame.height - 200
+		let xPos : CGFloat = 60
+		let sprite = scene.addMakeSprite( "boxExplosiveAlt" , xPos: xPos, yPos: yPos)
+		let fontSize : CGFloat = 30
+		countLabel = scene.addMakeLabel( "", xPos: xPos + sprite.frame.width + fontSize, yPos: yPos + ( sprite.frame.height * 0.38 ), fontSize: fontSize)
+		updateCountLabel( totalToGenerate() )
+
 	}
 	
 	func updateEvent( scene : GameScene, currentFPS: Int )
 	{
+		counter += 1
+		if ( counter >= currentFPS / 6 )
+		{
+			counter = 0
+			updateCountLabel( remainingBoxes( scene ) )
+		}
+
 		return
+	}
+	
+	private func updateCountLabel( totalBoxesLeft : Int )
+	{
+		if ( totalBoxesLeft >= 0 && countLabel != nil )
+		{
+			countLabel.text = String( totalBoxesLeft )
+		}
+	}
+	
+	private func totalToGenerate() -> Int
+	{
+		return 15
+	}
+	
+	private func remainingBoxes( scene : GameScene ) -> Int
+	{
+		let generatedLost = scene.objectsDestroyed[ BombBox( xStart: 0, yStart: 0).className() ]
+		var total = 0
+		if ( generatedLost != nil )
+		{
+			total = generatedLost!
+		}
+		
+		return totalToGenerate() - total
 	}
 }
 
@@ -76,6 +118,10 @@ class TimeVictory : VictoryCondition
 	//converts the integer value provided to a clock value of format mm:ss
 	private func convertTimerTime( time : Int ) -> String
 	{
+		if ( time <= 0 )
+		{
+			return "00:00"
+		}
 		let minutes = time / 60
 		let seconds = time % 60
 		var toReturn = ""

@@ -94,7 +94,8 @@ class GroundObj : GameObj
 		myScene!.playSoundEffect( Sounds.sandSmash )
 		
 		let spider = SpiderObj( xStart: sprite.position.x, yStart: sprite.position.y )
-		spider.sprite.position.y += spider.sprite.frame.height * 1.5
+		let wantedY = spider.sprite.position.y + ( spider.sprite.frame.height * 1.5 )
+		spider.myPath = GamePath( x: spider.sprite.position.x, y: wantedY, speedInSeconds: 1, obj: spider )
 		myScene.queueGameObject( spider )
 	}
 	

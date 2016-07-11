@@ -19,13 +19,12 @@
 //			sand spiders, tap to kill
 //			boxes, drag to move left and right
 //			different box types and what they do
-//	should add box remaining count for BoxVictory condition similar to TimeVictory
 //	dialog box explaining the chosen game mode on SetupScene
 //	animate spider dying from being tapped
-//		make the spider shrink and change sprite/roll to just dead spider
-//	Animate sand spider being created,i.e have it come out of ground like rock
-//		would not animate/move left or right until reached ground level
-//	time attack mode(called survival) that starts off easy and gets harder as you go along, see how long you can survive
+//		TODO: dies too fast to notice any change, need to delay actual death until done with animation
+//			after sprite change delay works, add in shrinking animation on top
+//	time attack mode(called survival) that starts off at chosen difficulty and gets harder as you go along, see how long you can survive
+//	might create rock at x position of rockBox, not of ground it hit
 //
 //	Sound Effects
 //		(NEED SOUND)sound effect for fire plant firing when tapped
@@ -351,6 +350,16 @@ class GameScene: SKScene
 		otherLabel.fontColor = UIColor.blackColor()
 		self.addChild(otherLabel)
 		return otherLabel
+	}
+	
+	func addMakeSprite( spriteName : String, xPos : CGFloat, yPos : CGFloat ) -> SKSpriteNode
+	{
+		let sprite = SKSpriteNode( imageNamed: spriteName )
+		sprite.position = CGPoint( x: xPos, y: yPos )
+		sprite.anchorPoint = CGPoint( x: 0.0, y: 0.0 )
+		sprite.zPosition = 100
+		self.addChild( sprite )
+		return sprite
 	}
 	
 	func playSoundEffect( fileName : String )
