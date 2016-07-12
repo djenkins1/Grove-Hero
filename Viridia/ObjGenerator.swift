@@ -15,7 +15,7 @@ class ObjGenerator
 	
 	var readyToGenerate = false
 	
-	var stepsNeeded : Int = 20
+	var secondsNeeded : CGFloat = 1
 	
 	let roomWidth : CGFloat
 	
@@ -38,10 +38,10 @@ class ObjGenerator
 		return self
 	}
 	
-	func incrementSteps()
+	func incrementSteps( currentFPS : Int )
 	{
 		stepsSinceGenerated += 1
-		if ( stepsSinceGenerated >= stepsNeeded )
+		if ( CGFloat( stepsSinceGenerated ) >= stepsNeeded( currentFPS ) )
 		{
 			stepsSinceGenerated = 0
 			readyToGenerate = true
@@ -56,6 +56,11 @@ class ObjGenerator
 	
 	func primePump()
 	{
-		self.stepsSinceGenerated = Int( ceil( Double(stepsNeeded) * 0.95 ) )
+		self.stepsSinceGenerated = Int( ceil( 60 * 0.95 ) )
+	}
+	
+	func stepsNeeded( currentFPS : Int ) -> CGFloat
+	{
+		return secondsNeeded * CGFloat( currentFPS )
 	}
 }

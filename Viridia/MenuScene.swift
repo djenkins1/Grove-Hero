@@ -22,6 +22,7 @@ class MenuScene : GameScene
 		setupGenerators()
 	}
 	
+	/*
 	private func createButtons( view : SKView )
 	{
 		let titleImage = UIImage( named: "buttonTitle" ) as UIImage?
@@ -55,7 +56,7 @@ class MenuScene : GameScene
 		credButton.setTitleColor( UIColor.blackColor(), forState: .Normal)
 		muteButton.setTitleColor( UIColor.blackColor(), forState: .Normal)
 		
-		gameTitle.setTitle( "Grovekeeper", forState: .Normal )
+		gameTitle.setTitle( "GroveKeeper", forState: .Normal )
 		gameTitle.userInteractionEnabled = false
 		playButton.setTitle( "Play", forState: .Normal )
 		credButton.setTitle( "Credits", forState: .Normal )
@@ -76,6 +77,38 @@ class MenuScene : GameScene
 		view.addSubview(playButton)
 		view.addSubview(credButton)
 		view.addSubview(muteButton)
+	
+		playButton.addTarget( self, action: #selector( self.clickPlayButton) , forControlEvents: .TouchUpInside)
+		credButton.addTarget( self, action: #selector( self.clickCreditButton) , forControlEvents: .TouchUpInside)
+		muteButton.addTarget( self, action: #selector( self.clickMuteButton(_:)) , forControlEvents: .TouchUpInside)
+
+	}
+	*/
+	
+	private func createButtons( view : SKView )
+	{
+		var currentMuteStatus = false
+		if ( myController != nil )
+		{
+			currentMuteStatus = myController.isMuted
+		}
+		
+		var yPos = ceil( UIScreen.mainScreen().bounds.height * 0.25 )
+		let padding = ceil( UIScreen.mainScreen().bounds.height * 0.04 )
+		
+		let gameTitle = ButtonFactory.createCenteredButton( "GroveKeeper", buttonType: ButtonType.TitleButton, yCenter: yPos  )
+		let muteButton = ButtonFactory.createCenteredButton( getMuteIconText( currentMuteStatus ), buttonType : ButtonType.SmallButton, xOffset: gameTitle.frame.width * 0.6, yCenter : yPos )
+		
+		yPos += gameTitle.frame.height + padding
+		let playButton = ButtonFactory.createCenteredButton( "Play", buttonType: ButtonType.MenuButton, yCenter: yPos )
+		
+		yPos += playButton.frame.height + padding
+		let credButton = ButtonFactory.createCenteredButton( "Credits", buttonType: ButtonType.MenuButton, yCenter: yPos )
+		
+		view.addSubview( gameTitle )
+		view.addSubview( playButton )
+		view.addSubview( credButton )
+		view.addSubview( muteButton )
 		
 		playButton.addTarget( self, action: #selector( self.clickPlayButton) , forControlEvents: .TouchUpInside)
 		credButton.addTarget( self, action: #selector( self.clickCreditButton) , forControlEvents: .TouchUpInside)

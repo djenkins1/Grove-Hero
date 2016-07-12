@@ -48,7 +48,7 @@ class LevelScene : GameScene
 		
 		if ( pauseUpdate )
 		{
-			pauseUpdate = false
+			//pauseUpdate = false
 			return
 		}
 		

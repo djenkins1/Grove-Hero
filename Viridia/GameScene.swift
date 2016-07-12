@@ -13,6 +13,8 @@
 //	(BUG)Newly spawned rocks that are moving upwards change down to 1 life when hit by bomb box
 //		need to keep track of what it has already hit, and not continue to hit what already collided
 //
+//	(AFTER)Make sure that FPS counter no longer shown on presented/app store versions
+//		maybe have some kind of debug mode constant
 //	should have a tutorial system
 //		link to it on the menu
 //		might be better in stages, i.e stage for:
@@ -27,16 +29,15 @@
 //				drag onto fire plants to fire up the plant
 //			rock boxes, drag onto open grass/ground to have a rock built there
 //				drag onto a damaged rock to fortify it
+//	Change fonts on all buttons to the Display font for pause
 //	dialog box explaining the chosen game mode on SetupScene
 //	time attack mode(called survival) that starts off at chosen difficulty and gets harder as you go along, see how long you can survive
 //	might create rock at x position of rockBox, not of ground it hit
 //	PreGenerate clouds on startup for CloudGenerator
 //	PreGenerate one or two boxes on startup for BoxGenerator
-//	step counter for generators should be based off seconds * framesPerSecond for readability
-//	change over pause message/tap to contine to:
-//		(FROM)Should probably have some way to get back to menu without losing/winning level
-//		pause menu, buttons for continue,restart,quit
-//			when continue is pressed, destroy all the buttons
+//	add seconds between spawns in difficultyConstants and use in BoxGenerator
+//	overhaul credits scene into using buttonFactory
+//	overhaul setup scene into using buttonFactory
 //
 //	Sound Effects
 //		(NEED SOUND)sound effect for fire plant firing when tapped
@@ -64,12 +65,13 @@
 //	When rock get hits by rock box and is already full lives:
 //		cause rock slide event that builds max of two rocks on either side
 //	save last played game mode/difficulkty selection and load in on startup
-//	maybe allow player to adjust how many boxes generated/how much time to survive in Setup Game Settings Scene
 //	Need to save best score for difficulty into file
 //	lose level animation, rocks all get destroyed and turns into desolate sandy wasteland
 //		maybe have a tumbleweed blow across the screen
-//	maybe have a 2 second pause between music on the list played(use a timer)
 //	save mute status on exit and load on entry of app
+//	(?)maybe allow player to adjust how many boxes generated/how much time to survive in Setup Game Settings Scene
+//	(?)maybe have a 2 second pause between music on the list played(use a timer)
+//	(?)maybe utilize second bombBox(yellow) sprite in a bomb going off animation when bombBox collides with something
 //	(?)don't add buttons to view for credits/menu until the transition is done
 //	(?)heal box should also plant a plant(only one) when it hits empty ground
 //		(?)heal box should turn regular plants into fireplants(only one) when hits grassy ground
@@ -389,7 +391,7 @@ class GameScene: SKScene
 	{
 		for gen in generatorList
 		{
-			gen.incrementSteps()
+			gen.incrementSteps( currentFPS )
 			if ( gen.readyToGenerate )
 			{
 				let obj = gen.generate()
@@ -552,4 +554,17 @@ class GameScene: SKScene
 		return hypotf(Float( x - otherX), Float( y - otherY ) )
 	}
 	
+	func addButton( button : UIButton ) -> UIButton
+	{
+		if ( view != nil )
+		{
+			self.view!.addSubview( button )
+		}
+		else
+		{
+			print( "Could not add button" )
+		}
+		
+		return button
+	}
 }

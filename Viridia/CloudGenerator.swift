@@ -14,7 +14,7 @@ class CloudGenerator : ObjGenerator
 	override init( screenWidth : CGFloat, screenHeight : CGFloat )
 	{
 		super.init( screenWidth: screenWidth , screenHeight: screenHeight )
-		self.stepsNeeded = 120
+		self.secondsNeeded = 2
 		primePump()
 	}
 	

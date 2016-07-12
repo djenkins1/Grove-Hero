@@ -17,6 +17,7 @@
 		FE2A485E1D20A422000D2CF2 /* RockLives.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE2A485D1D20A422000D2CF2 /* RockLives.wav */; };
 		FE49B1971D2A42190078D8E1 /* VictoryCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE49B1961D2A42190078D8E1 /* VictoryCondition.swift */; };
 		FE608F2F1D1E685F005F0DA5 /* GamePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE608F2E1D1E685F005F0DA5 /* GamePath.swift */; };
+		FE6D3A661D34AE8C0042D89B /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6D3A651D34AE8C0042D89B /* ButtonFactory.swift */; };
 		FE7336B41D209FAA008E2E57 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7336B31D209FAA008E2E57 /* Sounds.swift */; };
 		FE76CE361D30D0740046022F /* SetupScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE76CE351D30D0740046022F /* SetupScene.swift */; };
 		FE79B2A41D2798E10091E6DF /* FireDie.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE79B2A11D2798E10091E6DF /* FireDie.wav */; };
@@ -79,6 +80,7 @@
 		FE2A485D1D20A422000D2CF2 /* RockLives.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RockLives.wav; sourceTree = "<group>"; };
 		FE49B1961D2A42190078D8E1 /* VictoryCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VictoryCondition.swift; sourceTree = "<group>"; };
 		FE608F2E1D1E685F005F0DA5 /* GamePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePath.swift; sourceTree = "<group>"; };
+		FE6D3A651D34AE8C0042D89B /* ButtonFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
 		FE7336B31D209FAA008E2E57 /* Sounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		FE76CE351D30D0740046022F /* SetupScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupScene.swift; sourceTree = "<group>"; };
 		FE79B2A11D2798E10091E6DF /* FireDie.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FireDie.wav; sourceTree = "<group>"; };
@@ -104,7 +106,7 @@
 		FECFFE551D27801A00A89CAE /* CreditScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditScene.swift; sourceTree = "<group>"; };
 		FECFFE571D27868500A89CAE /* Credits.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Credits.txt; sourceTree = "<group>"; };
 		FECFFE591D27887800A89CAE /* otherCredits.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = otherCredits.txt; sourceTree = "<group>"; };
-		FEDF1F661D151C07000EA427 /* Viridia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Viridia.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEDF1F661D151C07000EA427 /* GroveKeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroveKeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEDF1F691D151C07000EA427 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEDF1F6B1D151C07000EA427 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		FEDF1F6D1D151C07000EA427 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -154,7 +156,7 @@
 		FEDF1F671D151C07000EA427 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FEDF1F661D151C07000EA427 /* Viridia.app */,
+				FEDF1F661D151C07000EA427 /* GroveKeeper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -222,6 +224,7 @@
 				FE49B1961D2A42190078D8E1 /* VictoryCondition.swift */,
 				FECFFE571D27868500A89CAE /* Credits.txt */,
 				FECFFE591D27887800A89CAE /* otherCredits.txt */,
+				FE6D3A651D34AE8C0042D89B /* ButtonFactory.swift */,
 			);
 			path = Viridia;
 			sourceTree = "<group>";
@@ -243,7 +246,7 @@
 			);
 			name = Viridia;
 			productName = Viridia;
-			productReference = FEDF1F661D151C07000EA427 /* Viridia.app */;
+			productReference = FEDF1F661D151C07000EA427 /* GroveKeeper.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -258,6 +261,7 @@
 				TargetAttributes = {
 					FEDF1F651D151C07000EA427 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = BYQYX68PT9;
 					};
 				};
 			};
@@ -324,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEA65BA61D168CE20068A20A /* ObjGenerator.swift in Sources */,
+				FE6D3A661D34AE8C0042D89B /* ButtonFactory.swift in Sources */,
 				FEF298AC1D2E29B200FBBE96 /* PauseObj.swift in Sources */,
 				FE881EAD1D176FC0003D2D57 /* PlantObj.swift in Sources */,
 				FECB8A961D1E122D0093810E /* RockBox.swift in Sources */,
@@ -467,10 +472,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Viridia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.studyoclock.Viridia;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GroveKeeper;
 			};
 			name = Debug;
 		};
@@ -478,10 +484,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Viridia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.studyoclock.Viridia;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GroveKeeper;
 			};
 			name = Release;
 		};

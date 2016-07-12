@@ -14,7 +14,7 @@ class BoxGenerator : ObjGenerator
 	override init( screenWidth : CGFloat, screenHeight : CGFloat )
 	{
 		super.init( screenWidth: screenWidth , screenHeight: screenHeight )
-		self.stepsNeeded = 80
+		self.secondsNeeded = 1.2
 		primePump()
 	}
 	
