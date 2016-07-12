@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FEDF1F651D151C07000EA427"
-               BuildableName = "Viridia.app"
+               BuildableName = "GroveKeeper.app"
                BlueprintName = "Viridia"
                ReferencedContainer = "container:Viridia.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FEDF1F651D151C07000EA427"
-            BuildableName = "Viridia.app"
+            BuildableName = "GroveKeeper.app"
             BlueprintName = "Viridia"
             ReferencedContainer = "container:Viridia.xcodeproj">
          </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FEDF1F651D151C07000EA427"
-            BuildableName = "Viridia.app"
+            BuildableName = "GroveKeeper.app"
             BlueprintName = "Viridia"
             ReferencedContainer = "container:Viridia.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FEDF1F651D151C07000EA427"
-            BuildableName = "Viridia.app"
+            BuildableName = "GroveKeeper.app"
             BlueprintName = "Viridia"
             ReferencedContainer = "container:Viridia.xcodeproj">
          </BuildableReference>

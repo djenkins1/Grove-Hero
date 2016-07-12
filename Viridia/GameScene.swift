@@ -29,9 +29,12 @@
 //				drag onto fire plants to fire up the plant
 //			rock boxes, drag onto open grass/ground to have a rock built there
 //				drag onto a damaged rock to fortify it
+//	fire explosion animation for when fireball hits a box
+//		just use explosion sprite and have it get bigger using SKAction
 //	Change fonts on all buttons to the Display font for pause
 //	dialog box explaining the chosen game mode on SetupScene
 //	time attack mode(called survival) that starts off at chosen difficulty and gets harder as you go along, see how long you can survive
+//		would have to take into account restart button, currently just transitions to play again with all difficulty settings the same
 //	might create rock at x position of rockBox, not of ground it hit
 //	PreGenerate clouds on startup for CloudGenerator
 //	PreGenerate one or two boxes on startup for BoxGenerator
@@ -40,7 +43,7 @@
 //	overhaul setup scene into using buttonFactory
 //
 //	Sound Effects
-//		(NEED SOUND)sound effect for fire plant firing when tapped
+//		(SCRAP)sound effect for fire plant firing when tapped
 //		(?)sound effect for spider eating a plant down by one life
 //			just use plant die sound effect?
 //
@@ -50,17 +53,18 @@
 //	(SCRAP)More accurate portrayal of boxes so that what is inside them has an icon of it
 //	(SCRAP)Animate spider eating a plant
 //	(NEED SPRITE)particle effect for when box hits ground, sand spilling out/spores
-//	(NEED SPRITE)fire explosion animation for when fireball hits a box
 //	(EDIT SPRITE)rock being built up animation for when rock gets hit by rock box
 //	(NEED SPRITE)particle effect for when rocks get hit by bombBox
-//	(NEED SPRITE)particle effect for when BombBox hits sand, creating spider
+//	(NEED SPRITE)particle effect for when BombBox hits sand
 //	(NEED SPRITE)death animation for fire plants
+//	(EDIT SPRITE)fossilized plant sprites for each of the normal/shroom plants(greyScale)
+//	(EDIT SPRITE)fossilized fire plant sprite for each of the life stages(greyScale)
 //	(EDIT SPRITE)snail shells that spawn like rocks
 //		when bomb box hits snail shell, snail gets out and wreaks havoc on plants nearby similar to sand monster
 //		would need to recolor snail from pink?
 //
 //	RockBox should kill any plants it touches ground of and replace them with Rocks
-//		(EDIT SPRITE)or have it fossilize the plant, making it stony and any bombbox that hits it explodes like a rock, killing plant
+//		or have it fossilize the plant, making it stony and any bombbox that hits it explodes like a rock, killing plant
 //			spiders would also be unable to eat it,kills spider as soon as it tries
 //	When rock get hits by rock box and is already full lives:
 //		cause rock slide event that builds max of two rocks on either side
