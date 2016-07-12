@@ -27,14 +27,13 @@ class SpiderObj : GameObj
 		super.init( spriteName: "spiderL", xStart: xStart, yStart: yStart )
 		self.dieOnCollide = true
 		self.dieOutsideScreen = true
-		self.sprite.zPosition = 1
+		self.sprite.zPosition = 5
 	}
 	
 	override func createEvent(scene: GameScene) -> GameObj
 	{
 		super.createEvent( scene )
 		secondsBetween = scene.myController!.diffiCons.spiderEatSpeedInSecs
-		
 		return self
 		
 	}
@@ -72,7 +71,7 @@ class SpiderObj : GameObj
 	
 	override func collideEvent(other: GameObj)
 	{
-		if ( isDead )
+		if ( deathMode() || isDead )
 		{
 			return
 		}
@@ -85,14 +84,13 @@ class SpiderObj : GameObj
 		
 		if other is BoxObj
 		{
-			makeDead( true )
+			changeToDeathSprite()
 		}
 	}
 	
-	func makeDead( doDeathSound : Bool )
+	private func playDeathSound()
 	{
-		super.makeDead()
-		if ( doDeathSound && myScene != nil )
+		if ( myScene != nil )
 		{
 			myScene.playSoundEffect( Sounds.spiderDead )
 		}
@@ -100,6 +98,11 @@ class SpiderObj : GameObj
 	
 	override func move(framesPerSecond: Int) -> GameObj
 	{
+		if ( deathMode() )
+		{
+			return self
+		}
+		
 		if ( notEating() )
 		{
 			super.move( framesPerSecond )
@@ -127,6 +130,11 @@ class SpiderObj : GameObj
 	override func updateEvent( scene : GameScene, currentFPS : Int )
 	{
 		super.updateEvent(scene, currentFPS: currentFPS )
+		if ( deathMode() )
+		{
+			return
+		}
+		
 		if ( notEating() )
 		{
 			stepCounter = 0
@@ -143,7 +151,7 @@ class SpiderObj : GameObj
 				currentEatenPlant!.damage()
 				if ( currentEatenPlant is FirePlant )
 				{
-					self.makeDead( true )
+					changeToDeathSprite()
 				}
 			}
 		}
@@ -158,15 +166,15 @@ class SpiderObj : GameObj
 			return
 		}
 		
-		if ( !isDead )
+		if ( !deathMode() && !isDead )
 		{
 			changeToDeathSprite()
-			makeDead( true )
 		}
 	}
 	
 	private func changeToDeathSprite()
 	{
+		deathModeEvent( 30 )
 		var mySprite = "spiderLdead"
 		if ( horSpeed > 0 )
 		{
@@ -174,6 +182,10 @@ class SpiderObj : GameObj
 		}
 		
 		changeSprite( mySprite )
+		let newScale : CGFloat = 0.75
+		let action = SKAction.resizeToWidth( sprite.frame.width * newScale , height: sprite.frame.height * newScale, duration: 0.5 )
+		sprite.runAction( action )
+		playDeathSound()
 	}
 	
 	//fires when this object is considered outside the screen
@@ -182,11 +194,11 @@ class SpiderObj : GameObj
 		let spriteLength = sprite.frame.width * 2
 		if ( sprite.position.x < 0 - spriteLength )
 		{
-			makeDead( false )
+			makeDead()
 		}
 		else if ( sprite.position.x > roomWidth + spriteLength )
 		{
-			makeDead( false )
+			makeDead()
 		}
 	}
 }

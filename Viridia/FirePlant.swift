@@ -80,7 +80,10 @@ class FirePlant : PlantObj
 		
 		let maxLivesDoubled  = CGFloat( maxLives * 2 )
 		let newScale = ( CGFloat(lives) / maxLivesDoubled ) + 0.5
-		sprite.yScale = newScale
+		let action = SKAction.resizeToHeight( startHeight * newScale, duration: 0.5 )
+		sprite.runAction( action )
+		
+		//sprite.yScale = newScale
 	}
 	
 	override func damage()

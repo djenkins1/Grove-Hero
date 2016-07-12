@@ -22,12 +22,13 @@ class BombBox : BoxObj
 	{
 		if ( self.dieOnCollide && other.hasCollideEffect( self ) )
 		{
+			self.makeDead()
+			
 			if ( other is BoxObj )
 			{
 				onBoxHitsAnother( other as! BoxObj )
 			}
 			
-			self.makeDead()
 			if ( other is GroundObj )
 			{
 				let spiderCase = ( other as! GroundObj).damageMe()

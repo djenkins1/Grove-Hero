@@ -11,20 +11,32 @@
 //	TODO
 //==========
 //	(BUG)Newly spawned rocks that are moving upwards change down to 1 life when hit by bomb box
+//		need to keep track of what it has already hit, and not continue to hit what already collided
 //
 //	should have a tutorial system
-//		(?)link to it on the menu?
+//		link to it on the menu
 //		might be better in stages, i.e stage for:
+//			bomb boxes, drag to move left and right
+//				drag over a box to destroy it
 //			fire plants, tap to shoot flame
-//			sand spiders, tap to kill
-//			boxes, drag to move left and right
-//			different box types and what they do
+//				drag boxes so that they collide with the flame
+//			sand spiders spawn when bombBox hits sand, tap to kill
+//				can also drag any type of box onto the spider to also kill it
+//				if not killed they will eat the nearest plants they find until they are stopped
+//			heal boxes, drag onto mycelium(purple grass) to return it to grass
+//				drag onto fire plants to fire up the plant
+//			rock boxes, drag onto open grass/ground to have a rock built there
+//				drag onto a damaged rock to fortify it
 //	dialog box explaining the chosen game mode on SetupScene
-//	animate spider dying from being tapped
-//		TODO: dies too fast to notice any change, need to delay actual death until done with animation
-//			after sprite change delay works, add in shrinking animation on top
 //	time attack mode(called survival) that starts off at chosen difficulty and gets harder as you go along, see how long you can survive
 //	might create rock at x position of rockBox, not of ground it hit
+//	PreGenerate clouds on startup for CloudGenerator
+//	PreGenerate one or two boxes on startup for BoxGenerator
+//	step counter for generators should be based off seconds * framesPerSecond for readability
+//	change over pause message/tap to contine to:
+//		(FROM)Should probably have some way to get back to menu without losing/winning level
+//		pause menu, buttons for continue,restart,quit
+//			when continue is pressed, destroy all the buttons
 //
 //	Sound Effects
 //		(NEED SOUND)sound effect for fire plant firing when tapped
@@ -41,34 +53,34 @@
 //	(EDIT SPRITE)rock being built up animation for when rock gets hit by rock box
 //	(NEED SPRITE)particle effect for when rocks get hit by bombBox
 //	(NEED SPRITE)particle effect for when BombBox hits sand, creating spider
+//	(NEED SPRITE)death animation for fire plants
 //	(EDIT SPRITE)snail shells that spawn like rocks
 //		when bomb box hits snail shell, snail gets out and wreaks havoc on plants nearby similar to sand monster
 //		would need to recolor snail from pink?
 //
-//	Should probably have some way to get back to menu without losing/winning level
-//	PreGenerate clouds on startup for CloudGenerator
-//	PreGenerate one or two boxes on startup for BoxGenerator
+//	RockBox should kill any plants it touches ground of and replace them with Rocks
+//		(EDIT SPRITE)or have it fossilize the plant, making it stony and any bombbox that hits it explodes like a rock, killing plant
+//			spiders would also be unable to eat it,kills spider as soon as it tries
+//	When rock get hits by rock box and is already full lives:
+//		cause rock slide event that builds max of two rocks on either side
 //	save last played game mode/difficulkty selection and load in on startup
 //	maybe allow player to adjust how many boxes generated/how much time to survive in Setup Game Settings Scene
 //	Need to save best score for difficulty into file
 //	lose level animation, rocks all get destroyed and turns into desolate sandy wasteland
 //		maybe have a tumbleweed blow across the screen
 //	maybe have a 2 second pause between music on the list played(use a timer)
+//	save mute status on exit and load on entry of app
 //	(?)don't add buttons to view for credits/menu until the transition is done
-//	(?)RockBox should kill any plants it touches ground of and replace them with Rocks
-//		(EDIT SPRITE)or have it fossilize the plant, making it stony and any bombbox that hits it explodes like a rock, killing plant
-//			spiders would also be unable to eat it,kills spider as soon as it tries
 //	(?)heal box should also plant a plant(only one) when it hits empty ground
 //		(?)heal box should turn regular plants into fireplants(only one) when hits grassy ground
 //		Maybe have another box that does these two things similar to rockbox
-//	(?)should cacti only be on sand?
-//		i.e have shrooms turn into cacti?
-//	(?)step counter for generators should be based off seconds * framesPerSecond for readability
-//	(?)collisions should be based on non-transparent parts of the sprite
-//		probably not possible, would require complete rewrite of collision engine
-//		see GameObj init code for more info
 //	(?)spider-predation plant, the plant eats the spiders when they get close
 //	(?)Might have all boxes(except rockBox) damage rock on impact instead of just BombBox
+//
+//	(SCRAP)collisions should be based on non-transparent parts of the sprite
+//		probably not possible, would require complete rewrite of collision engine
+//		see GameObj init code for more info
+//	(SCRAP)should cacti only be on sand?
 //==========
 //
 
@@ -217,7 +229,6 @@ class GameScene: SKScene
         }
 		*/
 		
-		//create a box at the position that the user touched
 		for touch in touches
 		{
 			let location = touch.locationInNode(self)

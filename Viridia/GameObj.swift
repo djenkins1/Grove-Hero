@@ -38,6 +38,12 @@ class GameObj
 	
 	let mySprites : SpriteRoll
 	
+	var deathCounter : Int = -1
+	
+	let startHeight : CGFloat
+	
+	let startWidth : CGFloat
+	
 	init( spriteName : String, xStart : CGFloat, yStart : CGFloat )
 	{
 		mySprites = SpriteRoll()
@@ -46,6 +52,8 @@ class GameObj
 		sprite.position = CGPoint( x: xStart, y: yStart )
 		sprite.anchorPoint = CGPoint( x: 0.0, y: 0.0 )
 		sprite.zPosition = 10
+		startHeight = sprite.frame.height
+		startWidth = sprite.frame.width
 		
 		//this should take transparency into account for collisions?
 		//	also needs to rewrite collision, see bookmarks for bombz
@@ -55,6 +63,11 @@ class GameObj
 	//moves the sprite based on horSpeed and verSpeed adjusted to framesPerSecond
 	func move( framesPerSecond : Int ) -> GameObj
 	{
+		if ( deathMode() )
+		{
+			return self
+		}
+		
 		if ( myPath != nil )
 		{
 			if ( !( myPath.adjustSpeed( self ) ) )
@@ -128,6 +141,11 @@ class GameObj
 	//moves the objects sprite instantly to the coordinates provided
 	func jumpTo( x: CGFloat, y: CGFloat )
 	{
+		if ( deathMode() )
+		{
+			return
+		}
+		
 		self.sprite.position.x = x
 		self.sprite.position.y = y
 	}
@@ -139,6 +157,11 @@ class GameObj
 		{
 			return
 		}
+		
+		if ( deathMode() )
+		{
+			return
+		}
 
 		makeDead()
 	}
@@ -146,6 +169,11 @@ class GameObj
 	//fires when this object collides with another object
 	func collideEvent( other : GameObj )
 	{
+		if ( deathMode() )
+		{
+			return
+		}
+		
 		if ( self.dieOnCollide )
 		{
 			self.makeDead()
@@ -179,6 +207,19 @@ class GameObj
 	//fires when the update function is called in the GameScene
 	func updateEvent( scene : GameScene, currentFPS : Int )
 	{
+		if ( deathCounter > 0 )
+		{
+			deathCounter -= 1
+			return
+		}
+		
+		if ( deathCounter == 0 )
+		{
+			self.makeDead()
+			deathCounter = -1
+		}
+		
+		
 		if ( mySprites.animate( currentFPS ) )
 		{
 			if let newSprite = mySprites.getCurrentImageString()
@@ -206,5 +247,16 @@ class GameObj
 	func className() -> String
 	{
 		return NSStringFromClass(self.dynamicType)
+	}
+	
+	func deathMode() -> Bool
+	{
+		return ( deathCounter >= 0 )
+	}
+	
+	//to be called when obj enters death mode, does not die until deathCounter reaches zero
+	func deathModeEvent( newCounter : Int )
+	{
+		deathCounter = newCounter
 	}
 }
