@@ -14,7 +14,14 @@ class BoxGenerator : ObjGenerator
 	override init( screenWidth : CGFloat, screenHeight : CGFloat )
 	{
 		super.init( screenWidth: screenWidth , screenHeight: screenHeight )
-		self.secondsNeeded = 1.2
+		if ( scene != nil && scene.myController != nil )
+		{
+			self.secondsNeeded = scene.myController.diffiCons.secondsBetweenSpawns
+		}
+		else
+		{
+			self.secondsNeeded = 1.2
+		}
 		primePump()
 	}
 	

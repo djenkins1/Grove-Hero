@@ -22,9 +22,11 @@ class GameViewController: UIViewController
 	
 	var reachedLoaded = false
 	
-	var diffiCons : DifficultyConstant = MidDifficulty()
+	var diffiCons : DifficultyConstant = EasyDifficulty()
 	
-	var victoryCond : VictoryCondition = TimeVictory()//BoxVictory()
+	var victoryCond : VictoryCondition = BoxVictory()
+	
+	var tutorStage = TutorialStage.Done
 	
     override func viewDidLoad()
 	{
@@ -115,6 +117,8 @@ class GameViewController: UIViewController
 			return CreditScene( fileNamed: fileName )
 		case .Setup:
 			return SetupScene( fileNamed: fileName )
+		case .Tutorial:
+			return TutorialScene( fileNamed: fileName )
 		}
 	}
 	

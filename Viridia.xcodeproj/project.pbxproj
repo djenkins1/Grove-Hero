@@ -53,6 +53,8 @@
 		FEDF1F801D1520E5000EA427 /* GameObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDF1F7F1D1520E5000EA427 /* GameObj.swift */; };
 		FEDF5DE11D2093820047B953 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDF5DE01D2093820047B953 /* GameState.swift */; };
 		FEDF5DE31D2096DC0047B953 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDF5DE21D2096DC0047B953 /* MenuScene.swift */; };
+		FEEDC7FF1D35A27C00716E45 /* ParticleObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEDC7FE1D35A27C00716E45 /* ParticleObj.swift */; };
+		FEEDC8011D35AC5C00716E45 /* TutorialScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEDC8001D35AC5C00716E45 /* TutorialScene.swift */; };
 		FEF298AC1D2E29B200FBBE96 /* PauseObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF298AB1D2E29B200FBBE96 /* PauseObj.swift */; };
 		FEF727631D210F1E00697CD8 /* HealMycelium.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEF727561D210F1E00697CD8 /* HealMycelium.wav */; };
 		FEF727641D210F1E00697CD8 /* HealShroom.wav in Resources */ = {isa = PBXBuildFile; fileRef = FEF727571D210F1E00697CD8 /* HealShroom.wav */; };
@@ -118,6 +120,8 @@
 		FEDF1F7F1D1520E5000EA427 /* GameObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameObj.swift; sourceTree = "<group>"; };
 		FEDF5DE01D2093820047B953 /* GameState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		FEDF5DE21D2096DC0047B953 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		FEEDC7FE1D35A27C00716E45 /* ParticleObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleObj.swift; sourceTree = "<group>"; };
+		FEEDC8001D35AC5C00716E45 /* TutorialScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialScene.swift; sourceTree = "<group>"; };
 		FEF298AB1D2E29B200FBBE96 /* PauseObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseObj.swift; sourceTree = "<group>"; };
 		FEF727561D210F1E00697CD8 /* HealMycelium.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HealMycelium.wav; sourceTree = "<group>"; };
 		FEF727571D210F1E00697CD8 /* HealShroom.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HealShroom.wav; sourceTree = "<group>"; };
@@ -199,6 +203,7 @@
 				FEDF5DE21D2096DC0047B953 /* MenuScene.swift */,
 				FE76CE351D30D0740046022F /* SetupScene.swift */,
 				FECFFE551D27801A00A89CAE /* CreditScene.swift */,
+				FEEDC8001D35AC5C00716E45 /* TutorialScene.swift */,
 				FE269CCE1D239EFC00F445B5 /* LevelScene.swift */,
 				FEA65BA51D168CE20068A20A /* ObjGenerator.swift */,
 				FEA65BA71D168DF40068A20A /* BoxGenerator.swift */,
@@ -207,6 +212,7 @@
 				FECE0A9B1D273D600069F36F /* SpriteRoll.swift */,
 				FEDF1F7F1D1520E5000EA427 /* GameObj.swift */,
 				FEF298AB1D2E29B200FBBE96 /* PauseObj.swift */,
+				FEEDC7FE1D35A27C00716E45 /* ParticleObj.swift */,
 				FEBAB4851D24C5C500878678 /* SpiderObj.swift */,
 				FE881EA41D175D84003D2D57 /* BoxObj.swift */,
 				FE7C1FFB1D191B8B00513EC7 /* HealBox.swift */,
@@ -222,9 +228,9 @@
 				FECFFE531D277F7D00A89CAE /* Process.swift */,
 				FE11C8AE1D28853300DF6890 /* DifficultyConstant.swift */,
 				FE49B1961D2A42190078D8E1 /* VictoryCondition.swift */,
+				FE6D3A651D34AE8C0042D89B /* ButtonFactory.swift */,
 				FECFFE571D27868500A89CAE /* Credits.txt */,
 				FECFFE591D27887800A89CAE /* otherCredits.txt */,
-				FE6D3A651D34AE8C0042D89B /* ButtonFactory.swift */,
 			);
 			path = Viridia;
 			sourceTree = "<group>";
@@ -352,8 +358,10 @@
 				FEA65BA81D168DF40068A20A /* BoxGenerator.swift in Sources */,
 				FEDF1F701D151C07000EA427 /* GameViewController.swift in Sources */,
 				FE881EAB1D176DEC003D2D57 /* GroundObj.swift in Sources */,
+				FEEDC8011D35AC5C00716E45 /* TutorialScene.swift in Sources */,
 				FE7C1FF21D1900FB00513EC7 /* RockObj.swift in Sources */,
 				FEDF5DE31D2096DC0047B953 /* MenuScene.swift in Sources */,
+				FEEDC7FF1D35A27C00716E45 /* ParticleObj.swift in Sources */,
 				FE76CE361D30D0740046022F /* SetupScene.swift in Sources */,
 				FE7336B41D209FAA008E2E57 /* Sounds.swift in Sources */,
 				FEDF1F6A1D151C07000EA427 /* AppDelegate.swift in Sources */,

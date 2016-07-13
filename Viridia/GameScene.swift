@@ -17,20 +17,6 @@
 //		maybe have some kind of debug mode constant
 //	should have a tutorial system
 //		link to it on the menu
-//		might be better in stages, i.e stage for:
-//			bomb boxes, drag to move left and right
-//				drag over a box to destroy it
-//			fire plants, tap to shoot flame
-//				drag boxes so that they collide with the flame
-//			sand spiders spawn when bombBox hits sand, tap to kill
-//				can also drag any type of box onto the spider to also kill it
-//				if not killed they will eat the nearest plants they find until they are stopped
-//			heal boxes, drag onto mycelium(purple grass) to return it to grass
-//				drag onto fire plants to fire up the plant
-//			rock boxes, drag onto open grass/ground to have a rock built there
-//				drag onto a damaged rock to fortify it
-//	fire explosion animation for when fireball hits a box
-//		just use explosion sprite and have it get bigger using SKAction
 //	Change fonts on all buttons to the Display font for pause
 //	dialog box explaining the chosen game mode on SetupScene
 //	time attack mode(called survival) that starts off at chosen difficulty and gets harder as you go along, see how long you can survive
@@ -38,9 +24,9 @@
 //	might create rock at x position of rockBox, not of ground it hit
 //	PreGenerate clouds on startup for CloudGenerator
 //	PreGenerate one or two boxes on startup for BoxGenerator
-//	add seconds between spawns in difficultyConstants and use in BoxGenerator
 //	overhaul credits scene into using buttonFactory
 //	overhaul setup scene into using buttonFactory
+//	rock box should completely heal any rock that it hits
 //
 //	Sound Effects
 //		(SCRAP)sound effect for fire plant firing when tapped
@@ -570,5 +556,72 @@ class GameScene: SKScene
 		}
 		
 		return button
+	}
+	
+	func generateScenery()
+	{
+		let allGround = allObjectsOfType( GroundObj )
+		var remainingTopGround = [GroundObj]()
+		for obj in allGround
+		{
+			if ( obj is GroundObj && ( obj as! GroundObj).isTop )
+			{
+				remainingTopGround.append( (obj as! GroundObj) )
+			}
+		}
+		
+		var index = -1
+		var rightMostIndex = 0
+		for obj in remainingTopGround
+		{
+			index += 1
+			if ( obj.sprite.position.x > remainingTopGround[ rightMostIndex ].sprite.position.x )
+			{
+				rightMostIndex = index
+			}
+		}
+		
+		remainingTopGround.removeAtIndex( rightMostIndex )
+		
+		let totalGroundSpaces = remainingTopGround.count / 10
+		var numberOfRocks = myController!.diffiCons.rocksPerTenGround * totalGroundSpaces
+		var numberOfPlants = myController!.diffiCons.plantsPerTenGround * totalGroundSpaces
+		var numberOfFires = myController!.diffiCons.firePlantsPerTenGround * totalGroundSpaces
+		
+		while( remainingTopGround.count > 0 )
+		{
+			let randomIndex = Int( arc4random_uniform( UInt32( remainingTopGround.count ) ) )
+			let myGround = remainingTopGround[ randomIndex ]
+			remainingTopGround.removeAtIndex( randomIndex )
+			
+			if ( numberOfRocks > 0 )
+			{
+				let rockObj = RockObj(xStart: myGround.sprite.position.x, yStart: myGround.sprite.position.y )
+				rockObj.sprite.position.y += rockObj.sprite.frame.height
+				addGameObject( rockObj )
+				numberOfRocks -= 1
+				continue
+			}
+			else if ( numberOfPlants > 0 )
+			{
+				myGround.myPlant = PlantObj(xStart: myGround.sprite.position.x, yStart: myGround.sprite.position.y )
+				myGround.myPlant!.sprite.position.y += myGround.myPlant!.sprite.frame.height
+				addGameObject( myGround.myPlant! )
+				numberOfPlants -= 1
+				continue
+			}
+			else if ( numberOfFires > 0 )
+			{
+				myGround.myPlant = FirePlant(xStart: myGround.sprite.position.x, yStart: myGround.sprite.position.y )
+				myGround.myPlant!.sprite.position.y += myGround.myPlant!.sprite.frame.height - 32
+				addGameObject( myGround.myPlant! )
+				numberOfFires -= 1
+				continue
+			}
+			else
+			{
+				break
+			}
+		}
 	}
 }

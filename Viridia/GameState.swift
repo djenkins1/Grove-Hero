@@ -14,4 +14,5 @@ enum GameState
 	case Play
 	case Setup
 	case Credits
+	case Tutorial
 }

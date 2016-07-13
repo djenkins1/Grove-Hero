@@ -28,6 +28,8 @@ protocol DifficultyConstant
 	var boxSpawnRateLow : UInt32 { get }
 	
 	var boxChanceOfBomb : UInt32 { get }
+	
+	var secondsBetweenSpawns : CGFloat { get }
 }
 
 class EasyDifficulty : DifficultyConstant
@@ -50,6 +52,8 @@ class EasyDifficulty : DifficultyConstant
 	
 	var boxChanceOfBomb : UInt32
 	
+	var secondsBetweenSpawns : CGFloat
+	
 	init()
 	{
 		boxSpeedInSeconds = 10
@@ -61,6 +65,7 @@ class EasyDifficulty : DifficultyConstant
 		boxSpawnRateHigh = 5
 		boxSpawnRateLow = 3
 		boxChanceOfBomb = 5
+		secondsBetweenSpawns = 1.2
 	}
 }
 
@@ -83,6 +88,8 @@ class MidDifficulty : DifficultyConstant
 	var boxSpawnRateLow : UInt32
 	
 	var boxChanceOfBomb : UInt32
+	
+	var secondsBetweenSpawns : CGFloat
 
 	init()
 	{
@@ -95,6 +102,7 @@ class MidDifficulty : DifficultyConstant
 		boxSpawnRateHigh = 4
 		boxSpawnRateLow = 2
 		boxChanceOfBomb = 8
+		secondsBetweenSpawns = 1
 	}
 }
 
@@ -117,6 +125,8 @@ class HardDifficulty : DifficultyConstant
 	var boxSpawnRateLow : UInt32
 	
 	var boxChanceOfBomb : UInt32
+	
+	var secondsBetweenSpawns : CGFloat
 
 	init()
 	{
@@ -129,5 +139,6 @@ class HardDifficulty : DifficultyConstant
 		boxSpawnRateHigh = 4
 		boxSpawnRateLow = 3
 		boxChanceOfBomb = 12
+		secondsBetweenSpawns = 0.8
 	}
 }

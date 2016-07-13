@@ -69,73 +69,6 @@ class LevelScene : GameScene
 		}
 	}
 	
-	func generateScenery()
-	{
-		let allGround = allObjectsOfType( GroundObj )
-		var remainingTopGround = [GroundObj]()
-		for obj in allGround
-		{
-			if ( obj is GroundObj && ( obj as! GroundObj).isTop )
-			{
-				remainingTopGround.append( (obj as! GroundObj) )
-			}
-		}
-		
-		var index = -1
-		var rightMostIndex = 0
-		for obj in remainingTopGround
-		{
-			index += 1
-			if ( obj.sprite.position.x > remainingTopGround[ rightMostIndex ].sprite.position.x )
-			{
-				rightMostIndex = index
-			}
-		}
-		
-		remainingTopGround.removeAtIndex( rightMostIndex )
-		
-		let totalGroundSpaces = remainingTopGround.count / 10
-		var numberOfRocks = myController!.diffiCons.rocksPerTenGround * totalGroundSpaces
-		var numberOfPlants = myController!.diffiCons.plantsPerTenGround * totalGroundSpaces
-		var numberOfFires = myController!.diffiCons.firePlantsPerTenGround * totalGroundSpaces
-		
-		while( remainingTopGround.count > 0 )
-		{
-			let randomIndex = Int( arc4random_uniform( UInt32( remainingTopGround.count ) ) )
-			let myGround = remainingTopGround[ randomIndex ]
-			remainingTopGround.removeAtIndex( randomIndex )
-			
-			if ( numberOfRocks > 0 )
-			{
-				let rockObj = RockObj(xStart: myGround.sprite.position.x, yStart: myGround.sprite.position.y )
-				rockObj.sprite.position.y += rockObj.sprite.frame.height
-				addGameObject( rockObj )
-				numberOfRocks -= 1
-				continue
-			}
-			else if ( numberOfPlants > 0 )
-			{
-				myGround.myPlant = PlantObj(xStart: myGround.sprite.position.x, yStart: myGround.sprite.position.y )
-				myGround.myPlant!.sprite.position.y += myGround.myPlant!.sprite.frame.height
-				addGameObject( myGround.myPlant! )
-				numberOfPlants -= 1
-				continue
-			}
-			else if ( numberOfFires > 0 )
-			{
-				myGround.myPlant = FirePlant(xStart: myGround.sprite.position.x, yStart: myGround.sprite.position.y )
-				myGround.myPlant!.sprite.position.y += myGround.myPlant!.sprite.frame.height - 32
-				addGameObject( myGround.myPlant! )
-				numberOfFires -= 1
-				continue
-			}
-			else
-			{
-				break
-			}
-		}
-	}
-	
 	//adds all the generators
 	func setupGenerators()
 	{
@@ -181,24 +114,9 @@ class LevelScene : GameScene
 		
 		toReturn += shroomTileCount * 2
 		toReturn += grassTileCount * 5
-		//should dead plants be counted against score?
-		/*
-		let plantsLost = objectsDestroyed[ PlantObj( xStart: 0, yStart: 0 ).className() ]
-		let firesLost = objectsDestroyed[ FirePlant( xStart: 0, yStart: 0 ).className() ]
-		toReturn -= ( plantsLost != nil ? plantsLost! : 0 ) * 5
-		toReturn -= ( firesLost != nil ? firesLost! : 0 ) * 10
-		*/
 		
 		return toReturn
 	}
-	
-	/*
-	override func pauseAndShowMessage( message : String )
-	{
-		super.pauseAndShowMessage( message )
-		print( "Score: \(getScore())" )
-	}
-	*/
 
 	private func checkWin()
 	{
