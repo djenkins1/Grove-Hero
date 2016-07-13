@@ -103,16 +103,21 @@ class MenuScene : GameScene
 		let playButton = ButtonFactory.createCenteredButton( "Play", buttonType: ButtonType.MenuButton, yCenter: yPos )
 		
 		yPos += playButton.frame.height + padding
+		let helpButton = ButtonFactory.createCenteredButton( "Tutorial", buttonType: ButtonType.MenuButton, yCenter: yPos )
+		
+		yPos += helpButton.frame.height + padding
 		let credButton = ButtonFactory.createCenteredButton( "Credits", buttonType: ButtonType.MenuButton, yCenter: yPos )
 		
 		view.addSubview( gameTitle )
 		view.addSubview( playButton )
 		view.addSubview( credButton )
 		view.addSubview( muteButton )
+		view.addSubview( helpButton )
 		
 		playButton.addTarget( self, action: #selector( self.clickPlayButton) , forControlEvents: .TouchUpInside)
 		credButton.addTarget( self, action: #selector( self.clickCreditButton) , forControlEvents: .TouchUpInside)
 		muteButton.addTarget( self, action: #selector( self.clickMuteButton(_:)) , forControlEvents: .TouchUpInside)
+		helpButton.addTarget( self, action: #selector( self.clickHelpButton) , forControlEvents: .TouchUpInside)
 	}
 	
 	//returns the corresponding unicode character for the mute state provided
@@ -175,5 +180,13 @@ class MenuScene : GameScene
 	{
 		generatorList.append( BoxGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self) )
 		generatorList.append( CloudGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self) )
+	}
+	
+	func clickHelpButton()
+	{
+		if ( myController != nil )
+		{
+			myController.changeState( GameState.Tutorial )
+		}
 	}
 }

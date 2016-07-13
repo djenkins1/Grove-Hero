@@ -84,11 +84,11 @@ class GroundObj : GameObj
 		return false
 	}
 	
-	func createSpider()
+	func createSpider() -> SpiderObj!
 	{
 		if ( myScene == nil || !isTop )
 		{
-			return
+			return nil
 		}
 		
 		myScene!.playSoundEffect( Sounds.sandSmash )
@@ -97,6 +97,7 @@ class GroundObj : GameObj
 		let wantedY = spider.sprite.position.y + ( spider.sprite.frame.height * 1.5 )
 		spider.myPath = GamePath( x: spider.sprite.position.x, y: wantedY, speedInSeconds: 1, obj: spider )
 		myScene.queueGameObject( spider )
+		return spider
 	}
 	
 	//changes the ground back to grass if it was mycelium

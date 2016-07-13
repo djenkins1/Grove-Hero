@@ -16,6 +16,7 @@ class LevelScene : GameScene
 	
 	override func didMoveToView(view: SKView)
 	{
+		notifyVictory = true
 		createBackground()
 		setupGenerators()
 		createLayer( false , atLayer: 1 )

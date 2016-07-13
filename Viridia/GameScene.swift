@@ -15,8 +15,6 @@
 //
 //	(AFTER)Make sure that FPS counter no longer shown on presented/app store versions
 //		maybe have some kind of debug mode constant
-//	should have a tutorial system
-//		link to it on the menu
 //	Change fonts on all buttons to the Display font for pause
 //	dialog box explaining the chosen game mode on SetupScene
 //	time attack mode(called survival) that starts off at chosen difficulty and gets harder as you go along, see how long you can survive
@@ -27,6 +25,9 @@
 //	overhaul credits scene into using buttonFactory
 //	overhaul setup scene into using buttonFactory
 //	rock box should completely heal any rock that it hits
+//	tutorial font size should be based on screen size
+//		have some code, might try to use screen size rectangle instead of frame
+//	should somehow wait until rock is created on RockBox tutorial before the tutorial finishes
 //
 //	Sound Effects
 //		(SCRAP)sound effect for fire plant firing when tapped
@@ -38,6 +39,7 @@
 //	============
 //	(SCRAP)More accurate portrayal of boxes so that what is inside them has an icon of it
 //	(SCRAP)Animate spider eating a plant
+//	(NEED SPRITE)Current explosion from Kenney needs to be more cartoony to fit theme
 //	(NEED SPRITE)particle effect for when box hits ground, sand spilling out/spores
 //	(EDIT SPRITE)rock being built up animation for when rock gets hit by rock box
 //	(NEED SPRITE)particle effect for when rocks get hit by bombBox
@@ -54,11 +56,16 @@
 //			spiders would also be unable to eat it,kills spider as soon as it tries
 //	When rock get hits by rock box and is already full lives:
 //		cause rock slide event that builds max of two rocks on either side
-//	save last played game mode/difficulkty selection and load in on startup
-//	Need to save best score for difficulty into file
 //	lose level animation, rocks all get destroyed and turns into desolate sandy wasteland
 //		maybe have a tumbleweed blow across the screen
+//
+//	SAVE FILES:
+//	save last played game mode/difficulkty selection and load in on startup
 //	save mute status on exit and load on entry of app
+//	save tutorial best stage on exit and load on entry of app
+//	if tutorial has not been started, play should automatically redirect to tutorial
+//	Need to save best score for difficulty into file
+//
 //	(?)maybe allow player to adjust how many boxes generated/how much time to survive in Setup Game Settings Scene
 //	(?)maybe have a 2 second pause between music on the list played(use a timer)
 //	(?)maybe utilize second bombBox(yellow) sprite in a bomb going off animation when bombBox collides with something
@@ -113,6 +120,8 @@ class GameScene: SKScene
 	//a list of object class names, and how many instances of said class have been destroyed
 	var objectsDestroyed = [ String : Int ]()
 	
+	var notifyVictory = false
+	
 	/*
 	override func didMoveToView(view: SKView)
 	{
@@ -149,7 +158,7 @@ class GameScene: SKScene
 			return
 		}
 		
-		if ( myController != nil )
+		if ( myController != nil && notifyVictory )
 		{
 			myController.victoryCond.updateEvent( self , currentFPS: currentFPS )
 		}
@@ -558,7 +567,7 @@ class GameScene: SKScene
 		return button
 	}
 	
-	func generateScenery()
+	func getTopGround() -> [GroundObj]
 	{
 		let allGround = allObjectsOfType( GroundObj )
 		var remainingTopGround = [GroundObj]()
@@ -569,6 +578,13 @@ class GameScene: SKScene
 				remainingTopGround.append( (obj as! GroundObj) )
 			}
 		}
+		
+		return remainingTopGround
+	}
+	
+	func generateScenery()
+	{
+		var remainingTopGround = getTopGround()
 		
 		var index = -1
 		var rightMostIndex = 0

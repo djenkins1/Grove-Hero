@@ -26,7 +26,7 @@ class GameViewController: UIViewController
 	
 	var victoryCond : VictoryCondition = BoxVictory()
 	
-	var tutorStage = TutorialStage.Done
+	var tutorStage = TutorialStageList( myStage: TutorialStage.BombRock )
 	
     override func viewDidLoad()
 	{

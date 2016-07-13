@@ -55,7 +55,6 @@ class BoxGenerator : ObjGenerator
 			}
 			
 			let highestY = middleHeight + roomHeight
-			toReturn!.generatedBy = self
 			toReturn.myPath = GamePath( x: x, y: 0, speedInSeconds: scene!.myController!.diffiCons.boxSpeedInSeconds , startX: x, startY:  highestY )
 			toReturn.myPath!.adjustSpeed( toReturn, otherThanZero: true )
 		}
