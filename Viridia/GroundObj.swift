@@ -136,16 +136,16 @@ class GroundObj : GameObj
 		}
 	}
 	
-	func rockMe()
+	func rockMe() -> Bool
 	{
 		if ( !isTop )
 		{
-			return
+			return false
 		}
 		
 		if ( myPlant != nil )
 		{
-			return
+			return false
 		}
 		
 		if ( myScene != nil )
@@ -156,5 +156,6 @@ class GroundObj : GameObj
 		//myRock.sprite.position.y += myRock.sprite.frame.height
 		myRock.myPath = GamePath( x: sprite.position.x, y: sprite.position.y + myRock.sprite.frame.height , speedInSeconds: CGFloat( 0.75 ), obj: myRock )
 		self.myScene.queueGameObject( myRock )
+		return true
 	}
 }

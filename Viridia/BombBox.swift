@@ -31,6 +31,15 @@ class BombBox : BoxObj
 			
 			if ( other is GroundObj )
 			{
+				if ( ( other as! GroundObj ).isShroomed )
+				{
+					other.makeExplosion( self, spriteName: "explodeSand" )
+				}
+				else
+				{
+					other.makeExplosion( self, spriteName: "explodeSand" )
+				}
+				
 				let spiderCase = ( other as! GroundObj).damageMe()
 				if ( !spiderOut && spiderCase )
 				{

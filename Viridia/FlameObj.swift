@@ -27,32 +27,10 @@ class FlameObj : GameObj
 			if ( myScene != nil )
 			{
 				myScene!.playSoundEffect( Sounds.flameHit )
-				makeExplosion( other  )
+				makeExplosion( other, spriteName: "explosion" )
 			}
 			makeDead()
 		}
 		
-	}
-	
-	private func makeExplosion( other : GameObj )
-	{
-		if ( myScene == nil )
-		{
-			return
-		}
-		
-		if ( isDead )
-		{
-			return
-		}
-		
-		let explodeObj = ParticleObj( spriteName: "explosion", xStart: other.sprite.position.x, yStart: other.sprite.position.y )
-		explodeObj.sprite.xScale = 0.1
-		explodeObj.sprite.yScale = 0.1
-		let secondsNeeded = 0.25
-		let action = SKAction.scaleTo( 0.3 , duration: secondsNeeded )
-		explodeObj.sprite.runAction( action )
-		explodeObj.deathModeEvent( Int( secondsNeeded * 60 ) )
-		myScene.queueGameObject( explodeObj )
 	}
 }

@@ -31,12 +31,16 @@ class RockBox : BoxObj
 			if ( other is RockObj )
 			{
 				( other as! RockObj).incrementLives()
+				makeExplosion( self, spriteName: "explodeRock" )
 				rockedOut = true
 			}
 			else if ( other is GroundObj )
 			{
-				(other as! GroundObj).rockMe()
-				rockedOut = true
+				rockedOut = (other as! GroundObj).rockMe()
+				if ( rockedOut )
+				{
+					makeExplosion( self, spriteName: "explodeRock" )
+				}
 			}
 			else if ( other is BoxObj )
 			{

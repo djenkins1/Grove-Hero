@@ -259,4 +259,26 @@ class GameObj
 	{
 		deathCounter = newCounter
 	}
+	
+	func makeExplosion( other : GameObj , spriteName : String )
+	{
+		if ( myScene == nil )
+		{
+			return
+		}
+		
+		if ( isDead )
+		{
+			return
+		}
+		
+		let explodeObj = ParticleObj( spriteName: spriteName, xStart: other.sprite.position.x + ( other.sprite.frame.width / 2 ), yStart: other.sprite.position.y + ( other.sprite.frame.height / 2 ) )
+		explodeObj.sprite.xScale = 0.1
+		explodeObj.sprite.yScale = 0.1
+		let secondsNeeded = 0.33
+		let action = SKAction.scaleTo( 0.3 , duration: secondsNeeded )
+		explodeObj.sprite.runAction( action )
+		explodeObj.deathModeEvent( Int( secondsNeeded * 60 ) )
+		myScene.queueGameObject( explodeObj )
+	}
 }
