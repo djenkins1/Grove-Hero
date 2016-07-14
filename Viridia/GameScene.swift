@@ -10,6 +10,7 @@
 //==========
 //	TODO
 //==========
+//	TEST ON IPAD and smaller devices in emulator
 //	(AFTER)Make sure that FPS counter no longer shown on presented/app store versions
 //		maybe have some kind of debug mode constant
 //	change Kenney to Kennel.nl in credits
@@ -24,11 +25,14 @@
 //		see CloudGenerator for basis
 //	tutorial font size should be based on screen size
 //		have some code, might try to use screen size rectangle instead of frame
-//	rockExplode particle animation seems a bit off, might be due to positioning
-//		sandExplode particle animation seems a bit off as well
-//		might have a second makeExplosion method that takes x/y params and position it a bit lower so that only halfway appears
-//		mycel explode animation needed, will be similar to rock/sandExplode
 //	should somehow wait until rock is created on RockBox tutorial before the tutorial finishes
+//	snail shells that spawn like rocks
+//		when bomb box hits snail shell, snail gets out and wreaks havoc on plants nearby similar to sand monster
+//	plants should make plantDie sound effect when killed by being eaten by spider
+//	add explosions for:
+//		bomb box hitting rock(use sand)
+//		bomb box hitting fire plant(use spores)
+//		heal box hitting fire plant(explodeGrass)
 //	fossilized plants(including fireplant)
 //		do not count as an actual plant
 //		cannot be healed
@@ -37,9 +41,12 @@
 //		caused by rockBox hitting firePlant/ground with plant on it
 //		firePlants that turn fossilized should keep its yScale
 //		spiders will ignore fossils, since they are not actual plants
-//	snail shells that spawn like rocks
-//		when bomb box hits snail shell, snail gets out and wreaks havoc on plants nearby similar to sand monster
-//	plants should make plantDie sound effect when killed by being eaten by spider
+//	SAVE FILES:
+//		save last played game mode/difficulkty selection and load in on startup
+//		save mute status on exit and load on entry of app
+//		save tutorial best stage on exit and load on entry of app
+//		if tutorial has not been started, play should automatically redirect to tutorial
+//		Need to save best score for difficulty into file
 //
 //
 //	-------------
@@ -49,18 +56,16 @@
 //	(SCRAP)rock being built up animation for when rock gets hit by rock box
 //	(SCRAP)Animate spider eating a plant
 //	(SCRAP)death animation for fire plants
+//	(SCRAP)collisions should be based on non-transparent parts of the sprite
+//		probably not possible, would require complete rewrite of collision engine
+//		see GameObj init code for more info
+//	(SCRAP)should cacti only be on sand?
 //
 //	When rock get hits by rock box and is already full lives:
 //		cause rock slide event that builds max of two rocks on either side
 //	lose level animation, rocks all get destroyed and turns into desolate sandy wasteland
 //		maybe have a tumbleweed blow across the screen
 //
-//	SAVE FILES:
-//	save last played game mode/difficulkty selection and load in on startup
-//	save mute status on exit and load on entry of app
-//	save tutorial best stage on exit and load on entry of app
-//	if tutorial has not been started, play should automatically redirect to tutorial
-//	Need to save best score for difficulty into file
 //
 //	(?)maybe allow player to adjust how many boxes generated/how much time to survive in Setup Game Settings Scene
 //	(?)maybe have a 2 second pause between music on the list played(use a timer)
@@ -71,11 +76,6 @@
 //		Maybe have another box that does these two things similar to rockbox
 //	(?)spider-predation plant, the plant eats the spiders when they get close
 //	(?)Might have all boxes(except rockBox) damage rock on impact instead of just BombBox
-//
-//	(SCRAP)collisions should be based on non-transparent parts of the sprite
-//		probably not possible, would require complete rewrite of collision engine
-//		see GameObj init code for more info
-//	(SCRAP)should cacti only be on sand?
 //==========
 //
 

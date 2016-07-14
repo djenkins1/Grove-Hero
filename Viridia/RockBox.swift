@@ -32,7 +32,7 @@ class RockBox : BoxObj
 			{
 				//( other as! RockObj).incrementLives()
 				( other as! RockObj).healToFull()
-				makeExplosion( self, spriteName: "explodeRock" )
+				makeExplosion( other, spriteName: "explodeRock" )
 				rockedOut = true
 			}
 			else if ( other is GroundObj )
@@ -41,10 +41,12 @@ class RockBox : BoxObj
 				if ( rockedOut )
 				{
 					makeExplosion( self, spriteName: "explodeRock" )
+					//makeExplosion( "explodeRock" , xPos : self.sprite.position.x + ( self.sprite.frame.width / 2 ), yPos : other.sprite.position.y )
 				}
 			}
 			else if ( other is BoxObj )
 			{
+				makeExplosion( self, spriteName: "explodeRock" )
 				onBoxHitsAnother( other as! BoxObj )
 				rockedOut = true
 			}

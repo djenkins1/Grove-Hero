@@ -15,7 +15,7 @@ class ParticleObj : GameObj
 	{
 		super.createEvent( scene )
 		sprite.anchorPoint = CGPoint( x: 0.5, y: 0.5 )
-		sprite.zPosition = 5
+		sprite.zPosition = 15
 		return self
 	}
 	

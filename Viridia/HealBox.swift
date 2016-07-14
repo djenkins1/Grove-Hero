@@ -22,12 +22,18 @@ class HealBox : BoxObj
 		{
 			if ( other is BoxObj )
 			{
+				makeExplosion( self, spriteName: "explodeGrass" )
 				onBoxHitsAnother( other as! BoxObj )
 			}
 			
 			if ( other is GroundObj )
 			{
-				(other as! GroundObj).healMe()
+				let otherGround = ( other as! GroundObj )
+				if ( otherGround.isShroomed && !otherGround.isSandy )
+				{
+					other.makeExplosion( self, spriteName: "explodeGrass" )
+				}
+				otherGround.healMe()
 			}
 			
 			self.makeDead()

@@ -22,11 +22,10 @@ class BombBox : BoxObj
 	{
 		if ( self.dieOnCollide && other.hasCollideEffect( self ) )
 		{
-			self.makeDead()
-			
 			if ( other is BoxObj )
 			{
 				onBoxHitsAnother( other as! BoxObj )
+				makeExplosion( self, spriteName: "explodeMycel" )
 			}
 			
 			if ( other is GroundObj )
@@ -37,7 +36,7 @@ class BombBox : BoxObj
 				}
 				else
 				{
-					other.makeExplosion( self, spriteName: "explodeSand" )
+					other.makeExplosion( self, spriteName: "explodeMycel" )
 				}
 				
 				let spiderCase = ( other as! GroundObj).damageMe()
@@ -47,6 +46,8 @@ class BombBox : BoxObj
 					( other as! GroundObj).createSpider()
 				}
 			}
+			
+			self.makeDead()
 		}
 	}
 }

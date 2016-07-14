@@ -262,6 +262,11 @@ class GameObj
 	
 	func makeExplosion( other : GameObj , spriteName : String )
 	{
+		makeExplosion( spriteName, xPos: other.sprite.position.x + ( other.sprite.frame.width / 2 ), yPos: other.sprite.position.y + ( other.sprite.frame.height / 2 ) )
+	}
+	
+	func makeExplosion( spriteName : String, xPos : CGFloat, yPos : CGFloat )
+	{
 		if ( myScene == nil )
 		{
 			return
@@ -272,7 +277,7 @@ class GameObj
 			return
 		}
 		
-		let explodeObj = ParticleObj( spriteName: spriteName, xStart: other.sprite.position.x + ( other.sprite.frame.width / 2 ), yStart: other.sprite.position.y + ( other.sprite.frame.height / 2 ) )
+		let explodeObj = ParticleObj( spriteName: spriteName, xStart: xPos, yStart: yPos )
 		explodeObj.sprite.xScale = 0.1
 		explodeObj.sprite.yScale = 0.1
 		let secondsNeeded = 0.33
@@ -281,4 +286,5 @@ class GameObj
 		explodeObj.deathModeEvent( Int( secondsNeeded * 60 ) )
 		myScene.queueGameObject( explodeObj )
 	}
+	
 }
