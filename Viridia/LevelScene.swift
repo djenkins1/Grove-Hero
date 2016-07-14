@@ -73,8 +73,8 @@ class LevelScene : GameScene
 	//adds all the generators
 	func setupGenerators()
 	{
-		generatorList.append( BoxGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self) )
-		generatorList.append( CloudGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self) )
+		generatorList.append( BoxGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self).entryGenerate() )
+		generatorList.append( CloudGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self).entryGenerate() )
 	}
 	
 	func getScore() -> Int

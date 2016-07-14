@@ -162,7 +162,6 @@ class MenuScene : GameScene
 	{
 		if ( myController != nil )
 		{
-			//myController.changeState( GameState.Play)
 			myController.changeState( GameState.Setup )
 		}
 	}
@@ -178,8 +177,8 @@ class MenuScene : GameScene
 	//adds all the generators
 	func setupGenerators()
 	{
-		generatorList.append( BoxGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self) )
-		generatorList.append( CloudGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self) )
+		generatorList.append( BoxGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self).entryGenerate() )
+		generatorList.append( CloudGenerator( screenWidth: self.frame.width, screenHeight: self.frame.height ).createEvent(self).entryGenerate() )
 	}
 	
 	func clickHelpButton()

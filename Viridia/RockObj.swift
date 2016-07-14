@@ -13,6 +13,8 @@ class RockObj : GameObj
 {
 	var lives : Int = 3
 	
+	var collideSteps = 0
+	
 	init( xStart: CGFloat, yStart: CGFloat )
 	{
 		super.init( spriteName: "rock3" , xStart: xStart, yStart: yStart )
@@ -21,11 +23,22 @@ class RockObj : GameObj
 	
 	override func collideEvent(other: GameObj)
 	{
-		if other is BombBox
+		if other is BombBox && collideSteps == 0
 		{
 			decrementLives()
+			//add a step delay so that the bombBox does not double dip and cause this rock to lose 2 lives
+			collideSteps = 4
 		}
 		
+	}
+	
+	override func updateEvent(scene: GameScene, currentFPS: Int)
+	{
+		super.updateEvent( scene , currentFPS: currentFPS )
+		if ( collideSteps > 0 )
+		{
+			collideSteps -= 1
+		}
 	}
 	
 	func decrementLives()
@@ -61,6 +74,17 @@ class RockObj : GameObj
 		{
 			lives = 3
 		}
+		changeSprite( "rock\(lives)" )
+	}
+	
+	func healToFull()
+	{
+		if ( myScene != nil )
+		{
+			myScene!.playSoundEffect( Sounds.rockLives )
+		}
+		
+		lives = 3
 		changeSprite( "rock\(lives)" )
 	}
 }

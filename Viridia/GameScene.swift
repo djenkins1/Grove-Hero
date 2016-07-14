@@ -10,9 +10,6 @@
 //==========
 //	TODO
 //==========
-//	(BUG)Newly spawned rocks that are moving upwards change down to 1 life when hit by bomb box
-//		need to keep track of what it has already hit, and not continue to hit what already collided
-//
 //	(AFTER)Make sure that FPS counter no longer shown on presented/app store versions
 //		maybe have some kind of debug mode constant
 //	change Kenney to Kennel.nl in credits
@@ -23,9 +20,8 @@
 //	time attack mode(called survival) that starts off at chosen difficulty and gets harder as you go along, see how long you can survive
 //		would have to take into account restart button, currently just transitions to play again with all difficulty settings the same
 //	might create rock at x position of rockBox, not of ground it hit
-//	PreGenerate clouds on startup for CloudGenerator
 //	PreGenerate one or two boxes on startup for BoxGenerator
-//	rock box should completely heal any rock that it hits
+//		see CloudGenerator for basis
 //	tutorial font size should be based on screen size
 //		have some code, might try to use screen size rectangle instead of frame
 //	rockExplode particle animation seems a bit off, might be due to positioning

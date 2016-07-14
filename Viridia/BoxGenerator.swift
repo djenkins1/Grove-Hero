@@ -51,7 +51,6 @@ class BoxGenerator : ObjGenerator
 			else
 			{
 				toReturn = BombBox( xStart: x, yStart: y )
-				totalGenerated += 1
 			}
 			
 			let highestY = middleHeight + roomHeight
@@ -86,5 +85,10 @@ class BoxGenerator : ObjGenerator
 		}
 
 		return toReturn
+	}
+	
+	override func entryGenerate()  -> ObjGenerator
+	{
+		return self
 	}
 }

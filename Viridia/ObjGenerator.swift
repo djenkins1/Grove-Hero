@@ -21,15 +21,12 @@ class ObjGenerator
 	
 	let roomHeight : CGFloat
 	
-	var totalGenerated : Int
-	
 	var scene : GameScene!
 	
 	init( screenWidth : CGFloat, screenHeight : CGFloat )
 	{
 		self.roomHeight = screenHeight
 		self.roomWidth = screenWidth
-		self.totalGenerated = 0
 	}
 	
 	func createEvent( scene : GameScene ) -> ObjGenerator
@@ -62,5 +59,10 @@ class ObjGenerator
 	func stepsNeeded( currentFPS : Int ) -> CGFloat
 	{
 		return secondsNeeded * CGFloat( currentFPS )
+	}
+	
+	func entryGenerate() -> ObjGenerator
+	{
+		return self
 	}
 }

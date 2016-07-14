@@ -30,7 +30,8 @@ class RockBox : BoxObj
 		{
 			if ( other is RockObj )
 			{
-				( other as! RockObj).incrementLives()
+				//( other as! RockObj).incrementLives()
+				( other as! RockObj).healToFull()
 				makeExplosion( self, spriteName: "explodeRock" )
 				rockedOut = true
 			}
