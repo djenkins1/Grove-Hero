@@ -81,10 +81,12 @@ class TutorialScene : GameScene
 		{
 			if ( myController.tutorStage.nextIndex() )
 			{
+				myController.saveMachine.setTutorialStage( myController.tutorStage.current() )
 				myController.changeState( .Tutorial )
 			}
 			else
 			{
+				myController.saveMachine.setTutorialStage( .Done )
 				myController.diffiCons = EasyDifficulty()
 				myController.victoryCond = TimeVictory()
 				myController.changeState( .Play )
@@ -333,7 +335,7 @@ class TutorialScene : GameScene
 	}
 }
 
-enum TutorialStage
+enum TutorialStage : String
 {
 	case BombRock
 	case FireBomb
@@ -341,6 +343,11 @@ enum TutorialStage
 	case HealShrooms
 	case RockSpawn
 	case Done
+	
+	static func first() -> TutorialStage
+	{
+		return BombRock
+	}
 }
 
 class TutorialStageList

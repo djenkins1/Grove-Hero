@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-protocol DifficultyConstant
+protocol DifficultyConstant : SaveConstant
 {
 	var boxSpeedInSeconds : CGFloat { get }// = 10
 	
@@ -67,6 +67,11 @@ class EasyDifficulty : DifficultyConstant
 		boxChanceOfBomb = 5
 		secondsBetweenSpawns = 1.2
 	}
+	
+	func myName() -> String
+	{
+		return "Easy"
+	}
 }
 
 class MidDifficulty : DifficultyConstant
@@ -104,6 +109,11 @@ class MidDifficulty : DifficultyConstant
 		boxChanceOfBomb = 8
 		secondsBetweenSpawns = 1
 	}
+	
+	func myName() -> String
+	{
+		return "Med"
+	}
 }
 
 class HardDifficulty : DifficultyConstant
@@ -140,5 +150,10 @@ class HardDifficulty : DifficultyConstant
 		boxSpawnRateLow = 3
 		boxChanceOfBomb = 12
 		secondsBetweenSpawns = 0.8
+	}
+	
+	func myName() -> String
+	{
+		return "Hard"
 	}
 }

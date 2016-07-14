@@ -26,11 +26,17 @@ class GameViewController: UIViewController
 	
 	var victoryCond : VictoryCondition = BoxVictory()
 	
-	var tutorStage = TutorialStageList( myStage: TutorialStage.BombRock )
+	let tutorStage = TutorialStageList( myStage: TutorialStage.BombRock )
+	
+	let saveMachine = SaveAdaptor()
 	
     override func viewDidLoad()
 	{
         super.viewDidLoad()
+		isMuted = saveMachine.getMuteStatus()
+		
+		print( saveMachine.getTutorialStage().rawValue )
+		setupMusic()
 		if ( !isMuted )
 		{
 			playMusic()
@@ -100,8 +106,6 @@ class GameViewController: UIViewController
 		{
 			print( "Could not change to state \(toState)" )
 		}
-		
-
 	}
 	
 	func returnSceneFromState( state : GameState ) -> GameScene?
@@ -125,10 +129,14 @@ class GameViewController: UIViewController
 	//plays the background music in a loop
 	func playMusic()
 	{
-		playMusicList = Sounds.randomMusicList()
-		musicPlayer = AVPlayer( playerItem: playMusicList[ 0 ].getItem() )
 		musicPlayer.play()
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.playerDidFinishPlaying(_:)), name: AVPlayerItemDidPlayToEndTimeNotification, object: musicPlayer.currentItem )
+	}
+	
+	func setupMusic()
+	{
+		playMusicList = Sounds.randomMusicList()
+		musicPlayer = AVPlayer( playerItem: playMusicList[ 0 ].getItem() )
 	}
 	
 	//called when the player finishes a song
@@ -184,6 +192,7 @@ class GameViewController: UIViewController
 	func setMuted( muteState : Bool )
 	{
 		isMuted = muteState
+		saveMachine.setMuteStatus( isMuted )
 		if ( isMuted )
 		{
 			musicPlayer.pause()

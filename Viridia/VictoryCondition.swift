@@ -9,7 +9,12 @@
 import Foundation
 import SpriteKit
 
-protocol VictoryCondition
+protocol SaveConstant
+{
+	func myName() -> String
+}
+
+protocol VictoryCondition : SaveConstant
 {
 	func hasWon( scene : GameScene ) -> Bool
 	
@@ -78,6 +83,11 @@ class BoxVictory : VictoryCondition
 		}
 		
 		return totalToGenerate() - total
+	}
+	
+	func myName() -> String
+	{
+		return "Boxed"
 	}
 }
 
@@ -157,5 +167,10 @@ class TimeVictory : VictoryCondition
 		{
 			timerLabel.text = timerClockLeft( currentTime )
 		}
+	}
+	
+	func myName() -> String
+	{
+		return "Timed"
 	}
 }

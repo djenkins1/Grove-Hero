@@ -13,22 +13,20 @@
 //	TEST ON IPAD and smaller devices in emulator
 //	(AFTER)Make sure that FPS counter no longer shown on presented/app store versions
 //		maybe have some kind of debug mode constant
-//	change Kenney to Kennel.nl in credits
+//	change Kenney to "Kenney.nl" in credits
 //	change mute button to just using icons on menu( and maybe move it to top right corner like pause button )
-//	(?)Change fonts on all buttons to the Display font for pause
-//			change over might affect text for mute button?
-//	dialog box explaining the chosen game mode on SetupScene
+//		(AFTER)Change fonts on all buttons to the Display font for pause
+//	(?-VER)dialog box explaining the chosen game mode on SetupScene
 //	time attack mode(called survival) that starts off at chosen difficulty and gets harder as you go along, see how long you can survive
 //		would have to take into account restart button, currently just transitions to play again with all difficulty settings the same
-//	might create rock at x position of rockBox, not of ground it hit
 //	PreGenerate one or two boxes on startup for BoxGenerator
 //		see CloudGenerator for basis
 //	tutorial font size should be based on screen size
 //		have some code, might try to use screen size rectangle instead of frame
 //	should somehow wait until rock is created on RockBox tutorial before the tutorial finishes
-//	snail shells that spawn like rocks
-//		when bomb box hits snail shell, snail gets out and wreaks havoc on plants nearby similar to sand monster
+//		have specialObj be nil, and on update if there have been any rocks created set specialObj to that rock and add in deathMode for 60 frames
 //	plants should make plantDie sound effect when killed by being eaten by spider
+//	clouds being created on start really drop the frame rate momentarily
 //	add explosions for:
 //		bomb box hitting rock(use sand)
 //		bomb box hitting fire plant(use spores)
@@ -41,17 +39,21 @@
 //		caused by rockBox hitting firePlant/ground with plant on it
 //		firePlants that turn fossilized should keep its yScale
 //		spiders will ignore fossils, since they are not actual plants
-//	SAVE FILES:
-//		save last played game mode/difficulkty selection and load in on startup
-//		save mute status on exit and load on entry of app
-//		save tutorial best stage on exit and load on entry of app
+//	SAVE FILES(VIA PREFERENCES):
+//		IMPORTANT!: Should build a SaveAdaptor in case of future changes, i.e moving away from Preferences...
+//		keep key of GameMode_Difficulty and save best score under that key
+//			when level is done, if score is better save it and show user that it is better
+//			load in scores on game load
+//		PREFERS:
+//			(DONE)save mute status on exit and load on entry of app
+//			save tutorial best stage on exit and load on entry of app
+//				have saving/loading done, just need to advance tutorStageList to correct stage from load
+//			save last mode/difficulty combo and load on entry of app
+//				have code in SaveAdaptor, just need to actually call it
 //		if tutorial has not been started, play should automatically redirect to tutorial
-//		Need to save best score for difficulty into file
+//			just a matter of checking tutorStage.current after load and if it is not .Done then redirect to tutorial
 //
 //
-//	-------------
-//	FUTURE
-//	============
 //	(SCRAP)More accurate portrayal of boxes so that what is inside them has an icon of it
 //	(SCRAP)rock being built up animation for when rock gets hit by rock box
 //	(SCRAP)Animate spider eating a plant
@@ -61,11 +63,17 @@
 //		see GameObj init code for more info
 //	(SCRAP)should cacti only be on sand?
 //
+//====================
+//	FUTURE VERSIONS
+//====================
+//	snail shells that spawn like rocks
+//		when bomb box hits snail shell, snail gets out and wreaks havoc on plants nearby similar to sand monster
 //	When rock get hits by rock box and is already full lives:
 //		cause rock slide event that builds max of two rocks on either side
 //	lose level animation, rocks all get destroyed and turns into desolate sandy wasteland
 //		maybe have a tumbleweed blow across the screen
-//
+//	might create rock at x position of rockBox, not of ground it hit
+//====================
 //
 //	(?)maybe allow player to adjust how many boxes generated/how much time to survive in Setup Game Settings Scene
 //	(?)maybe have a 2 second pause between music on the list played(use a timer)

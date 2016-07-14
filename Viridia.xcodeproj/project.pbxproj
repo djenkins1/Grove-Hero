@@ -16,6 +16,7 @@
 		FE2A485B1D20A407000D2CF2 /* FlameHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE2A485A1D20A407000D2CF2 /* FlameHit.wav */; };
 		FE2A485E1D20A422000D2CF2 /* RockLives.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE2A485D1D20A422000D2CF2 /* RockLives.wav */; };
 		FE49B1971D2A42190078D8E1 /* VictoryCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE49B1961D2A42190078D8E1 /* VictoryCondition.swift */; };
+		FE59A9371D377869001CA8A9 /* SaveAdaptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59A9361D377869001CA8A9 /* SaveAdaptor.swift */; };
 		FE608F2F1D1E685F005F0DA5 /* GamePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE608F2E1D1E685F005F0DA5 /* GamePath.swift */; };
 		FE6D3A661D34AE8C0042D89B /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6D3A651D34AE8C0042D89B /* ButtonFactory.swift */; };
 		FE7336B41D209FAA008E2E57 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7336B31D209FAA008E2E57 /* Sounds.swift */; };
@@ -81,6 +82,7 @@
 		FE2A485A1D20A407000D2CF2 /* FlameHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FlameHit.wav; sourceTree = "<group>"; };
 		FE2A485D1D20A422000D2CF2 /* RockLives.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RockLives.wav; sourceTree = "<group>"; };
 		FE49B1961D2A42190078D8E1 /* VictoryCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VictoryCondition.swift; sourceTree = "<group>"; };
+		FE59A9361D377869001CA8A9 /* SaveAdaptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveAdaptor.swift; sourceTree = "<group>"; };
 		FE608F2E1D1E685F005F0DA5 /* GamePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePath.swift; sourceTree = "<group>"; };
 		FE6D3A651D34AE8C0042D89B /* ButtonFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
 		FE7336B31D209FAA008E2E57 /* Sounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				FEDF1F791D151C07000EA427 /* Info.plist */,
 				FEDF1F741D151C07000EA427 /* Assets.xcassets */,
 				FEDF5DE01D2093820047B953 /* GameState.swift */,
+				FE59A9361D377869001CA8A9 /* SaveAdaptor.swift */,
 				FEDF1F6F1D151C07000EA427 /* GameViewController.swift */,
 				FEDF1F6D1D151C07000EA427 /* GameScene.swift */,
 				FEDF5DE21D2096DC0047B953 /* MenuScene.swift */,
@@ -359,6 +362,7 @@
 				FEDF1F701D151C07000EA427 /* GameViewController.swift in Sources */,
 				FE881EAB1D176DEC003D2D57 /* GroundObj.swift in Sources */,
 				FEEDC8011D35AC5C00716E45 /* TutorialScene.swift in Sources */,
+				FE59A9371D377869001CA8A9 /* SaveAdaptor.swift in Sources */,
 				FE7C1FF21D1900FB00513EC7 /* RockObj.swift in Sources */,
 				FEDF5DE31D2096DC0047B953 /* MenuScene.swift in Sources */,
 				FEEDC7FF1D35A27C00716E45 /* ParticleObj.swift in Sources */,
