@@ -31,21 +31,12 @@ class SetupScene : GameScene
 	
 	private func createButtons( view : SKView )
 	{
-		let titleImage = UIImage( named: "buttonTitle" ) as UIImage?
-		let modeTitle = UIButton(type: UIButtonType.Custom) as UIButton
-		
 		let screenWidth = UIScreen.mainScreen().bounds.width
-		let titleWidth = Int( ceil(screenWidth * 0.5) )
 		let centerX = screenWidth / 2
 		let startY = ceil( UIScreen.mainScreen().bounds.height * 0.1 )
 		let defaultHeight : CGFloat = 32
 		
-		modeTitle.frame = CGRectMake( CGFloat( centerX - CGFloat( titleWidth / 2 ) ), startY, CGFloat( titleWidth ), defaultHeight)
-		modeTitle.setBackgroundImage( titleImage, forState: .Normal )
-		modeTitle.setTitleColor( UIColor.blackColor(), forState: .Normal)
-		modeTitle.setTitle( "Game Mode", forState: .Normal )
-		modeTitle.userInteractionEnabled = false
-		modeTitle.layer.zPosition = 20
+		let modeTitle = ButtonFactory.createCenteredButton( "Game Mode", buttonType: .TitleButton, yPos: startY )
 		view.addSubview(modeTitle)
 		
 		let chosenModeIndex = 0
@@ -59,13 +50,7 @@ class SetupScene : GameScene
 		clickModeButton( modeButtons[ chosenModeIndex ] )
 	
 		buttonGroupY += defaultHeight * 1.3
-		let diffiTitle = UIButton(type: UIButtonType.Custom) as UIButton
-		diffiTitle.frame = CGRectMake( CGFloat( centerX - CGFloat( titleWidth / 2 ) ), buttonGroupY, CGFloat( titleWidth ), defaultHeight)
-		diffiTitle.setBackgroundImage( titleImage, forState: .Normal )
-		diffiTitle.setTitleColor( UIColor.blackColor(), forState: .Normal)
-		diffiTitle.setTitle( "Difficulty", forState: .Normal )
-		diffiTitle.userInteractionEnabled = false
-		diffiTitle.layer.zPosition = 20
+		let diffiTitle = ButtonFactory.createCenteredButton( "Difficulty", buttonType: .TitleButton, yPos: buttonGroupY )
 		view.addSubview(diffiTitle)
 		
 		let chosenDiffIndex = 0

@@ -41,13 +41,6 @@ class CreditScene : GameScene
 	
 	private func createButtons( view : SKView )
 	{
-		
-		let titleImage = UIImage( named: "buttonTitle" ) as UIImage?
-		let backImage = UIImage( named: "buttonGreenDef" ) as UIImage?
-		let smallImage = UIImage( named: "buttonSmall" ) as UIImage?
-		let gameTitle = UIButton(type: UIButtonType.Custom) as UIButton
-		let backButton = UIButton(type: UIButtonType.Custom) as UIButton
-		
 		let screenWidth = UIScreen.mainScreen().bounds.width
 		let titleWidth = Int( ceil(screenWidth * 0.5) )
 		let paddingWidth = ceil( UIScreen.mainScreen().bounds.width * 0.05 )
@@ -58,42 +51,28 @@ class CreditScene : GameScene
 		let defaultHeight : CGFloat  = 32
 		let muteX = centerX - CGFloat( titleWidth / 2 ) - CGFloat( defaultWidth / 4 ) - CGFloat( defaultHeight )
 		
-		let buttonsPerRow = floor( screenWidth / ( defaultWidth + paddingWidth ) )
-		/*
-		playButton.frame = CGRectMake( CGFloat( centerX - CGFloat( defaultWidth / 2 ) ), CGFloat( startY + padding + defaultHeight ), CGFloat( defaultWidth ), CGFloat(defaultHeight ))
-		credButton.frame = CGRectMake( CGFloat( centerX - CGFloat( defaultWidth / 2 ) ), CGFloat( startY + (2 * ( padding  + defaultHeight ) ) ), CGFloat( defaultWidth ), CGFloat(defaultHeight ))
-		*/
-		gameTitle.frame = CGRectMake( CGFloat( centerX - CGFloat( titleWidth / 2 ) ), CGFloat( startY ), CGFloat( titleWidth ), CGFloat(defaultHeight ))
-		gameTitle.setBackgroundImage( titleImage, forState: .Normal )
-		gameTitle.setTitleColor( UIColor.blackColor(), forState: .Normal)
-		gameTitle.setTitle( "Credits", forState: .Normal )
+		let gameTitle = ButtonFactory.createCenteredButton( "Credits", buttonType: .TitleButton, yPos: startY )
 		gameTitle.addTarget( self, action: #selector( self.clickBack ) , forControlEvents: .TouchUpInside)
 		view.addSubview(gameTitle)
 		
-		backButton.frame = CGRectMake( muteX, CGFloat( startY ), CGFloat( defaultHeight ), CGFloat(defaultHeight ))
-		backButton.setBackgroundImage( smallImage, forState: .Normal )
-		backButton.setTitleColor( UIColor.blackColor(), forState: .Normal)
-		backButton.setTitle( "<", forState: .Normal )
+		let backButton = ButtonFactory.createButton( "<" , buttonType: .SmallButton, xPos : muteX, yPos : startY )
 		backButton.addTarget( self, action: #selector( self.clickBack ) , forControlEvents: .TouchUpInside)
 		view.addSubview(backButton)
 		
+		let buttonsPerRow = floor( screenWidth / ( defaultWidth + paddingWidth ) )
 		var index = -1
 		for creditRow in creditData
 		{
 			index = index + 1
-			let button = UIButton(type: UIButtonType.Custom) as UIButton
 			let column = ( index % Int( buttonsPerRow ) )
 			let row : CGFloat = CGFloat( index / Int(buttonsPerRow) )
 			
 			let x = centerBoxPosition( Int(buttonsPerRow), index: column, boxWidth: Int( defaultWidth ) )
 			let y = CGFloat( ( row * ( defaultHeight + padding ) )  ) + startY + defaultHeight + padding
-			button.frame = CGRectMake( CGFloat( x ), CGFloat( y ), defaultWidth, defaultHeight )
-			button.setBackgroundImage( backImage, forState: .Normal )
-			button.setTitleColor( UIColor.blackColor(), forState: .Normal)
-			
 			let author = creditRow[ "author"]!
 			let title = creditRow[ "title"]!
-			button.setTitle( "\(title) - \(author)" , forState: .Normal )
+			
+			let button = ButtonFactory.createButton( "\(title) - \(author)", buttonType: .MenuButton, xPos: CGFloat( x ), yPos: y )
 			button.titleLabel!.font = button.titleLabel!.font.fontWithSize( 10 )
 			button.tag = index
 			button.addTarget( self, action: #selector( self.clickCreditsTag(_:)) , forControlEvents: .TouchUpInside)
