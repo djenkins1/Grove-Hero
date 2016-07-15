@@ -34,8 +34,8 @@ class GameViewController: UIViewController
 	{
         super.viewDidLoad()
 		isMuted = saveMachine.getMuteStatus()
+		tutorStage.advanceTo( saveMachine.getTutorialStage() )
 		
-		print( saveMachine.getTutorialStage().rawValue )
 		setupMusic()
 		if ( !isMuted )
 		{
@@ -130,13 +130,13 @@ class GameViewController: UIViewController
 	func playMusic()
 	{
 		musicPlayer.play()
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.playerDidFinishPlaying(_:)), name: AVPlayerItemDidPlayToEndTimeNotification, object: musicPlayer.currentItem )
 	}
 	
 	func setupMusic()
 	{
 		playMusicList = Sounds.randomMusicList()
 		musicPlayer = AVPlayer( playerItem: playMusicList[ 0 ].getItem() )
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.playerDidFinishPlaying(_:)), name: AVPlayerItemDidPlayToEndTimeNotification, object: musicPlayer.currentItem )
 	}
 	
 	//called when the player finishes a song

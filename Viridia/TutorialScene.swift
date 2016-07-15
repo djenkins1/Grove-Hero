@@ -261,7 +261,7 @@ class TutorialScene : GameScene
 				addGameObject( chosenGround.myPlant! )
 				
 				let yPos =  UIScreen.mainScreen().bounds.height * 1.5
-				specialObj = BombBox(xStart: chosenGround.sprite.position.x , yStart: yPos )
+				specialObj = BombBox(xStart: chosenGround.sprite.position.x - 192 , yStart: yPos )
 				addGameObject( specialObj )
 				pauseUpdate = true
 			}
@@ -402,5 +402,25 @@ class TutorialStageList
 		}
 		
 		return list[ currentIndex ]
+	}
+	
+	func advanceTo( stage : TutorialStage )
+	{
+		if ( current() == stage )
+		{
+			return
+		}
+		
+		var index = -1
+		for otherStage in list
+		{
+			index += 1
+			if otherStage == stage
+			{
+				break
+			}
+		}
+		
+		currentIndex = index
 	}
 }

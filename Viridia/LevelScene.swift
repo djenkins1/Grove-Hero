@@ -147,7 +147,17 @@ class LevelScene : GameScene
 	func winCondition()
 	{
 		self.playSoundEffect( Sounds.winSound )
-		pauseAndShowMessage( "You Won!", subMessage: "Score: \(getScore())" )
+		var myExtra = ""
+		let score = getScore()
+		if ( myController != nil )
+		{
+			if ( myController.saveMachine.compareBestScore( score, victCond: myController.victoryCond, difCons: myController.diffiCons ) )
+			{
+				myController.saveMachine.setBestScore( score , victCond: myController.victoryCond, difCons: myController.diffiCons )
+				myExtra = StringConst.getStarText()
+			}
+		}
+		pauseAndShowMessage( "You Won!", subMessage: "Score: \(score)\(myExtra)" )
 		doneScreen = true
 	}
 }

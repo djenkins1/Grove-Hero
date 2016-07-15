@@ -64,6 +64,46 @@ class SaveAdaptor
 	{
 		defaults.setObject( newStage.rawValue, forKey: StringConst.Tutored.rawValue )
 	}
+	
+	func setFavoriteMode( myMode : VictoryCondition )
+	{
+		defaults.setObject( myMode.myName(), forKey : StringConst.FavMode.rawValue )
+	}
+	
+	func setFavoriteDifficulty( myDifficulty : DifficultyConstant )
+	{
+		defaults.setObject( myDifficulty.myName(), forKey : StringConst.FavDifficulty.rawValue )
+	}
+	
+	func getFavoriteMode() -> VictoryCondition
+	{
+		let myFav = defaults.objectForKey( StringConst.FavMode.rawValue ) as? String ?? ""
+		switch( myFav )
+		{
+		case TimeVictory().myName():
+			return TimeVictory()
+		case BoxVictory().myName():
+			return BoxVictory()
+		default:
+			return BoxVictory()
+		}
+	}
+	
+	func getFavoriteDifficulty() -> DifficultyConstant
+	{
+		let myFav = defaults.objectForKey( StringConst.FavDifficulty.rawValue ) as? String ?? ""
+		switch( myFav )
+		{
+		case EasyDifficulty().myName():
+			return EasyDifficulty()
+		case MidDifficulty().myName():
+			return MidDifficulty()
+		case HardDifficulty().myName():
+			return HardDifficulty()
+		default:
+			return EasyDifficulty()
+		}
+	}
 }
 
 
@@ -71,4 +111,12 @@ enum StringConst : String
 {
 	case Muted
 	case Tutored
+	case FavMode
+	case FavDifficulty
+	
+	//returns a star unicode symbol
+	static func getStarText() -> String
+	{
+		return "\u{2605}"
+	}
 }

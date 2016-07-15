@@ -39,7 +39,7 @@ class SetupScene : GameScene
 		let modeTitle = ButtonFactory.createCenteredButton( "Game Mode", buttonType: .TitleButton, yPos: startY )
 		view.addSubview(modeTitle)
 		
-		let chosenModeIndex = 0
+		let chosenModeIndex = getChosenMode()
 		var buttonGroupY = startY + ( defaultHeight * 1.25 )
 		modeButtons = createButtonGroup( modes, leftCornerY :  buttonGroupY, chosenIndex: chosenModeIndex )
 		for button in modeButtons
@@ -53,7 +53,7 @@ class SetupScene : GameScene
 		let diffiTitle = ButtonFactory.createCenteredButton( "Difficulty", buttonType: .TitleButton, yPos: buttonGroupY )
 		view.addSubview(diffiTitle)
 		
-		let chosenDiffIndex = 0
+		let chosenDiffIndex = getChosenDifficulty()
 		buttonGroupY += defaultHeight * 1.25
 		diffiButtons = createButtonGroup( difficulty, leftCornerY :  buttonGroupY, chosenIndex: chosenDiffIndex )
 		for button in diffiButtons
@@ -100,7 +100,50 @@ class SetupScene : GameScene
 		if ( myController != nil )
 		{
 			myController.changeState( GameState.Play )
+			myController.saveMachine.setFavoriteMode( myController.victoryCond  )
+			myController.saveMachine.setFavoriteDifficulty( myController.diffiCons )
 		}
+	}
+	
+	private func getChosenMode() -> Int
+	{
+		if ( myController != nil )
+		{
+			let favMode = myController.saveMachine.getFavoriteMode()
+			if ( favMode is TimeVictory )
+			{
+				return 1
+			}
+			else if ( favMode is BoxVictory )
+			{
+				return 0
+			}
+		}
+
+		return 0
+
+	}
+	
+	private func getChosenDifficulty() -> Int
+	{
+		if ( myController != nil )
+		{
+			let favDiffi = myController.saveMachine.getFavoriteDifficulty()
+			if ( favDiffi is EasyDifficulty )
+			{
+				return 0
+			}
+			else if ( favDiffi is MidDifficulty )
+			{
+				return 1
+			}
+			else if ( favDiffi is HardDifficulty )
+			{
+				return 2
+			}
+		}
+		
+		return 0
 	}
 	
 	func clickModeButton( sender: AnyObject )

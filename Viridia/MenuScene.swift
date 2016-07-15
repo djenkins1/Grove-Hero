@@ -162,7 +162,14 @@ class MenuScene : GameScene
 	{
 		if ( myController != nil )
 		{
-			myController.changeState( GameState.Setup )
+			if ( myController.tutorStage.current() == .Done )
+			{
+				myController.changeState( GameState.Setup )
+			}
+			else
+			{
+				myController.changeState( GameState.Tutorial )
+			}
 		}
 	}
 	

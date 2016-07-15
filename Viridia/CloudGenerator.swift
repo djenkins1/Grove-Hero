@@ -27,12 +27,15 @@ class CloudGenerator : ObjGenerator
 	
 	override func entryGenerate() -> ObjGenerator
 	{
+		/*
 		let cloudsToGenerate = 5
 		for _ in 0 ..< cloudsToGenerate
 		{
 			scene.queueGameObject( createCloudAt( randomInsideX(), y : randomY() ) )
 		}
 		
+		return self
+		*/
 		return self
 	}
 	

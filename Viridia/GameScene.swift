@@ -11,6 +11,7 @@
 //	TODO
 //==========
 //	TEST ON IPAD and smaller devices in emulator
+//	change text of fire plant tutorial to uppercase Fire plant( f looks wonky next to i)
 //	(AFTER)Make sure that FPS counter no longer shown on presented/app store versions
 //		maybe have some kind of debug mode constant
 //	change Kenney to "Kenney.nl" in credits
@@ -19,14 +20,11 @@
 //	(?-VER)dialog box explaining the chosen game mode on SetupScene
 //	time attack mode(called survival) that starts off at chosen difficulty and gets harder as you go along, see how long you can survive
 //		would have to take into account restart button, currently just transitions to play again with all difficulty settings the same
-//	PreGenerate one or two boxes on startup for BoxGenerator
-//		see CloudGenerator for basis
+//	really should have sound effect for fire plant firing
 //	tutorial font size should be based on screen size
 //		have some code, might try to use screen size rectangle instead of frame
 //	should somehow wait until rock is created on RockBox tutorial before the tutorial finishes
 //		have specialObj be nil, and on update if there have been any rocks created set specialObj to that rock and add in deathMode for 60 frames
-//	plants should make plantDie sound effect when killed by being eaten by spider
-//	clouds being created on start really drop the frame rate momentarily
 //	add explosions for:
 //		bomb box hitting rock(use sand)
 //		bomb box hitting fire plant(use spores)
@@ -39,19 +37,6 @@
 //		caused by rockBox hitting firePlant/ground with plant on it
 //		firePlants that turn fossilized should keep its yScale
 //		spiders will ignore fossils, since they are not actual plants
-//	SAVE FILES(VIA PREFERENCES):
-//		IMPORTANT!: Should build a SaveAdaptor in case of future changes, i.e moving away from Preferences...
-//		keep key of GameMode_Difficulty and save best score under that key
-//			when level is done, if score is better save it and show user that it is better
-//			load in scores on game load
-//		PREFERS:
-//			(DONE)save mute status on exit and load on entry of app
-//			save tutorial best stage on exit and load on entry of app
-//				have saving/loading done, just need to advance tutorStageList to correct stage from load
-//			save last mode/difficulty combo and load on entry of app
-//				have code in SaveAdaptor, just need to actually call it
-//		if tutorial has not been started, play should automatically redirect to tutorial
-//			just a matter of checking tutorStage.current after load and if it is not .Done then redirect to tutorial
 //
 //
 //	(SCRAP)More accurate portrayal of boxes so that what is inside them has an icon of it
@@ -62,6 +47,7 @@
 //		probably not possible, would require complete rewrite of collision engine
 //		see GameObj init code for more info
 //	(SCRAP)should cacti only be on sand?
+//	(SCRAP)PreGenerate one or two boxes on startup for BoxGenerator
 //
 //====================
 //	FUTURE VERSIONS

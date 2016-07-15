@@ -78,6 +78,17 @@ class PlantObj : GameObj
 		if ( lives <= 0 )
 		{
 			makeDead()
+			if ( myScene != nil )
+			{
+				if ( self is FirePlant )
+				{
+					myScene.playSoundEffect( Sounds.firePlantHit )
+				}
+				else
+				{
+					myScene.playSoundEffect( Sounds.deadShroom )
+				}
+			}
 		}
 	}
 }
