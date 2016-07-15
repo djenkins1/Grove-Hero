@@ -50,6 +50,10 @@ class FirePlant : PlantObj
 			shouldFireOnUpdate = false
 			changeCoolDown( 1 )
 			createFire( scene )
+			if ( myScene != nil )
+			{
+				myScene.playSoundEffect( Sounds.firedPlant )
+			}
 			timer = 0
 		}
 	}
@@ -78,12 +82,15 @@ class FirePlant : PlantObj
 			return
 		}
 		
-		let maxLivesDoubled  = CGFloat( maxLives * 2 )
-		let newScale = ( CGFloat(lives) / maxLivesDoubled ) + 0.5
+		let newScale = getNewScale()
 		let action = SKAction.resizeToHeight( startHeight * newScale, duration: 0.5 )
 		sprite.runAction( action )
-		
-		//sprite.yScale = newScale
+	}
+	
+	private func getNewScale() -> CGFloat
+	{
+		let maxLivesDoubled  = CGFloat( maxLives * 2 )
+		return ( CGFloat(lives) / maxLivesDoubled ) + 0.5
 	}
 	
 	override func damage()
@@ -148,6 +155,7 @@ class FirePlant : PlantObj
 	{
 		if ( other is BombBox )
 		{
+			makeExplosion( other, spriteName: "explodeMycel" )
 			timer = 0
 			changeCoolDown( 1 )
 			damage()
@@ -155,6 +163,7 @@ class FirePlant : PlantObj
 		
 		if ( other is HealBox )
 		{
+			makeExplosion( other , spriteName: "explodeGrass")
 			if ( lives == maxLives )
 			{
 				timer = 0
@@ -178,5 +187,27 @@ class FirePlant : PlantObj
 			}
 		}
 		
+		if ( other is RockBox )
+		{
+			if ( myScene != nil )
+			{
+				if let fossil = convertToFossil()
+				{
+					(other as! RockBox ).rockedOut = true
+					myScene.playSoundEffect( Sounds.createRock )
+					myScene.queueGameObject( fossil )
+					self.makeDead()
+				}
+			}
+			
+		}
+	}
+	
+	override func convertToFossil() -> RockObj?
+	{
+		let fossil = FossilRock( spriteName: "fossilFire", xStart: self.sprite.position.x, yStart: self.sprite.position.y )
+		fossil.sprite.yScale = getNewScale()
+		self.makeDead()
+		return fossil
 	}
 }

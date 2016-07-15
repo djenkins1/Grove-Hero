@@ -10,7 +10,7 @@
 @title
 	Art
 @author
-	Kenney
+	Kenney.nl
 @link
 	http://www.kenney.nl
 @other

@@ -120,3 +120,16 @@ enum StringConst : String
 		return "\u{2605}"
 	}
 }
+
+extension SKLabelNode
+{
+	func fitToWidth(maxWidth:CGFloat)
+	{
+		while frame.size.width >= maxWidth
+		{
+			fontSize-=1.0
+		}
+	}
+}
+
+

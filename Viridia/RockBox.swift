@@ -11,7 +11,7 @@ import SpriteKit
 
 class RockBox : BoxObj
 {
-	private var rockedOut = false
+	var rockedOut = false
 	
 	init( xStart: CGFloat, yStart: CGFloat )
 	{

@@ -52,6 +52,8 @@ class Sounds
 	
 	static let spiderDead = "SpiderDie.wav"
 	
+	static let firedPlant = "Fired.wav"
+	
 	var name: String
 	
 	var type: String

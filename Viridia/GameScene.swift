@@ -10,33 +10,26 @@
 //==========
 //	TODO
 //==========
+//
 //	TEST ON IPAD and smaller devices in emulator
-//	change text of fire plant tutorial to uppercase Fire plant( f looks wonky next to i)
+//	(?-VER)dialog box explaining the chosen game mode on SetupScene
 //	(AFTER)Make sure that FPS counter no longer shown on presented/app store versions
 //		maybe have some kind of debug mode constant
-//	change Kenney to "Kenney.nl" in credits
 //	change mute button to just using icons on menu( and maybe move it to top right corner like pause button )
 //		(AFTER)Change fonts on all buttons to the Display font for pause
-//	(?-VER)dialog box explaining the chosen game mode on SetupScene
 //	time attack mode(called survival) that starts off at chosen difficulty and gets harder as you go along, see how long you can survive
 //		would have to take into account restart button, currently just transitions to play again with all difficulty settings the same
-//	really should have sound effect for fire plant firing
-//	tutorial font size should be based on screen size
-//		have some code, might try to use screen size rectangle instead of frame
 //	should somehow wait until rock is created on RockBox tutorial before the tutorial finishes
 //		have specialObj be nil, and on update if there have been any rocks created set specialObj to that rock and add in deathMode for 60 frames
-//	add explosions for:
-//		bomb box hitting rock(use sand)
-//		bomb box hitting fire plant(use spores)
-//		heal box hitting fire plant(explodeGrass)
+//	maybe have a 2 second pause between music on the list played(use a timer)
+//	if possible have healBox collide with firePlant give a free fire shoot AND make it ready to fire immediately when full lives/ready
+//	don't add buttons to view for credits/menu until the transition is done
+//	should add a delay between showing win/lose screen and actually allowing tap to continue
+//	add explode animation for rock box turning fireplant to fossil
+//	add fossils into tutorial as another stage
 //	fossilized plants(including fireplant)
-//		do not count as an actual plant
-//		cannot be healed
-//		second rockBox causes them to crack
-//		have one life
-//		caused by rockBox hitting firePlant/ground with plant on it
-//		firePlants that turn fossilized should keep its yScale
-//		spiders will ignore fossils, since they are not actual plants
+//		(!!!)do not count as an actual plant
+//		(!!!)spiders will ignore fossils, since they are not actual plants
 //
 //
 //	(SCRAP)More accurate portrayal of boxes so that what is inside them has an icon of it
@@ -52,25 +45,25 @@
 //====================
 //	FUTURE VERSIONS
 //====================
+//	for future tutorial stages:
+//		somehow need to allow player to go to this stage of the tutorial when new version first comes out
+//			and once they are done with that stage they are done with the tutorial
+//			but also need to allow brand new players to start fresh
 //	snail shells that spawn like rocks
 //		when bomb box hits snail shell, snail gets out and wreaks havoc on plants nearby similar to sand monster
 //	When rock get hits by rock box and is already full lives:
 //		cause rock slide event that builds max of two rocks on either side
+//	allow player to adjust how many boxes generated/how much time to survive in Setup Game Settings Scene
 //	lose level animation, rocks all get destroyed and turns into desolate sandy wasteland
 //		maybe have a tumbleweed blow across the screen
 //	might create rock at x position of rockBox, not of ground it hit
-//====================
-//
-//	(?)maybe allow player to adjust how many boxes generated/how much time to survive in Setup Game Settings Scene
-//	(?)maybe have a 2 second pause between music on the list played(use a timer)
-//	(?)maybe utilize second bombBox(yellow) sprite in a bomb going off animation when bombBox collides with something
-//	(?)don't add buttons to view for credits/menu until the transition is done
 //	(?)heal box should also plant a plant(only one) when it hits empty ground
 //		(?)heal box should turn regular plants into fireplants(only one) when hits grassy ground
 //		Maybe have another box that does these two things similar to rockbox
+//	(?)maybe utilize second bombBox(yellow) sprite in a bomb going off animation when bombBox collides with something
 //	(?)spider-predation plant, the plant eats the spiders when they get close
 //	(?)Might have all boxes(except rockBox) damage rock on impact instead of just BombBox
-//==========
+//====================
 //
 
 import SpriteKit

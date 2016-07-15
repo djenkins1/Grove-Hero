@@ -21,6 +21,8 @@ class TutorialScene : GameScene
 	
 	var subLabel : SKLabelNode!
 	
+	let maxFontSize : CGFloat = 32
+	
 	override func didMoveToView(view: SKView)
 	{
 		createBackground()
@@ -113,10 +115,20 @@ class TutorialScene : GameScene
 	private func setupMessage()
 	{
 		let message = ( beginMessageQueue.count > 0 ? beginMessageQueue.removeFirst() : "" )
-		messageLabel = addMakeLabel( message, xPos: CGRectGetMidX(self.frame), yPos: CGRectGetMidY(self.frame), fontSize: 32 )
+		messageLabel = addMakeLabel( message, xPos: CGRectGetMidX(self.frame), yPos: CGRectGetMidY(self.frame), fontSize: maxFontSize )
+		handleMessageChangeFont()
 		//adjustLabelFontSizeToFitRect( messageLabel , rect: messageLabel.frame )
 		
 		subLabel = addMakeLabel( "Tap to Continue", xPos: CGRectGetMidX(self.frame), yPos: CGRectGetMidY(self.frame) - messageLabel.frame.height - 8, fontSize: 28 )
+	}
+	
+	private func handleMessageChangeFont()
+	{
+		if ( messageLabel != nil )
+		{
+			messageLabel.fontSize = maxFontSize
+			messageLabel.fitToWidth( self.frame.width - 48 )
+		}
 	}
 	
 	//updates the label text with the next message in the queue and removes it from the queue
@@ -137,6 +149,7 @@ class TutorialScene : GameScene
 				}
 			}
 			messageLabel.text = message
+			handleMessageChangeFont()
 			//adjustLabelFontSizeToFitRect( messageLabel , rect: messageLabel.frame )
 		}
 	}
@@ -157,12 +170,12 @@ class TutorialScene : GameScene
 			beginMessageQueue.removeAll()
 			endMessageQueue.removeAll()
 			
-			beginMessageQueue.append( "Fire plants can shoot flames above them." )
+			beginMessageQueue.append( "Fire Plants can shoot flames above them." )
 			beginMessageQueue.append( "If they are hit by too many bomb crates they will wither." )
 			beginMessageQueue.append( "Tap and drag the crate so that it is above the plant." )
-			beginMessageQueue.append( "Then tap on the fire plant to shoot a flame." )
+			beginMessageQueue.append( "Then tap on the Fire Plant to shoot a flame." )
 			
-			endMessageQueue.append( "Fire plants need to warm up again after they have shot." )
+			endMessageQueue.append( "Fire Plants need to warm up again after they have shot." )
 			endMessageQueue.append( "Once they have a red flower they can shoot again." )
 		case .HealShrooms:
 			beginMessageQueue.removeAll()
@@ -173,7 +186,7 @@ class TutorialScene : GameScene
 			beginMessageQueue.append( "To turn the mycelium back, a health crate can be used." )
 			beginMessageQueue.append( "Tap and drag the health crate so it lands on the mycelium." )
 
-			endMessageQueue.append( "Health crates can also heal fire plants that have been damaged." )
+			endMessageQueue.append( "Health crates can also heal Fire Plants that have been damaged." )
 		case .RockSpawn:
 			beginMessageQueue.removeAll()
 			endMessageQueue.removeAll()
@@ -193,8 +206,8 @@ class TutorialScene : GameScene
 			beginMessageQueue.append( "The sand spider will go after nearby plants." )
 			beginMessageQueue.append( "Tap on the sand spider to stop it from eating plants." )
 			
-			endMessageQueue.append( "Sand spiders will also die from eating a fire plant." )
-			endMessageQueue.append( "The fire plant will lose health though." )
+			endMessageQueue.append( "Sand spiders will also die from eating a Fire Plant." )
+			endMessageQueue.append( "The Fire Plant will lose health though." )
 		case .Done:
 			beginMessageQueue.removeAll()
 			endMessageQueue.removeAll()

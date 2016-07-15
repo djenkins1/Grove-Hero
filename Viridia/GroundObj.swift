@@ -145,7 +145,15 @@ class GroundObj : GameObj
 		
 		if ( myPlant != nil )
 		{
+			if let fossil = myPlant.convertToFossil()
+			{
+				myScene!.playSoundEffect( Sounds.createRock )
+				self.myScene.queueGameObject( fossil )
+				myPlant = nil
+				return true
+			}
 			return false
+			
 		}
 		
 		if ( myScene != nil )

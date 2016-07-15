@@ -42,17 +42,17 @@ class PlantObj : GameObj
 	
 	static func randomPlantSprite() -> String
 	{
-		let choices = [ "plant" , "cactus" , "bush" , "plantPurple" ]
+		let choices : [PlantSpriteStr] = [ .plant , .cactus , .bush , .plantPurple ]
 		let myChoice = Int( arc4random_uniform( UInt32( choices.count ) ) )
-		return "\(choices[myChoice])"
+		return "\(choices[myChoice].rawValue)"
 	}
 	
 	
 	static func randomShroomSprite() -> String
 	{
-		let choices = [ "Brown" , "Red" ]
+		let choices : [PlantSpriteStr] = [ .mushroomBrown , .mushroomRed ]
 		let myChoice = Int( arc4random_uniform( UInt32( choices.count ) ) )
-		return "mushroom\(choices[myChoice])"
+		return "\(choices[myChoice].rawValue)"
 	}
 	
 	func changeToShroom()
@@ -89,6 +89,57 @@ class PlantObj : GameObj
 					myScene.playSoundEffect( Sounds.deadShroom )
 				}
 			}
+		}
+	}
+	
+	func convertToFossil() -> RockObj?
+	{
+		self.makeDead()
+		if let mySpriteName = mySprites.getCurrentImageString()
+		{
+			if let myPlant = PlantSpriteStr( rawValue : mySpriteName  )
+			{
+				return FossilRock( spriteName: PlantSpriteStr.fossilFromPlant( myPlant ), xStart: self.sprite.position.x, yStart: self.sprite.position.y )
+			}
+			else
+			{
+				print( "My plant is null when converting to fossil" )
+			}
+		}
+		else
+		{
+			print( "Current sprite name is null when converting to fossil" )
+		}
+		
+		return nil
+	}
+}
+
+enum PlantSpriteStr : String
+{
+	case mushroomBrown
+	case mushroomRed
+	case plant
+	case cactus
+	case bush
+	case plantPurple
+	
+	static func fossilFromPlant( myPlant : PlantSpriteStr ) -> String
+	{
+		switch( myPlant )
+		{
+		case .bush:
+			return "fossilBush"
+		case .plant:
+			return "fossilPlant"
+		case .plantPurple:
+			return "fossilPurple"
+		case .cactus:
+			return "fossilCactus"
+		case .mushroomRed:
+			return "fossilShroomRed"
+		case .mushroomBrown:
+			return "fossilShroomBrown"
 		}
 	}
 }

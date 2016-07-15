@@ -202,6 +202,7 @@ class GameObj
 	func changeSprite( spriteName : String )
 	{
 		sprite.texture = SKTexture(imageNamed: spriteName )
+		mySprites.withImages( [ spriteName ] )
 	}
 	
 	//fires when the update function is called in the GameScene

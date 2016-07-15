@@ -15,9 +15,14 @@ class RockObj : GameObj
 	
 	var collideSteps = 0
 	
-	init( xStart: CGFloat, yStart: CGFloat )
+	convenience init( xStart: CGFloat, yStart: CGFloat )
 	{
-		super.init( spriteName: "rock3" , xStart: xStart, yStart: yStart )
+		self.init( spriteName: "rock3" , xStart: xStart, yStart: yStart )
+	}
+	
+	override init( spriteName : String, xStart: CGFloat, yStart: CGFloat )
+	{
+		super.init( spriteName: spriteName, xStart: xStart, yStart: yStart )
 		sprite.zPosition = 5
 	}
 	
@@ -25,6 +30,7 @@ class RockObj : GameObj
 	{
 		if other is BombBox && collideSteps == 0
 		{
+			makeExplosion( self , spriteName: "explodeSand" )
 			decrementLives()
 			//add a step delay so that the bombBox does not double dip and cause this rock to lose 2 lives
 			collideSteps = 4
