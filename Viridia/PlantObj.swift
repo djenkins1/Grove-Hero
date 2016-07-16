@@ -94,7 +94,7 @@ class PlantObj : GameObj
 	
 	func convertToFossil() -> RockObj?
 	{
-		self.makeDead()
+		deathModeEvent( 2 )
 		if let mySpriteName = mySprites.getCurrentImageString()
 		{
 			if let myPlant = PlantSpriteStr( rawValue : mySpriteName  )

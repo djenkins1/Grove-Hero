@@ -208,6 +208,15 @@ class TutorialScene : GameScene
 			
 			endMessageQueue.append( "Sand spiders will also die from eating a Fire Plant." )
 			endMessageQueue.append( "The Fire Plant will lose health though." )
+		case .FossilSpawn:
+			beginMessageQueue.removeAll()
+			endMessageQueue.removeAll()
+			
+			beginMessageQueue.append( "Drag the rock crate so that it falls onto the plant." )
+			
+			endMessageQueue.append( "Rock crates will petrify plants, turning them to stone." )
+			endMessageQueue.append( "These plants will then act just like rocks." )
+			endMessageQueue.append( "Thus it is best to avoid having rock crates fall onto plants." )
 		case .Done:
 			beginMessageQueue.removeAll()
 			endMessageQueue.removeAll()
@@ -215,6 +224,7 @@ class TutorialScene : GameScene
 			beginMessageQueue.append( "You have finished your training." )
 			beginMessageQueue.append( "You now have the necessary knowledge." )
 			
+			endMessageQueue.append( "You will fail in your mission if all the plants in the grove die." )
 			endMessageQueue.append( "GroveKeeper, go forth and protect!" )
 		}
 	}
@@ -224,6 +234,19 @@ class TutorialScene : GameScene
 		if ( pauseUpdate )
 		{
 			return
+		}
+		
+		if ( myController != nil && specialObj == nil )
+		{
+			if ( myController.tutorStage.current() == .RockSpawn )
+			{
+				let allRocks = allObjectsOfType( RockObj )
+				if allRocks.count > 0
+				{
+					specialObj = allRocks[ 0 ]
+					specialObj.deathModeEvent( 60 )
+				}
+			}
 		}
 		
 		if ( specialObj != nil && specialObj.isDead )
@@ -243,47 +266,37 @@ class TutorialScene : GameScene
 	
 	private func createScene( stage : TutorialStage )
 	{
+		let topGround = getTopGround()
+		if ( topGround.isEmpty )
+		{
+			print( "Missing grounds" )
+			return
+		}
+
 		//utilize a message queue, when past the final message the game unpauses
 		switch( stage )
 		{
 		case .BombRock:
-			let topGround = getTopGround()
-			if ( topGround.count > 0 )
-			{
-				let chosenGround = topGround[ topGround.count / 2 ]
-				let rockObj = RockObj(xStart: chosenGround.sprite.position.x, yStart: chosenGround.sprite.position.y )
-				rockObj.sprite.position.y += rockObj.sprite.frame.height
-				addGameObject( rockObj )
+			let chosenGround = topGround[ topGround.count / 2 ]
+			let rockObj = RockObj(xStart: chosenGround.sprite.position.x, yStart: chosenGround.sprite.position.y )
+			rockObj.sprite.position.y += rockObj.sprite.frame.height
+			addGameObject( rockObj )
 				
-				let yPos =  UIScreen.mainScreen().bounds.height * 1.5
-				specialObj = BombBox(xStart: chosenGround.sprite.position.x - 192, yStart: yPos )
-				addGameObject( specialObj )
-				pauseUpdate = true
-			}
-			else
-			{
-				print( "Missing grounds" )
-			}
+			let yPos =  UIScreen.mainScreen().bounds.height * 1.5
+			specialObj = BombBox(xStart: chosenGround.sprite.position.x - 192, yStart: yPos )
+			addGameObject( specialObj )
+			pauseUpdate = true
 		case .FireBomb:
-			let topGround = getTopGround()
-			if ( topGround.count > 0 )
-			{
-				let chosenGround = topGround[ topGround.count / 2 ]
-				chosenGround.myPlant = FirePlant(xStart: chosenGround.sprite.position.x, yStart: chosenGround.sprite.position.y )
-				chosenGround.myPlant!.sprite.position.y += chosenGround.myPlant!.sprite.frame.height - 32
-				addGameObject( chosenGround.myPlant! )
+			let chosenGround = topGround[ topGround.count / 2 ]
+			chosenGround.myPlant = FirePlant(xStart: chosenGround.sprite.position.x, yStart: chosenGround.sprite.position.y )
+			chosenGround.myPlant!.sprite.position.y += chosenGround.myPlant!.sprite.frame.height - 32
+			addGameObject( chosenGround.myPlant! )
 				
-				let yPos =  UIScreen.mainScreen().bounds.height * 1.5
-				specialObj = BombBox(xStart: chosenGround.sprite.position.x - 192 , yStart: yPos )
-				addGameObject( specialObj )
-				pauseUpdate = true
-			}
-			else
-			{
-				print( "Missing grounds" )
-			}
+			let yPos =  UIScreen.mainScreen().bounds.height * 1.5
+			specialObj = BombBox(xStart: chosenGround.sprite.position.x - 192 , yStart: yPos )
+			addGameObject( specialObj )
+			pauseUpdate = true
 		case .SpiderSpawn:
-			let topGround = getTopGround()
 			if ( topGround.count > 3 )
 			{
 				let chosenGround = topGround[ topGround.count / 2 ]
@@ -300,45 +313,39 @@ class TutorialScene : GameScene
 			}
 			else
 			{
-				print( "Missing grounds" )
+				print( "Missing grounds for spiderSpawn" )
 			}
 		case .HealShrooms:
-			let topGround = getTopGround()
-			if ( topGround.count > 0 )
-			{
-				let chosenGround = topGround[ topGround.count / 2 ]
-				chosenGround.myPlant = PlantObj(xStart: chosenGround.sprite.position.x , yStart: chosenGround.sprite.position.y )
-				chosenGround.myPlant!.sprite.position.y += chosenGround.myPlant!.sprite.frame.height
-				addGameObject( chosenGround.myPlant! )
-				chosenGround.damageMe()
+			let chosenGround = topGround[ topGround.count / 2 ]
+			chosenGround.myPlant = PlantObj(xStart: chosenGround.sprite.position.x , yStart: chosenGround.sprite.position.y )
+			chosenGround.myPlant!.sprite.position.y += chosenGround.myPlant!.sprite.frame.height
+			addGameObject( chosenGround.myPlant! )
+			chosenGround.damageMe()
 				
-				let yPos =  UIScreen.mainScreen().bounds.height * 1.5
-				specialObj = HealBox(xStart: chosenGround.sprite.position.x - 192 , yStart: yPos )
-				addGameObject( specialObj )
-				pauseUpdate = true
-			}
-			else
-			{
-				print( "Missing grounds" )
-			}
+			let yPos =  UIScreen.mainScreen().bounds.height * 1.5
+			specialObj = HealBox(xStart: chosenGround.sprite.position.x - 192 , yStart: yPos )
+			addGameObject( specialObj )
+			pauseUpdate = true
 		case .RockSpawn:
-			let topGround = getTopGround()
-			if ( topGround.count > 0 )
-			{
-				let chosenGround = topGround[ topGround.count / 2 ]
-				chosenGround.myPlant = PlantObj(xStart: chosenGround.sprite.position.x, yStart: chosenGround.sprite.position.y )
-				chosenGround.myPlant!.sprite.position.y += chosenGround.myPlant!.sprite.frame.height
-				addGameObject( chosenGround.myPlant! )
+			let chosenGround = topGround[ topGround.count / 2 ]
+			chosenGround.myPlant = PlantObj(xStart: chosenGround.sprite.position.x, yStart: chosenGround.sprite.position.y )
+			chosenGround.myPlant!.sprite.position.y += chosenGround.myPlant!.sprite.frame.height
+			addGameObject( chosenGround.myPlant! )
 				
-				let yPos =  UIScreen.mainScreen().bounds.height * 1.5
-				specialObj = RockBox(xStart: chosenGround.sprite.position.x , yStart: yPos )
-				addGameObject( specialObj )
-				pauseUpdate = true
-			}
-			else
-			{
-				print( "Missing grounds" )
-			}
+			let yPos =  UIScreen.mainScreen().bounds.height * 1.5
+			let rockBox = RockBox(xStart: chosenGround.sprite.position.x , yStart: yPos )
+			addGameObject( rockBox )
+			pauseUpdate = true
+		case .FossilSpawn:
+			let chosenGround = topGround[ topGround.count / 2 ]
+			chosenGround.myPlant = PlantObj(xStart: chosenGround.sprite.position.x, yStart: chosenGround.sprite.position.y )
+			chosenGround.myPlant!.sprite.position.y += chosenGround.myPlant!.sprite.frame.height
+			addGameObject( chosenGround.myPlant! )
+			
+			let yPos =  UIScreen.mainScreen().bounds.height * 1.5
+			specialObj = RockBox(xStart: chosenGround.sprite.position.x , yStart: yPos )
+			addGameObject( specialObj  )
+			pauseUpdate = true
 		case .Done:
 			specialObj = RockBox(xStart: -200 , yStart: -200 )
 			addGameObject( specialObj )
@@ -355,6 +362,7 @@ enum TutorialStage : String
 	case SpiderSpawn
 	case HealShrooms
 	case RockSpawn
+	case FossilSpawn
 	case Done
 	
 	static func first() -> TutorialStage
@@ -391,6 +399,7 @@ class TutorialStageList
 		list.append( .HealShrooms )
 		list.append( .SpiderSpawn )
 		list.append( .RockSpawn )
+		list.append( .FossilSpawn )
 		
 		list.append( .Done )
 	}

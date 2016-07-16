@@ -25,8 +25,16 @@ class SetupScene : GameScene
 	override func didMoveToView(view: SKView)
 	{
 		myView = view
-		createBackground()
-		createButtons( view )
+		NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(self.showView), userInfo: nil, repeats: false)
+	}
+	
+	func showView()
+	{
+		if ( myView != nil )
+		{
+			createBackground()
+			createButtons( myView )
+		}
 	}
 	
 	private func createButtons( view : SKView )

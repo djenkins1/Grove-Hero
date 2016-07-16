@@ -13,13 +13,23 @@ class MenuScene : GameScene
 {
 	var myView : SKView!
 	
+	var timer = NSTimer()
+	
 	//function first called when the scene is viewed
 	override func didMoveToView(view: SKView)
 	{
 		myView = view
-		createBackground()
-		createButtons( view )
-		setupGenerators()
+		NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(self.showView), userInfo: nil, repeats: false)
+	}
+	
+	func showView()
+	{
+		if ( myView != nil )
+		{
+			createBackground()
+			createButtons( myView )
+			setupGenerators()
+		}
 	}
 	
 	/*

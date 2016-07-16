@@ -15,6 +15,7 @@ class FossilRock : RockObj
 	{
 		super.init( spriteName : spriteName, xStart: xStart, yStart: yStart )
 		lives = 1
+		self.sprite.zPosition = 21
 	}
 	
 	//fossils should crack when a rockBox tries to heal them to full

@@ -10,6 +10,10 @@
 //==========
 //	TODO
 //==========
+//	(WAIT LONGER)should somehow wait until rock is created on RockBox tutorial before the tutorial finishes
+//	fossilized plants(including fireplant)
+//		(!!!)do not count as an actual plant
+//		(!!!)spiders will ignore fossils, since they are not actual plants
 //
 //	TEST ON IPAD and smaller devices in emulator
 //	(?-VER)dialog box explaining the chosen game mode on SetupScene
@@ -19,18 +23,10 @@
 //		(AFTER)Change fonts on all buttons to the Display font for pause
 //	time attack mode(called survival) that starts off at chosen difficulty and gets harder as you go along, see how long you can survive
 //		would have to take into account restart button, currently just transitions to play again with all difficulty settings the same
-//	should somehow wait until rock is created on RockBox tutorial before the tutorial finishes
-//		have specialObj be nil, and on update if there have been any rocks created set specialObj to that rock and add in deathMode for 60 frames
 //	maybe have a 2 second pause between music on the list played(use a timer)
 //	if possible have healBox collide with firePlant give a free fire shoot AND make it ready to fire immediately when full lives/ready
-//	don't add buttons to view for credits/menu until the transition is done
 //	should add a delay between showing win/lose screen and actually allowing tap to continue
 //	add explode animation for rock box turning fireplant to fossil
-//	add fossils into tutorial as another stage
-//	fossilized plants(including fireplant)
-//		(!!!)do not count as an actual plant
-//		(!!!)spiders will ignore fossils, since they are not actual plants
-//
 //
 //	(SCRAP)More accurate portrayal of boxes so that what is inside them has an icon of it
 //	(SCRAP)rock being built up animation for when rock gets hit by rock box

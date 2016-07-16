@@ -30,8 +30,16 @@ class CreditScene : GameScene
 			creditData = [Dictionary<String,String>]()
 		}
 		
-		createBackground()
-		createButtons( view )
+		NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(self.showView), userInfo: nil, repeats: false)
+	}
+	
+	func showView()
+	{
+		if ( myView != nil )
+		{
+			createBackground()
+			createButtons( myView )
+		}
 	}
 	
 	override func willMoveFromView(view: SKView)
