@@ -71,7 +71,7 @@ class ButtonFactory
 		button.setTitleColor( UIColor.blackColor(), forState: .Normal)
 		button.setTitle( buttonTitle, forState: .Normal )
 		button.layer.zPosition = 100
-		
+		setupDefaultFont( button )
 		return button
 	}
 	
@@ -91,6 +91,19 @@ class ButtonFactory
 	{
 		let screenWidth = UIScreen.mainScreen().bounds.width
 		return createButton( buttonTitle, buttonType: buttonType, xCenter : screenWidth / 2, yPos : yPos )
+	}
+	
+	static func setupDefaultFont( button : UIButton )
+	{
+		button.titleLabel!.font = UIFont( name: "Thonburi", size: button.titleLabel!.font!.pointSize )
+	}
+	
+	static func disableButton( button : UIButton )
+	{
+		button.userInteractionEnabled = false
+		let image = UIImage( named: "disabledButton" ) as UIImage?
+		button.setBackgroundImage( image, forState: .Normal )
+		button.setTitleColor( UIColor.grayColor(), forState: .Normal)
 	}
 }
 

@@ -16,6 +16,7 @@
 		FE2A485B1D20A407000D2CF2 /* FlameHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE2A485A1D20A407000D2CF2 /* FlameHit.wav */; };
 		FE2A485E1D20A422000D2CF2 /* RockLives.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE2A485D1D20A422000D2CF2 /* RockLives.wav */; };
 		FE49B1971D2A42190078D8E1 /* VictoryCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE49B1961D2A42190078D8E1 /* VictoryCondition.swift */; };
+		FE54B3941D39F9910070314F /* MuteObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE54B3931D39F9910070314F /* MuteObj.swift */; };
 		FE59A9371D377869001CA8A9 /* SaveAdaptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE59A9361D377869001CA8A9 /* SaveAdaptor.swift */; };
 		FE608F2F1D1E685F005F0DA5 /* GamePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE608F2E1D1E685F005F0DA5 /* GamePath.swift */; };
 		FE6D3A661D34AE8C0042D89B /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6D3A651D34AE8C0042D89B /* ButtonFactory.swift */; };
@@ -84,6 +85,7 @@
 		FE2A485A1D20A407000D2CF2 /* FlameHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FlameHit.wav; sourceTree = "<group>"; };
 		FE2A485D1D20A422000D2CF2 /* RockLives.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RockLives.wav; sourceTree = "<group>"; };
 		FE49B1961D2A42190078D8E1 /* VictoryCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VictoryCondition.swift; sourceTree = "<group>"; };
+		FE54B3931D39F9910070314F /* MuteObj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MuteObj.swift; sourceTree = "<group>"; };
 		FE59A9361D377869001CA8A9 /* SaveAdaptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveAdaptor.swift; sourceTree = "<group>"; };
 		FE608F2E1D1E685F005F0DA5 /* GamePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePath.swift; sourceTree = "<group>"; };
 		FE6D3A651D34AE8C0042D89B /* ButtonFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				FEA65BA51D168CE20068A20A /* ObjGenerator.swift */,
 				FEEDC7FE1D35A27C00716E45 /* ParticleObj.swift */,
 				FEF298AB1D2E29B200FBBE96 /* PauseObj.swift */,
+				FE54B3931D39F9910070314F /* MuteObj.swift */,
 				FE881EAC1D176FC0003D2D57 /* PlantObj.swift */,
 				FECFFE531D277F7D00A89CAE /* Process.swift */,
 				FECB8A951D1E122D0093810E /* RockBox.swift */,
@@ -361,6 +364,7 @@
 				FE881EA51D175D84003D2D57 /* BoxObj.swift in Sources */,
 				FE881EA71D175E4F003D2D57 /* CloudObj.swift in Sources */,
 				FE1069DD1D1A6AA000E0E5A5 /* FirePlant.swift in Sources */,
+				FE54B3941D39F9910070314F /* MuteObj.swift in Sources */,
 				FE269CCF1D239EFC00F445B5 /* LevelScene.swift in Sources */,
 				FEDF1F801D1520E5000EA427 /* GameObj.swift in Sources */,
 				FE1069DF1D1A6D9B00E0E5A5 /* FlameObj.swift in Sources */,

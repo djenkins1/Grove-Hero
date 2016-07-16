@@ -14,6 +14,8 @@ class LevelScene : GameScene
 	//whether the lose condition should be checked on update or not
 	var shouldCheckLose = false
 	
+	var winLoseTimer = -1
+	
 	override func didMoveToView(view: SKView)
 	{
 		notifyVictory = true
@@ -41,7 +43,7 @@ class LevelScene : GameScene
 	
 	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
 	{
-		if ( pauseUpdate && doneScreen && myController != nil )
+		if ( pauseUpdate && doneScreen && myController != nil && winLoseTimer == 0 )
 		{
 			myController.changeState( GameState.Menu )
 			return
@@ -58,6 +60,11 @@ class LevelScene : GameScene
 	
 	override func didFinishUpdate()
 	{
+		if ( winLoseTimer > 0 )
+		{
+			winLoseTimer -= 1
+		}
+		
 		if ( pauseUpdate )
 		{
 			return
@@ -139,6 +146,7 @@ class LevelScene : GameScene
 		{
 			self.playSoundEffect( Sounds.loseSound )
 			pauseAndShowMessage( "Game Over!" )
+			winLoseTimer = 66
 			doneScreen = true
 		}
 	}
@@ -158,6 +166,7 @@ class LevelScene : GameScene
 			}
 		}
 		pauseAndShowMessage( "You Won!", subMessage: "Score: \(score)\(myExtra)" )
+		winLoseTimer = 66
 		doneScreen = true
 	}
 }

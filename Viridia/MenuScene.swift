@@ -15,6 +15,8 @@ class MenuScene : GameScene
 	
 	var timer = NSTimer()
 	
+	var allowedToTouch = [GameObj]()
+	
 	//function first called when the scene is viewed
 	override func didMoveToView(view: SKView)
 	{
@@ -97,17 +99,15 @@ class MenuScene : GameScene
 	
 	private func createButtons( view : SKView )
 	{
-		var currentMuteStatus = false
-		if ( myController != nil )
-		{
-			currentMuteStatus = myController.isMuted
-		}
+		let muted = MuteObj()
+		allowedToTouch.append( muted )
+		queueGameObject( muted )
 		
 		var yPos = ceil( UIScreen.mainScreen().bounds.height * 0.25 )
 		let padding = ceil( UIScreen.mainScreen().bounds.height * 0.04 )
 		
 		let gameTitle = ButtonFactory.createCenteredButton( "GroveKeeper", buttonType: ButtonType.TitleButton, yCenter: yPos  )
-		let muteButton = ButtonFactory.createCenteredButton( getMuteIconText( currentMuteStatus ), buttonType : ButtonType.SmallButton, xOffset: gameTitle.frame.width * 0.6, yCenter : yPos )
+		//let muteButton = ButtonFactory.createCenteredButton( getMuteIconText( currentMuteStatus ), buttonType : ButtonType.SmallButton, xOffset: gameTitle.frame.width * 0.6, yCenter : yPos )
 		
 		yPos += gameTitle.frame.height + padding
 		let playButton = ButtonFactory.createCenteredButton( "Play", buttonType: ButtonType.MenuButton, yCenter: yPos )
@@ -121,12 +121,12 @@ class MenuScene : GameScene
 		view.addSubview( gameTitle )
 		view.addSubview( playButton )
 		view.addSubview( credButton )
-		view.addSubview( muteButton )
+		//view.addSubview( muteButton )
 		view.addSubview( helpButton )
 		
 		playButton.addTarget( self, action: #selector( self.clickPlayButton) , forControlEvents: .TouchUpInside)
 		credButton.addTarget( self, action: #selector( self.clickCreditButton) , forControlEvents: .TouchUpInside)
-		muteButton.addTarget( self, action: #selector( self.clickMuteButton(_:)) , forControlEvents: .TouchUpInside)
+		//muteButton.addTarget( self, action: #selector( self.clickMuteButton(_:)) , forControlEvents: .TouchUpInside)
 		helpButton.addTarget( self, action: #selector( self.clickHelpButton) , forControlEvents: .TouchUpInside)
 	}
 	
@@ -145,7 +145,18 @@ class MenuScene : GameScene
 	
 	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
 	{
-		return
+		for touch in touches
+		{
+			let location = touch.locationInNode(self)
+			for obj in allowedToTouch
+			{
+				if obj.sprite.frame.contains( location )
+				{
+					obj.touchEvent( location )
+					objectTouched = obj
+				}
+			}
+		}
 	}
 	
 	override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?)

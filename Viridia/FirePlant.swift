@@ -193,6 +193,7 @@ class FirePlant : PlantObj
 			{
 				if let fossil = convertToFossil()
 				{
+					other.makeExplosion( other, spriteName: "explodeRock" )
 					(other as! RockBox ).rockedOut = true
 					myScene.playSoundEffect( Sounds.createRock )
 					myScene.queueGameObject( fossil )

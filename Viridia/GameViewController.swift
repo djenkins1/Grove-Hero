@@ -30,6 +30,8 @@ class GameViewController: UIViewController
 	
 	let saveMachine = SaveAdaptor()
 	
+	var isDebugMode = true
+	
     override func viewDidLoad()
 	{
         super.viewDidLoad()
@@ -83,8 +85,12 @@ class GameViewController: UIViewController
 		{
 			// Configure the view.
 			let skView = self.view as! SKView
-			skView.showsFPS = true
-			skView.showsNodeCount = true
+			
+			if ( isDebugMode )
+			{
+				skView.showsFPS = true
+				skView.showsNodeCount = true
+			}
 			
 			/* Sprite Kit applies additional optimizations to improve rendering performance */
 			skView.ignoresSiblingOrder = true
@@ -148,6 +154,13 @@ class GameViewController: UIViewController
 		}
 		
 		NSNotificationCenter.defaultCenter().removeObserver( note.object! )
+		NSTimer.scheduledTimerWithTimeInterval(2.0 , target: self, selector: #selector(self.setupNextSong), userInfo: nil, repeats: false)
+		
+
+	}
+	
+	func setupNextSong()
+	{
 		playMusicList.append( playMusicList.removeAtIndex( 0 ) )
 		musicPlayer = AVPlayer( playerItem: playMusicList[ 0 ].getItem() )
 		musicPlayer.play()

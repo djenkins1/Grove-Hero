@@ -236,19 +236,6 @@ class TutorialScene : GameScene
 			return
 		}
 		
-		if ( myController != nil && specialObj == nil )
-		{
-			if ( myController.tutorStage.current() == .RockSpawn )
-			{
-				let allRocks = allObjectsOfType( RockObj )
-				if allRocks.count > 0
-				{
-					specialObj = allRocks[ 0 ]
-					specialObj.deathModeEvent( 60 )
-				}
-			}
-		}
-		
 		if ( specialObj != nil && specialObj.isDead )
 		{
 			doneScreen = true
@@ -333,8 +320,8 @@ class TutorialScene : GameScene
 			addGameObject( chosenGround.myPlant! )
 				
 			let yPos =  UIScreen.mainScreen().bounds.height * 1.5
-			let rockBox = RockBox(xStart: chosenGround.sprite.position.x , yStart: yPos )
-			addGameObject( rockBox )
+			specialObj = RockBox(xStart: chosenGround.sprite.position.x , yStart: yPos )
+			addGameObject( specialObj )
 			pauseUpdate = true
 		case .FossilSpawn:
 			let chosenGround = topGround[ topGround.count / 2 ]

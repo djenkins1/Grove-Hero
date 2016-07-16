@@ -54,6 +54,11 @@ class SetupScene : GameScene
 		{
 			view.addSubview( button )
 			button.addTarget( self, action: #selector( self.clickModeButton(_:)) , forControlEvents: .TouchUpInside)
+			if ( button.currentTitle == modes[ 2 ] )
+			{
+				ButtonFactory.disableButton( button )
+				modeButtons.removeAtIndex( 2 )
+			}
 		}
 		clickModeButton( modeButtons[ chosenModeIndex ] )
 	
@@ -79,13 +84,13 @@ class SetupScene : GameScene
 		let newButtonHeight : CGFloat = 48
 		let buttonPadding = newButtonHeight * 0.1
 		buttonGroupY += defaultHeight * 1.6
-		yesButton.frame = CGRectMake( centerX - ( newButtonHeight + buttonPadding ), buttonGroupY, newButtonHeight, newButtonHeight)
+		yesButton.frame = CGRectMake( centerX - ( newButtonHeight + buttonPadding ), buttonGroupY, newButtonHeight, newButtonHeight - 2)
 		yesButton.setBackgroundImage( yesImage, forState: .Normal )
 		yesButton.setTitle( "", forState: .Normal )
 		yesButton.layer.zPosition = 20
 		view.addSubview( yesButton )
 		
-		noButton.frame = CGRectMake( centerX + buttonPadding, buttonGroupY, newButtonHeight, newButtonHeight)
+		noButton.frame = CGRectMake( centerX + buttonPadding, buttonGroupY, newButtonHeight, newButtonHeight - 2)
 		noButton.setBackgroundImage( noImage, forState: .Normal )
 		noButton.setTitle( "", forState: .Normal )
 		noButton.layer.zPosition = 20
@@ -225,6 +230,7 @@ class SetupScene : GameScene
 			index += 1
 			let button = UIButton(type: UIButtonType.Custom) as UIButton
 			button.setTitle( title , forState: .Normal )
+			ButtonFactory.setupDefaultFont( button )
 			
 			toggleButton( index == chosenIndex, button: button )
 			

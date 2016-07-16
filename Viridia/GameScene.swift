@@ -10,23 +10,21 @@
 //==========
 //	TODO
 //==========
-//	(WAIT LONGER)should somehow wait until rock is created on RockBox tutorial before the tutorial finishes
-//	fossilized plants(including fireplant)
-//		(!!!)do not count as an actual plant
-//		(!!!)spiders will ignore fossils, since they are not actual plants
+//	Make sure isDebugMode in viewController is false in app store release
 //
-//	TEST ON IPAD and smaller devices in emulator
-//	(?-VER)dialog box explaining the chosen game mode on SetupScene
-//	(AFTER)Make sure that FPS counter no longer shown on presented/app store versions
-//		maybe have some kind of debug mode constant
-//	change mute button to just using icons on menu( and maybe move it to top right corner like pause button )
-//		(AFTER)Change fonts on all buttons to the Display font for pause
-//	time attack mode(called survival) that starts off at chosen difficulty and gets harder as you go along, see how long you can survive
-//		would have to take into account restart button, currently just transitions to play again with all difficulty settings the same
-//	maybe have a 2 second pause between music on the list played(use a timer)
-//	if possible have healBox collide with firePlant give a free fire shoot AND make it ready to fire immediately when full lives/ready
-//	should add a delay between showing win/lose screen and actually allowing tap to continue
-//	add explode animation for rock box turning fireplant to fossil
+//	(!!!)TEST ON IPAD and smaller devices in emulator
+//	(!!!)undo waiting for rock to appear on RockSpawn tutorial
+//	crates are getting positioned wierdly on tutorial ascross different devices
+//		positioned fine on non ipads, but maybe too high on ipad
+//		maybe have it positioned in the middle of the screen plus a little padding
+//	ground is not positioned on bottom of screen
+//		there a gap on iphone 4s and ipads
+//		fine on iphone 5s,6s,6s plus
+//	timer/box remaining is positioned too low on iphone 4s(maybe test on ipad)
+//	mute button is positioned too low on ipad, maybe tweak this
+//	mute button does not show correct mute sprite if isMuted when goes to room
+//	should decrease opacity of explosions as they get bigger
+//	make sure that spider is still being animated walking(emulator might have been lagging)
 //
 //	(SCRAP)More accurate portrayal of boxes so that what is inside them has an icon of it
 //	(SCRAP)rock being built up animation for when rock gets hit by rock box
@@ -45,6 +43,10 @@
 //		somehow need to allow player to go to this stage of the tutorial when new version first comes out
 //			and once they are done with that stage they are done with the tutorial
 //			but also need to allow brand new players to start fresh
+//	dialog box explaining the chosen game mode on SetupScene
+//	time attack mode(called survival) that starts off at chosen difficulty and gets harder as you go along, see how long you can survive
+//		would have to take into account restart button, currently just transitions to play again with all difficulty settings the same
+//	if possible have healBox collide with firePlant give a free fire shoot AND make it ready to fire immediately when full lives/ready
 //	snail shells that spawn like rocks
 //		when bomb box hits snail shell, snail gets out and wreaks havoc on plants nearby similar to sand monster
 //	When rock get hits by rock box and is already full lives:
