@@ -37,6 +37,8 @@ class CreditScene : GameScene
 	{
 		if ( myView != nil )
 		{
+			print( myView.frame.width )
+			print( myView.frame.height )
 			createBackground()
 			createButtons( myView )
 		}

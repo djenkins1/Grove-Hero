@@ -12,19 +12,12 @@
 //==========
 //	Make sure isDebugMode in viewController is false in app store release
 //
-//	(!!!)TEST ON IPAD and smaller devices in emulator
-//	(!!!)undo waiting for rock to appear on RockSpawn tutorial
-//	crates are getting positioned wierdly on tutorial ascross different devices
-//		positioned fine on non ipads, but maybe too high on ipad
-//		maybe have it positioned in the middle of the screen plus a little padding
+//	(BUG)spiders no longer animate
+//	(BUG)mute button does not show correct mute sprite if isMuted when goes to room
 //	ground is not positioned on bottom of screen
-//		there a gap on iphone 4s and ipads
-//		fine on iphone 5s,6s,6s plus
-//	timer/box remaining is positioned too low on iphone 4s(maybe test on ipad)
-//	mute button is positioned too low on ipad, maybe tweak this
-//	mute button does not show correct mute sprite if isMuted when goes to room
+//		there a gap on iphone 4s
+//	timer/box remaining is positioned too low on iphone 4s
 //	should decrease opacity of explosions as they get bigger
-//	make sure that spider is still being animated walking(emulator might have been lagging)
 //
 //	(SCRAP)More accurate portrayal of boxes so that what is inside them has an icon of it
 //	(SCRAP)rock being built up animation for when rock gets hit by rock box
@@ -432,6 +425,7 @@ class GameScene: SKScene
 		let objForSize = GroundObj( isTop: isTop , xStart: 0, yStart: 0 )
 		let totalSprites = Int( ceil( self.frame.width / objForSize.sprite.frame.width ) ) + 1
 		let yPos = objForSize.sprite.frame.height * CGFloat(atLayer)
+		print( yPos )
 		for index in 0 ..< totalSprites
 		{
 			let xPos = CGFloat(index) * objForSize.sprite.frame.width
