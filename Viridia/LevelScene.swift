@@ -21,6 +21,7 @@ class LevelScene : GameScene
 		notifyVictory = true
 		createBackground()
 		setupGenerators()
+		createLayer( false , atLayer: 0 )
 		createLayer( false , atLayer: 1 )
 		createLayer( true , atLayer: 2 )
 		generateScenery()

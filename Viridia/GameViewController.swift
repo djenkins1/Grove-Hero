@@ -30,7 +30,7 @@ class GameViewController: UIViewController
 	
 	let saveMachine = SaveAdaptor()
 	
-	var isDebugMode = true
+	var isDebugMode = false
 	
     override func viewDidLoad()
 	{
@@ -116,19 +116,25 @@ class GameViewController: UIViewController
 	
 	func returnSceneFromState( state : GameState ) -> GameScene?
 	{
-		let fileName = "GameScene"
+		//let fileName = "GameScene"
+		
 		switch( state )
 		{
 		case .Play:
-			return LevelScene( fileNamed: fileName )
+			//return LevelScene( fileNamed: fileName )
+			return LevelScene( size: CGSize( width: 1024, height: 768 ) )
 		case .Menu:
-			return MenuScene( fileNamed: fileName )
+			//return MenuScene( fileNamed: fileName )
+			return MenuScene( size: CGSize( width: 1024, height: 768 ) )
 		case .Credits:
-			return CreditScene( fileNamed: fileName )
+			//return CreditScene( fileNamed: fileName )
+			return CreditScene( size: CGSize( width: 1024, height: 768 ) )
 		case .Setup:
-			return SetupScene( fileNamed: fileName )
+			//return SetupScene( fileNamed: fileName )
+			return SetupScene( size: CGSize( width: 1024, height: 768 ) )
 		case .Tutorial:
-			return TutorialScene( fileNamed: fileName )
+			//return TutorialScene( fileNamed: fileName )
+			return TutorialScene( size: CGSize( width: 1024, height: 768 ) )
 		}
 	}
 	

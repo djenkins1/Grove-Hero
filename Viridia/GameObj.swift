@@ -201,8 +201,13 @@ class GameObj
 	//changes the sprite's current texture to the spriteName provided
 	func changeSprite( spriteName : String )
 	{
-		sprite.texture = SKTexture(imageNamed: spriteName )
+		setSprite( spriteName )
 		mySprites.withImages( [ spriteName ] )
+	}
+	
+	func setSprite( spriteName : String )
+	{
+		sprite.texture = SKTexture(imageNamed: spriteName )
 	}
 	
 	//fires when the update function is called in the GameScene
@@ -225,7 +230,7 @@ class GameObj
 		{
 			if let newSprite = mySprites.getCurrentImageString()
 			{
-				changeSprite( newSprite )
+				setSprite( newSprite )
 			}
 			else
 			{
@@ -285,6 +290,9 @@ class GameObj
 		let action = SKAction.scaleTo( 0.3 , duration: secondsNeeded )
 		explodeObj.sprite.runAction( action )
 		explodeObj.deathModeEvent( Int( secondsNeeded * 60 ) )
+		
+		let action2 = SKAction.fadeAlphaTo( 0.0, duration:  secondsNeeded )
+		explodeObj.sprite.runAction(action2)
 		myScene.queueGameObject( explodeObj )
 	}
 	

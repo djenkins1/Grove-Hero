@@ -26,6 +26,10 @@ class MuteObj : GameObj
 	override func createEvent(scene: GameScene) -> GameObj
 	{
 		super.createEvent( scene )
+		if ( scene.myController != nil )
+		{
+			self.changeMuteSprite( scene.myController.isMuted )
+		}
 		let paddingWidth = scene.frame.width * 0.01
 		let paddingHeight = scene.frame.height * 0.15
 		jumpTo( scene.frame.width - sprite.frame.width - paddingWidth , y: scene.frame.height - sprite.frame.height - paddingHeight )
@@ -38,13 +42,19 @@ class MuteObj : GameObj
 		return false
 	}
 	
+	private func changeMuteSprite( isMuted : Bool )
+	{
+		let sprite = ( isMuted ? muteSprite : unmuteSprite )
+		changeSprite( sprite )
+	}
+	
 	//fires when the object is touched
 	override func touchEvent( location : CGPoint )
 	{
 		if ( myScene != nil && myScene.myController != nil )
 		{
 			let currentMuteStatus = myScene.myController.isMuted
-			changeSprite( ( currentMuteStatus ? unmuteSprite : muteSprite ) )
+			changeMuteSprite( !currentMuteStatus )
 			myScene.myController.setMuted( !currentMuteStatus )
 		}
 	}

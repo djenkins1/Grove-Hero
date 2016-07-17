@@ -60,7 +60,7 @@ class SpriteRoll
 		let image = getCurrentImageString()
 		if image != nil
 		{
-			obj.changeSprite( image! )
+			obj.setSprite( image! )
 		}
 	}
 	

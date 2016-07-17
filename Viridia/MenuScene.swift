@@ -106,7 +106,7 @@ class MenuScene : GameScene
 		var yPos = ceil( UIScreen.mainScreen().bounds.height * 0.25 )
 		let padding = ceil( UIScreen.mainScreen().bounds.height * 0.04 )
 		
-		let gameTitle = ButtonFactory.createCenteredButton( "GroveKeeper", buttonType: ButtonType.TitleButton, yCenter: yPos  )
+		let gameTitle = ButtonFactory.createCenteredButton( "Grove Hero", buttonType: ButtonType.TitleButton, yCenter: yPos  )
 		//let muteButton = ButtonFactory.createCenteredButton( getMuteIconText( currentMuteStatus ), buttonType : ButtonType.SmallButton, xOffset: gameTitle.frame.width * 0.6, yCenter : yPos )
 		
 		yPos += gameTitle.frame.height + padding

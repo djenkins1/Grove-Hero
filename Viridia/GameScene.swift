@@ -10,14 +10,7 @@
 //==========
 //	TODO
 //==========
-//	Make sure isDebugMode in viewController is false in app store release
-//
-//	(BUG)spiders no longer animate
-//	(BUG)mute button does not show correct mute sprite if isMuted when goes to room
-//	ground is not positioned on bottom of screen
-//		there a gap on iphone 4s
-//	timer/box remaining is positioned too low on iphone 4s
-//	should decrease opacity of explosions as they get bigger
+//	GroveHero
 //
 //	(SCRAP)More accurate portrayal of boxes so that what is inside them has an icon of it
 //	(SCRAP)rock being built up animation for when rock gets hit by rock box
@@ -425,7 +418,6 @@ class GameScene: SKScene
 		let objForSize = GroundObj( isTop: isTop , xStart: 0, yStart: 0 )
 		let totalSprites = Int( ceil( self.frame.width / objForSize.sprite.frame.width ) ) + 1
 		let yPos = objForSize.sprite.frame.height * CGFloat(atLayer)
-		print( yPos )
 		for index in 0 ..< totalSprites
 		{
 			let xPos = CGFloat(index) * objForSize.sprite.frame.width
@@ -614,5 +606,14 @@ class GameScene: SKScene
 				break
 			}
 		}
+	}
+	
+	static func gcd( a : Int, _ b : Int ) -> Int
+	{
+		if b == 0
+		{
+			return a
+		}
+		return gcd( b, a % b )
 	}
 }

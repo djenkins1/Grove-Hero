@@ -26,6 +26,7 @@ class TutorialScene : GameScene
 	override func didMoveToView(view: SKView)
 	{
 		createBackground()
+		createLayer( false , atLayer: 0 )
 		createLayer( false , atLayer: 1 )
 		createLayer( true , atLayer: 2 )
 		if ( myController != nil )
@@ -225,7 +226,7 @@ class TutorialScene : GameScene
 			beginMessageQueue.append( "You now have the necessary knowledge." )
 			
 			endMessageQueue.append( "You will fail in your mission if all the plants in the grove die." )
-			endMessageQueue.append( "GroveKeeper, go forth and protect!" )
+			endMessageQueue.append( "Hero, go forth and protect!" )
 		}
 	}
 	
